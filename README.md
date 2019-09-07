@@ -38,6 +38,25 @@ Things you may want to cover:
 - has_many :products
 - has_many :messages
 - has_many :comments
+- has_many :followers, through: :users_followers
+- has_many: users_followers
+
+## followersテーブル
+|Column|Type|Options|
+|user_id|integer|null: false|
+
+### Association
+- has_many :users_followers
+- has_many :users, through: :users_followers
+
+## users_followersテーブル
+|Column|Type|Options|
+|user|references|null: false, foreign_key: true|
+|follower|references|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to :follower
 
 ## productsテーブル
 |Column|Type|Options|
