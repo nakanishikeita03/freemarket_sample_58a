@@ -2,6 +2,8 @@
 
 ## productsテーブル
 |Column|Type|Options|
+|---|---|---|
+|user_id|reference|null:false,foreign_key:true|
 |name|string|null: false|
 |detail|text|null: false|
 |category|integer|null: false,default 0|
@@ -11,12 +13,15 @@
 |city|integer|null: false|
 |delivery|integer|null: false|
 
+
 ### Association
 - belongs to user
 - belongs to image
 
 
 ## imagesテーブル
+|Column|Type|Options|
+|---|---|---|
 |product_id|reference|null:false,foreign_key:true|
 |main_image|string|null: false|
 |sub1_image|string||
@@ -28,11 +33,13 @@
 
 
 
-
 ## usersテーブル
 |Column|Type|Options|
-|name-kana|string|null: false|
-|name-kanji|string|null: false|
+|---|---|---|
+|f_name_kana|string|null: false|
+|l_name_kana|string|null: false|
+|f_name_kanji|string|null: false|
+|l_name_kanji|string|null: false|
 |birth_year|integer|null: false|
 |birth_month|integer|null: false|
 |birth_day|integer|null: false|
@@ -40,7 +47,6 @@
 |password|string|null: false|
 |e_mail|string|null:false,unique: true|
 |telephone|integer|null: false,unique: true|
-|credit-card|integer|null: false|
 
 ### Association
 - has_many :products
@@ -50,6 +56,7 @@
 
 ## addressesテーブル
 |Column|Type|Options|
+|---|---|---|
 |postal_code|integer|null: false|
 |region|string|null: false|
 |city|string|null: false|
@@ -61,11 +68,24 @@
 
 
 ## credit_cardsテーブル
+|Column|Type|Options|
+|---|---|---|
 |user_id|integer|null:false,foreign_key:true|
 |numbar|integer|null:false|
 |year|integer|null:false|
 |month|integer|null:false|
 |CVC|integer|null:false|
+
+##Association
+- belongs_to :user​​
+
+
+## has_many_sns_credentialsテーブル
+|Column|Type|Options|
+|---|---|---|
+|user_id|integer|null:false,foreign_key:true|
+|uid|integer|null:false,unique: true|
+|provider|integer|null:false|
 
 ##Association
 - belongs_to :user​​
