@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  get  'items' => 'items#index'
-  root 'items#index'
+
+  root 'products#index'
+
 end
