@@ -71,9 +71,13 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 
 gem 'haml-rails'
 gem 'font-awesome-rails'
+gem 'devise'
+gem 'erb2haml'
 
