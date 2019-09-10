@@ -1,3 +1,4 @@
+
 # README
 
 ## productsテーブル
@@ -16,20 +17,17 @@
 
 ### Association
 - belongs to user
-- belongs to image
+- has_many :images dependent: :destroy
 
 
 ## imagesテーブル
 |Column|Type|Options|
 |---|---|---|
 |product_id|reference|null:false,foreign_key:true|
-|main_image|string|null: false|
-|sub1_image|string||
-|sub2_image|string||
-|sub3_image|string||
+|image|string|null: false|
 
 ### Association
-- belongs to product
+- belongs to product 
 
 
 
@@ -49,10 +47,10 @@
 |telephone|integer|null: false,unique: true|
 
 ### Association
-- has_many :products
-- belongs to addresse
-- belongs to credit_card
-
+- has_many :products 
+- has_one :address dependent: :destroy
+- has_one :credit_card dependent: :destroy
+- has_one :has_many_sns_credentials dependent: :destroy
 
 ## addressesテーブル
 |Column|Type|Options|

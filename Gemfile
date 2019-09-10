@@ -75,7 +75,8 @@ group :development, :test do
   gem 'factory_bot_rails'
 end
 
-
+gem 'carrierwave'
+gem 'fog-aws'
 gem 'haml-rails'
 gem 'font-awesome-rails'
 gem 'devise'
