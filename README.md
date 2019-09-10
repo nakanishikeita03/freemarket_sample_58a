@@ -17,7 +17,7 @@
 
 ### Association
 - belongs to user
-- belongs to image
+- has_many :images
 
 
 ## imagesテーブル
@@ -25,9 +25,6 @@
 |---|---|---|
 |product_id|reference|null:false,foreign_key:true|
 |main_image|string|null: false|
-|sub1_image|string||
-|sub2_image|string||
-|sub3_image|string||
 
 ### Association
 - belongs to product
@@ -51,8 +48,8 @@
 
 ### Association
 - has_many :products
-- belongs to addresse
-- belongs to credit_card
+- has_one :address
+- has_one :credit_card
 
 
 ## addressesテーブル
