@@ -24,7 +24,7 @@
 |Column|Type|Options|
 |---|---|---|
 |product_id|reference|null:false,foreign_key:true|
-|main_image|string|null: false|
+|image|string|null: false|
 
 ### Association
 - belongs to product
