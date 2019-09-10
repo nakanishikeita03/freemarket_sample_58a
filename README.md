@@ -17,7 +17,7 @@
 
 ### Association
 - belongs to user
-- has_many :images
+- has_many :images dependent: :destroy
 
 
 ## imagesテーブル
@@ -27,7 +27,7 @@
 |image|string|null: false|
 
 ### Association
-- belongs to product
+- belongs to product 
 
 
 
@@ -47,10 +47,10 @@
 |telephone|integer|null: false,unique: true|
 
 ### Association
-- has_many :products
-- has_one :address
-- has_one :credit_card
-
+- has_many :products 
+- has_one :address dependent: :destroy
+- has_one :credit_card dependent: :destroy
+- has_one :has_many_sns_credentials dependent: :destroy
 
 ## addressesテーブル
 |Column|Type|Options|
