@@ -79,7 +79,7 @@
         img {
           border-radius: 50%;
         }
-        .o_link-mypage {
+        .link-mypage {
           display: flex;
           span {
             margin-left: 5px;
@@ -166,7 +166,7 @@
     }
   }
 }
-.o_icon {
+.icon {
   &-search {
     color: #333;
   }
@@ -178,14 +178,14 @@
   }
 }
 
-.o_btn {
+.btn {
   line-height: 32px;
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0;
 }
 
-.o_registration {
+.registration {
   border: 1px solid #ea352d;
   background: #ea352d;
   color: #fff;
@@ -196,7 +196,7 @@
   }
 }
 
-.o_login {
+.login {
   border: 1px solid #0099e8;
   color: #0099e8;
   transition-duration: 0.3s;
