@@ -34,17 +34,17 @@
 ## usersテーブル
 |Column|Type|Options|
 |---|---|---|
-|f_name_kana|string|null: false|
-|l_name_kana|string|null: false|
-|f_name_kanji|string|null: false|
-|l_name_kanji|string|null: false|
-|birth_year|integer|null: false|
-|birth_month|integer|null: false|
-|birth_day|integer|null: false|
-|nickname|string|null: false|
-|password|string|null: false|
+|nickname|string|null: false,limit: 15, default: ""|
 |e_mail|string|null:false,unique: true|
-|telephone|integer|null: false,unique: true|
+|password|string|null: false|
+|f_name_kana|string|null: false,limit: 15, default: ""|
+|l_name_kana|string|null: false,limit: 15, default: ""|
+|f_name_kanji|string|null: false,limit: 15, default: ""|
+|l_name_kanji|string|null: false,limit: 15, default: ""|
+|birthday|integer|null: false|
+
+
+
 
 ### Association
 - has_many :products 
@@ -81,7 +81,7 @@
 ## has_many_sns_credentialsテーブル
 |Column|Type|Options|
 |---|---|---|
-|user_id|integer|null:false,foreign_key:true|
+|user_id|references|null:false,foreign_key:true|
 |uid|integer|null:false,unique: true|
 |provider|integer|null:false|
 

@@ -15,29 +15,37 @@
         %li.header-bottom__left__list__category
           %h2.header-bottom__left__list__category_field
             = link_to do
-              = fa_icon 'list-ul', class: "o_icon-red"
+              = fa_icon 'list-ul', class: "icon-red"
               %span カテゴリーから探す
         %li
           %h2
             = link_to "#" do
-              = fa_icon 'tag', class: "o_icon-red"
+              = fa_icon 'tag', class: "icon-red"
               %span ブランドから探す
-
-    .header-bottom__right
-      %ul
-        %li
-          = link_to "#" do
-            = fa_icon 'heart', class: "o_icon-gray"
-            %span いいね一覧
-        %li
-          = link_to "#" do
-            = fa_icon 'bell', class: "o_icon-gray"
-            %span お知らせ
-        %li
-          = link_to "#" do
-            = fa_icon 'check', class: "o_icon-gray"
-            %span やることリスト
-        %li
-          = link_to "#" do
-            .header-bottom__right--image 
-            %span マイページ
+    - if user_signed_in?
+      .header-bottom__right
+        %ul
+          %li
+            = link_to "#" do
+              = fa_icon 'heart', class: "icon-gray"
+              %span いいね一覧
+          %li
+            = link_to "#" do
+              = fa_icon 'bell', class: "icon-gray"
+              %span お知らせ
+          %li
+            = link_to destroy_user_session_path, method: :delete do
+              = fa_icon 'check', class: "icon-gray"
+              %span やることリスト
+          %li
+            = link_to "#" do
+              .header-bottom__right--image 
+              %span マイページ
+              
+    - else
+      .header-bottom__right
+        %ul
+          %li
+            = link_to "新規会員登録", "users/sign_up", class: "btn registration"
+          %li
+            = link_to "ログイン", "users/sign_in", class: "btn login"
