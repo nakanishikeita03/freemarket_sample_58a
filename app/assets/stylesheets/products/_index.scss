@@ -59,7 +59,19 @@
           }
         }
       }
-      
+      .pickup-contents__image{
+        margin-top: 20px;
+        justify-content: space-around;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        .pickup-content{
+          height:200px;
+          width: 15%;
+          background-color: #ffffff;
+          margin:10px;
+        }
+      }
     }
   }
 }
