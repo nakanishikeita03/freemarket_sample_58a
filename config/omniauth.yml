@@ -1,9 +1,0 @@
-development: &development
-  facebook:
-    key: 775783052867966
-    secret: c2a9e2aaa1717e4435c2fe7b4b1e34ff
-  google:
-    key: 725166214133-je05npa7l584uc2tmbmlcbv4nik2fmji.apps.googleusercontent.com
-    secret: KAnmRHBUxHH0z3gLCrLOI7RZ
-test:
-  <<: *development
