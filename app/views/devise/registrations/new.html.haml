@@ -9,17 +9,18 @@
     = f.label :email
     %br/
     = f.email_field :email, autocomplete: "email", placeholder: "PC・携帯どちらでも可"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (7 characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password", placeholder: "7文字以上"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "7文字以上"
+  - if @sns != 1
+    .field
+      = f.label :password
+      - if @minimum_password_length
+        %em
+          (7 characters minimum)
+      %br/
+      = f.password_field :password, autocomplete: "new-password", placeholder: "7文字以上"
+      .field
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "7文字以上"
   .field
     = f.label :f_name_kanji
     %br/
