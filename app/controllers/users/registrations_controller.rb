@@ -63,6 +63,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if params[:user][:password].nil?
       @user = User.create(user_via_sns_params)
       sns = SnsCredential.create(user_id: @user.id,uid: params[:user][:uid], provider: params[:user][:provider])
+      redirect_to :root
     else 
       super
     end
