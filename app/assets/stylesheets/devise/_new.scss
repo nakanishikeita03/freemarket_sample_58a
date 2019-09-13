@@ -20,7 +20,7 @@
     }
   }
   .main{
-    width: 500px;
+    width: 460px;
     margin: 0 auto;
     background-color:white;
     &__section{
@@ -33,9 +33,6 @@
         margin-bottom:5px;
       } 
     }
-    &__conect__lists__mail__btn{
-      color:white;
-    }
     &__conect{
       padding:40px 40px 64px;
       &__lists{
@@ -45,6 +42,7 @@
           width: 100px;
           &__btn{
             padding-top:17px;
+            color:white
           }
         }
         &__input{
@@ -151,7 +149,7 @@
           cursor: pointer;
           font-size: 14px;
           top: 24px;
-          right: -37px;
+          right: -18px;
           border-radius: 3px;
         }
       }
