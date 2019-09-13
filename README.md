@@ -78,12 +78,12 @@
 - belongs_to :user​​
 
 
-## has_many_sns_credentialsテーブル
+## sns_credentialsテーブル
 |Column|Type|Options|
 |---|---|---|
-|user_id|references|null:false,foreign_key:true|
-|uid|integer|null:false,unique: true|
-|provider|integer|null:false|
+|user_id|references|foreign_key:true|
+|uid|integer|
+|provider|integer|
 
 ##Association
 - belongs_to :user​​
