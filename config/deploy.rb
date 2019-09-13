@@ -56,6 +56,6 @@ set :linked_files, %w{config/master.key}
 
 #Basic認証
 set :default_env, {
-  BASIC_AUTH_USER: ENV[“BASIC_AUTH_USER”],
-  BASIC_AUTH_PASSWORD: ENV[“BASIC_AUTH_PASSWORD”]
+  BASIC_AUTH_USER: ENV["BASIC_AUTH_USER"],
+  BASIC_AUTH_PASSWORD: ENV["BASIC_AUTH_PASSWORD"]
 }
