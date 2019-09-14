@@ -30,12 +30,12 @@
       margin: 40px 0 0;
     }
     .form-group .select-wrap {
-      margin: 8px 0 0;
+      margin: 0 0 0;
     }
     .select-wrap {
       z-index: 2;
       height: 48px;
-      padding: 0 16px;
+      padding: 0 8px;
       border-radius: 4px;
       border: 1px solid #ccc;
       background: 0;
@@ -44,17 +44,18 @@
       cursor: pointer;
       position: relative;
       background: #fff;
+      i{
+        width: 16.28px;
+        font-size:30px;
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        z-index: 2;
+        color: #888;
+        transform: translate(0, -50%);
+      }
     }
-    .fa-chevron-down {
-      height: 10px;
-      width: 16.28px;
-      position: absolute;
-      right: 16px;
-      top: 50%;
-      z-index: 2;
-      color: #888;
-      transform: translate(0, -50%);
-    }
+    
     .form-group label {
       font-size: 14px;
       font-weight: 600;
@@ -111,7 +112,29 @@ input[type=button]{
 
 }
 
-.i.fa.fa-chevron-down {
-  height: 10px;
-  width: 16.28px;
+#person_prefecture_id {
+  z-index: 2;
+  height: 46px;
+  width: 95%;
+  padding: 0 0px;
+  border-radius: 4px;
+  border: 0;
+  background: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+  position: relative;
+  background: #fff;
 }
+
+// 最初からある矢印を消すため
+
+select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  }
+  
+select::-ms-expand{
+  display: none;
+  }

@@ -7,4 +7,5 @@ class MypagesController < ApplicationController
 
   def identification   
   end
+
 end
