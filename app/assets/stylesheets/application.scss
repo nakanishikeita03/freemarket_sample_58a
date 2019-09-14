@@ -7,12 +7,13 @@
 @import "card/index";
 @import "card/new";
 @import "font-awesome";
+@import "devise/new";
 @import "variable/flex";
 @import "variable/mixin";
-// @import "variable/reset";
 @import "variable/variable";
 @import "modules/mypage-sidebar";
 @import "modules/mypage-TOP";
+@import "modules/profile";
 
 * {
   font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
