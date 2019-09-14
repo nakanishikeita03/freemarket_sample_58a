@@ -85,9 +85,6 @@ gem 'erb2haml'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
-<<<<<<< HEAD
-
 gem 'active_hash'
-=======
 gem 'dotenv-rails'
->>>>>>> 39fcb9fc221711cd81c5fa34232e9f8fc1482b21
+
