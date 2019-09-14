@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :mypages
   resources :logout
+  resources :card
 
   devise_for :users,
   controllers: {
