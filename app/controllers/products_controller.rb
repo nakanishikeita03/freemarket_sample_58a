@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.includes(:images).where(status: 0).order("created_at DESC").limit(10)    #複数の指定なので返り値は配列
-    # @products = @products.images.order("created_at ASC").limit(1)
+    
   end
 
 
@@ -15,7 +15,6 @@ class ProductsController < ApplicationController
 
   def create
       Product.create(product_params)
-    # Product.create(user_id: current_user_id,name: product_params[:name],detail: product_params[:text],category: product_params[:category],price: product_params[:price],status: product_params[:status],state: product_params[:state],city: product_params[:city],delivery: product_params[:delivery])
   end
 
 
