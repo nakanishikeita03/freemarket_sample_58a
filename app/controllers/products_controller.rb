@@ -3,7 +3,8 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new,:create,:destroy,:edit,:update]
 
   def index
-    @products = Product.where(status: 0).order("created_at DESC").limit(10)#複数の指定なので返り値は配列
+    @products = Product.includes(:images).where(status: 0).order("created_at DESC").limit(10)    #複数の指定なので返り値は配列
+    # @products = @products.images.order("created_at ASC").limit(1)
   end
 
 

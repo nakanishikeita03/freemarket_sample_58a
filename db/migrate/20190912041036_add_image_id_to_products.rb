@@ -1,5 +1,5 @@
 class AddImageIdToProducts < ActiveRecord::Migration[5.2]
   def change
-    add_column :products, :image, :integer, null: false
+    change_column :product, :image, :references, foreign_key:true
   end
 end

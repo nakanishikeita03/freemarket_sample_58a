@@ -2,20 +2,11 @@
   = link_to "products/#{product.id}" do
     %figure.content__box
       .img_content
-        = image_tag "m12071392495_1.jpg", class:'pickup-content__img'
+      - if product.images[0].image.present?
+        = image_tag "#{product.images[0].image}", class:'pickup-content__img'
+      - else
+        = image_tag "", class:'pickup-content__img'
       %figcaption.text__box 
         %span 
           = product.detail
       
-
--# <div style="visibility: visible; transition: all 0.5s ease 0s; opacity: 1;">
--#   <a href="https://item.mercari.com/jp/m22294953131/" class="style_link__3tLB3 style_fluidLink__WTcwb">
--#     <figure class="style_card__1SiAF style_responsiveLv1__26FNN common_fontFamily__3-3Si style_fluid__19gwX">
--#       <figcaption><span>test</span></figcaption>
--#         <div class="style_thumbnail__N_xAi">
--#         <span aria-label="Price">¥1,800</span>
--#         <img src="https://static.mercdn.net/thumb/photos/m22294953131_1.jpg?1547454582" alt="Thumbnail of &quot;【みか様専用】セシルマクビー ロングコート&quot;">
--#         </div>
--#     </figure>
--#   </a>
--# </div>
