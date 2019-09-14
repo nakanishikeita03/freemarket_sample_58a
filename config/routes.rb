@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  resources :mypages
-  resources :logout
-
   devise_for :users,
   controllers: {
     sessions: 'users/sessions',
@@ -9,6 +6,9 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  root 'mypages#profile'
+  resources :products
+  resources :mypages,only: [:index,]
+  resources :logout, only: [:index,]
+  root 'products#index'
 
 end
