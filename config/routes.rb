@@ -8,8 +8,7 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-  root 'products#index'
-  # root 'mypages#index'
-  # root 'mypages#profile'
+
+  root 'mypages#profile'
 
 end
