@@ -81,3 +81,8 @@ gem 'haml-rails'
 gem 'font-awesome-rails'
 gem 'devise'
 gem 'erb2haml'
+
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+gem 'dotenv-rails'
