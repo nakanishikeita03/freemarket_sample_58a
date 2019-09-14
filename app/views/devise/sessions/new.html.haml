@@ -1,17 +1,38 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.mercari_login_container
+  = render 'devise/shared/login_header'
+  .main
+    .main__section
+      .main__section__top
+        アカウントをお持ちでない方はこちら
+      %ul.main__conect__lists
+        %li.main__conect__lists__mail
+          = link_to new_user_registration_path do
+            .main__conect__lists__mail__btn
+              新規会員登録
+    .main__conect
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        %ul.main__conect__lists
+          %li.main__conect__lists__facebook
+            = link_to root_path do
+              .main__conect__lists__facebook__btn
+                Facebookでログイン
+                %i.fbicon
+                  = fa_icon "facebook-square"
+          %li.main__conect__lists__google
+            = link_to root_path do
+              .main__conect__lists__google__btn
+                Googleでログイン
+              .main__conect__lists__google__icon
+          %li.main__conect__lists__input
+            = f.email_field :email, autocomplete: "email", class:'input_box1',placeholder:'メールアドレス'
+          %li.main__conect__lists__input
+            = f.password_field :password, autocomplete: "new-password", class:'input_box2',placeholder:'パスワード'
+          %li.main__conect__lists
+            .main__conect__lists__reCAPTCHA
+              -# = recaptcha_tags callback: 'successRecaptchaVerified',id: ""
+          .actions
+            .actions__btn
+              = f.submit 'ログイン', class: "submit_btn"
+            .actions__link
+              = link_to "パスワードお忘れの方",'signup_page',class:'next_link'
+  = render 'devise/shared/login_footer'
