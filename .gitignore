@@ -28,3 +28,4 @@
 # /config/credentials.yml
 
 /config/omniauth.yml
+.env
