@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   devise_for :users,
   controllers: {
     sessions: 'users/sessions',
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
   resources :products
   resources :mypages,only: [:index,]
   resources :logout, only: [:index,]
+  resources :card,only:[:index]
   root 'products#index'
 
 end
