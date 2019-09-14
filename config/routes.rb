@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
-  resources :mypages
-  resources :logout
-
   devise_for :users,
   controllers: {
     sessions: 'users/sessions',
     registrations: "users/registrations",
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-
-  root 'mypages#profile'
+  resources :products
+  resources :mypages,only: [:index,]
+  resources :logout, only: [:index,]
+  resources :card,only:[:index]
+  get '/mypage/identification', to: 'mypages#identification'
+  get '/mypage/profile', to: 'mypages#profile'
+  root 'products#index'
 
 end
+
