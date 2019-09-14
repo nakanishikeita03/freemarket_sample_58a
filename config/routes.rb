@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   }
 
   resources :products
-  resources :mypages,only: :index,
-  resources :logout,only: :index,
+  resources :mypages,only: [:index,]
+  resources :logout, only: [:index,]
   root 'products#index'
 
 end
