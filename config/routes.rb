@@ -9,6 +9,5 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  root 'mypages#profile'
-
+  root 'mypages#identification'
 end
