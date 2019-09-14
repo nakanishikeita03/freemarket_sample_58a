@@ -27,6 +27,30 @@ ActiveRecord::Schema.define(version: 2019_09_14_100418) do
   create_table "locations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    
+ActiveRecord::Schema.define(version: 2019_09_13_040752) do
+
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.string "image", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_images_on_product_id"
+  end
+
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.text "detail", null: false
+    t.integer "category", null: false
+    t.integer "price", null: false
+    t.integer "status", default: 0, null: false
+    t.integer "state", default: 0, null: false
+    t.integer "city", null: false
+    t.integer "delivery", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -58,6 +82,11 @@ ActiveRecord::Schema.define(version: 2019_09_14_100418) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+<<<<<<< HEAD
   add_foreign_key "addresses", "users"
+=======
+  add_foreign_key "images", "products"
+  add_foreign_key "products", "users"
+>>>>>>> 39fcb9fc221711cd81c5fa34232e9f8fc1482b21
   add_foreign_key "sns_credentials", "users"
 end

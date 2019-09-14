@@ -1,0 +1,23 @@
+= render partial: "shared/mypage/header"
+.main
+  .main-content
+    = render 'modules/mypage-sidebar'
+
+    .card-contents
+      .card-content
+        .card-content-container
+          %h2
+            支払い方法
+          .card-content-inner
+            .card-list__title
+              クレジットカード一覧
+            .add-card
+              .add-card__link
+                .add-card__container
+                  = link_to card_index_path do
+                    = fa_icon 'credit-card'
+                    %span クレジットカードを登録する
+          .settings-not-regist
+            =link_to "支払い方法について ＞", "#"
+= render "shared/mypage/sell-btn"
+= render "shared/mypage/footer"
