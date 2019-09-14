@@ -2,9 +2,9 @@
   = link_to product_path(product.id) do
     %figure.content__box
       .img_content
-      - if product.images[0].image.present?
+      -# - if product.images[0].image.present?
         = image_tag "#{product.images[0].image}", class:'pickup-content__img'
-      - else
+      -# - else
         = image_tag "", class:'pickup-content__img'
       %figcaption.text__box 
         %span 
