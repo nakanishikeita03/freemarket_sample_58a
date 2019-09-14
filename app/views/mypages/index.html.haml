@@ -6,7 +6,7 @@
   .a-right-content
     .a-right-content__block#back-img.middle-center
       = image_tag 'mypage/user-icon.png', size: '60x60', alt: 'user-icon', class:"user-icon"
-      .a-right-content__block__user-name.bold #{current_user.nickname}
+      -# .a-right-content__block__user-name.bold #{current_user.nickname}
       .a-right-content__block__user-about
         %p.a-right-content__block__review 評価
         -# %span.bold #{current_user.rates.count}
