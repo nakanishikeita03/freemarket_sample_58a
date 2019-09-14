@@ -1,5 +1,8 @@
 class CardController < ApplicationController
 
+  def index
+  end
+  
   def new
   end
 
