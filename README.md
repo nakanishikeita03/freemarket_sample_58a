@@ -7,12 +7,14 @@
 |user_id|references|null:false,foreign_key:true|
 |name|string|null: false|
 |detail|text|null: false|
-|category|references|null: false|
+|category|references|null: false|   現在はinteger型にしてます
 |price|integer|null: false|
 |status|integer|null:false,default 0|
 |state|integer|null: false,default 0|
-|city|references|null: false|
+|city|references|null: false|       現在はinteger型にしてます
 |delivery|integer|null: false|
+|fee_payer|integer|null: false|
+|delivery_time|integer|null: false|
 
 
 ### Association
@@ -27,7 +29,7 @@
 |image|string|null: false|
 
 ### Association
-- belongs to product 
+- belongs to product dependent: :destroy
 
 
 
