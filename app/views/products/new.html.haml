@@ -31,7 +31,7 @@
             %span
               必須
           %textarea{rows:5,placeholder:"商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
-      %div.sell-content.clearfix
+      .sell-content.clearfix
         %h3
           商品の詳細
         .sell-form-box
@@ -41,23 +41,122 @@
               %span
                 必須
             %div
-            .select-wrap
-              = collection_select :person, :prefecture_id, Prefecture.all, :id, :name
-              %i.fa.fa-angle-down
-          .form-group
-            %label
-              サイズ
-              %span
-                必須
-          .form-group
-            %label
-              ブランド
-              %span
-                任意
+              .select-wrap
+                %i.fa.fa-angle-down
+                %select
+                  %option{value: "--", selected: params[:x] == "--"}= "--"
+                  %option{value: "レディース", selected: params[:x] == "レディース"}= "レディース"
+                  %option{value: "メンズ", selected: params[:x] == "メンズ"}= "メンズ"
           .form-group
             %label
               商品の状態
               %span
                 必須
+            %div
+              .select-wrap
+                %i.fa.fa-angle-down
+                %select
+                  %option{value: "--", selected: params[:x] == "--"}= "--"
+                  %option{value: "レディース", selected: params[:x] == "レディース"}= "レディース"
+                  %option{value: "メンズ", selected: params[:x] == "メンズ"}= "メンズ"
+      .sell-content.clearfix
+        %h3
+          配送について
+        %a.round-icon{href: 'https://www.mercari.com/jp/help_center/article/68/'}
+          ?
+        .sell-form-box
+          .form-group
+            %label
+              カテゴリー
+              %span
+                必須
+            %div
+              .select-wrap
+                %i.fa.fa-angle-down
+                %select
+                  %option{value: "--", selected: params[:x] == "--"}= "--"
+                  %option{value: "レディース", selected: params[:x] == "レディース"}= "レディース"
+                  %option{value: "メンズ", selected: params[:x] == "メンズ"}= "メンズ"
+          .form-group
+            %label
+              商品の状態
+              %span
+                必須
+            %div
+              .select-wrap
+                %i.fa.fa-angle-down
+                %select
+                  %option{value: "--", selected: params[:x] == "--"}= "--"
+                  %option{value: "レディース", selected: params[:x] == "レディース"}= "レディース"
+                  %option{value: "メンズ", selected: params[:x] == "メンズ"}= "メンズ"
+          .form-group
+            %label
+              商品の状態
+              %span
+                必須
+            %div
+              .select-wrap
+                %i.fa.fa-angle-down
+                %select
+                  %option{value: "--", selected: params[:x] == "--"}= "--"
+                  %option{value: "レディース", selected: params[:x] == "レディース"}= "レディース"
+                  %option{value: "メンズ", selected: params[:x] == "メンズ"}= "メンズ"
+      .sell-content.clearfix
+        %h3
+          販売価格(300〜9,999,999)
+        %a.round-icon{href: 'https://www.mercari.com/jp/help_center/article/64/'}
+          ?
+        .sell-form-box
+          %ul
+            %li.price-group
+              .clear-fix
+                .sell-price-title
+                  %label
+                    価格
+                    %span
+                      必須
+                .sell-price-input
+                  %p
+                    ¥
+                  %div
+                    %input{placeholder:"例）300"}
+            %li.price-group.border
+              .clear-fix
+                .sell-price-title
+                  販売手数料(10%)
+                .sell-price-input
+                  .right
+                    ー
+            %li.price-group.border
+              .clear-fix
+                .sell-price-title.bold
+                  販売利益
+                .sell-price-input
+                  .right
+                    ー
+      .sell-content.exhibit-btn
+        %div
+          %p
+            %a.link-blue{href: 'https://www.mercari.com/jp/help_center/getting_started/prohibited_items/'}
+              禁止されている出品
+            、
+            %a.link-blue{href: 'https://www.mercari.com/jp/help_center/getting_started/prohibited_conduct/'}
+              行為
+            を必ずご確認ください。
+          
+          %p
+            またブランド品でシリアルナンバー等がある場合はご記載ください。
+            %a.link-blue{href: 'https://www.mercari.com/jp/help_center/getting_started/counterfeit_goods/'}
+              偽ブランドの販売
+            は犯罪であり処罰される可能性があります。
+          %p
+            また、出品をもちまして
+            %a.link-blue{href: 'https://www.mercari.com/jp/seller_terms/'}
+              加盟店規約
+            に同意したことになります。
+        %button{type: "submit"}
+          出品する
+        %a.back-btn{href: 'roots'}
+          もどる
 
   =render 'devise/shared/login_footer'
