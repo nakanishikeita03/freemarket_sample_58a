@@ -57,9 +57,10 @@
 ## addressesテーブル
 |Column|Type|Options|
 |---|---|---|
-|postal_code|integer|null: false|
-|region|string|null: false|
-|city|string|null: false|
+|postal_code|integer|
+|prefecture|integer|
+|city|string|
+|street|string|
 |building|string|
 |user_id|references|null: false, foreign_key: true|
 

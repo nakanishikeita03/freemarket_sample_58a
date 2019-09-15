@@ -4,6 +4,8 @@
 @import "products/index";
 @import "products/sell-btn";
 @import "logout";
+@import "card/index";
+@import "card/new";
 @import "font-awesome";
 @import "devise/new";
 @import "variable/flex";
@@ -12,6 +14,7 @@
 @import "modules/mypage-sidebar";
 @import "modules/mypage-TOP";
 @import "modules/profile";
+@import "modules/identification";
 
 * {
   font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
