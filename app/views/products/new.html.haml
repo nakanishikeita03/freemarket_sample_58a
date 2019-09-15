@@ -62,8 +62,7 @@
       .sell-content.clearfix
         %h3
           配送について
-        %a.round-icon{href: 'https://www.mercari.com/jp/help_center/article/68/'}
-          ?
+        = link_to "?", 'https://www.mercari.com/jp/help_center/article/68/', class:"round-icon" 
         .sell-form-box
           .form-group
             %label
@@ -104,8 +103,7 @@
       .sell-content.clearfix
         %h3
           販売価格(300〜9,999,999)
-        %a.round-icon{href: 'https://www.mercari.com/jp/help_center/article/64/'}
-          ?
+        = link_to "?", 'https://www.mercari.com/jp/help_center/article/64/', class:"round-icon" 
         .sell-form-box
           %ul
             %li.price-group
@@ -137,22 +135,18 @@
       .sell-content.exhibit-btn
         %div
           %p
-            %a.link-blue{href: 'https://www.mercari.com/jp/help_center/getting_started/prohibited_items/'}
-              禁止されている出品
+            = link_to "禁止されている出品", 'https://www.mercari.com/jp/help_center/getting_started/prohibited_items/', class:"link-blue" 
             、
-            %a.link-blue{href: 'https://www.mercari.com/jp/help_center/getting_started/prohibited_conduct/'}
-              行為
+            = link_to "行為", 'https://www.mercari.com/jp/help_center/getting_started/prohibited_conduct/', class:"link-blue" 
             を必ずご確認ください。
           
           %p
             またブランド品でシリアルナンバー等がある場合はご記載ください。
-            %a.link-blue{href: 'https://www.mercari.com/jp/help_center/getting_started/counterfeit_goods/'}
-              偽ブランドの販売
+            = link_to "偽ブランドの販売", 'https://www.mercari.com/jp/help_center/getting_started/counterfeit_goods/', class:"link-blue" 
             は犯罪であり処罰される可能性があります。
           %p
             また、出品をもちまして
-            %a.link-blue{href: 'https://www.mercari.com/jp/seller_terms/'}
-              加盟店規約
+            = link_to "加盟店規約", 'https://www.mercari.com/jp/help_center/getting_started/counterfeit_goods/', class:"link-blue" 
             に同意したことになります。
         %button{type: "submit"}
           出品する
