@@ -16,7 +16,15 @@ class ProductsController < ApplicationController
 
 
   def create
-      Product.create(product_params)
+    @product = Product.new(product_params)
+    if @product.save
+      new_image_params[:images].each do |image|
+        @product.images.create(image: image, product_id: @product.id)
+      end
+      redirect_to controller: :products, action: :index
+    else
+      render :new
+    end
   end
 
 
@@ -47,8 +55,13 @@ class ProductsController < ApplicationController
 private
 
   def product_params
-    params.require(:product).permit(:name, :detail, :category, :price, :status, :state, :city, :delivery, :image).merge(user_id: current_user.id)
+    params.require(:product).permit(:name, :detail, :category, :price, :status, :state, :city, :delivery, :delivery_time, :fee_payer).merge(user_id: current_user.id)
   end
+
+  def new_image_params
+    params.require(:new_images).permit({images: []})
+  end
+  
 
   def set_products_instance
     @product = Product.find(params[:id])
