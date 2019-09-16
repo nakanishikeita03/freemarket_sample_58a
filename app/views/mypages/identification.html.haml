@@ -1,8 +1,8 @@
 .container
-  = render partial: "shared/mypage/header"
+  = render partial: "shared/header"
   .main-background
     .left-content
-      = render "shared/mypage/mypage-sidebar"
+      = render "mypages/modules/mypage-sidebar"
     .right-identity-information
       %section.right-container
         %h2.right-container__head 本人情報の登録
@@ -56,5 +56,5 @@
               本人確認書類の登録について
               %i.fa.fa-chevron-right
 
-= render "shared/mypage/sell-btn"
-= render "shared/mypage/footer"
+= render "shared/sell-btn"
+= render "shared/footer"
