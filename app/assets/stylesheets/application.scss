@@ -1,33 +1,30 @@
 @import "reset";
-@import "products/header";
-@import "products/footer";
-@import "products/index";
-@import "products/sell-btn";
-@import "products/new";
-@import "logout";
-@import "card/index";
-@import "card/new";
 @import "font-awesome";
+@import "shared/header";
+@import "shared/footer";
+@import "shared/sell-btn";
+@import "product/index";
+@import "product/new";
+@import "logout/index";
+@import "mypage/card/index";
+@import "mypage/card/new";
+@import "mypage/variable/flex";
+@import "mypage/variable/mixin";
+@import "mypage/variable/variable";
+@import "mypage/mypage-sidebar";
+@import "mypage/mypage-TOP";
+@import "mypage/profile";
+@import "mypage/identification";
 @import "devise/new";
-@import "variable/flex";
-@import "variable/mixin";
-@import "variable/variable";
-@import "modules/mypage-sidebar";
-@import "modules/mypage-TOP";
-@import "modules/profile";
-@import "modules/identification";
 
 * {
   font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
   color: #333;
   box-sizing: border-box;
 }
-
 a {
   text-decoration: none;
 }
-
-
 .display_none {
   display: none;
 }
