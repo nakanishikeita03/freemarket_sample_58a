@@ -1,4 +1,4 @@
-.mercari_login_container{
+.mercari__login__container{
   background: rgb(245, 245, 245);
   font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
   .header{
@@ -34,7 +34,7 @@
       } 
     }
     &__conect{
-      padding:40px 40px 64px;
+      padding:40px 40px 40px;
       &__lists{
         &__mail{
           color: white;
@@ -73,9 +73,8 @@
         &__reCAPTCHA{
           width: 300px;
           height: 74px;
-          margin-top: 90px;
+          margin-top: 70px;
           border-radius: 4px;
-          border: 1px solid #ccc;
         }
       li{
         max-width: 343px;
@@ -148,13 +147,13 @@
           position: relative;
           cursor: pointer;
           font-size: 14px;
-          top: 24px;
+          top: 48px;
           right: -18px;
           border-radius: 3px;
         }
       }
       &__link{
-        margin-top: 113px;
+        margin-top: 90px;
         margin-left: 43px;
         a{
           color: #0099e8;

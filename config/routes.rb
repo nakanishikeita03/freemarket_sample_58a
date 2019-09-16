@@ -10,4 +10,12 @@ Rails.application.routes.draw do
   }
   root 'products#index'
 
+  resources :signup do
+    collection do
+      get 'index'
+      get 'step2'
+      get 'step3'
+    end
+  end
+
 end
