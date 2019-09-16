@@ -3,7 +3,7 @@
     %figure.content__box
       .img_content
       - if product.images.present?
-        = image_tag "#{product.images[0].image}", class:'pickup-content__img'
+        = image_tag "#{product.image}", class:'pickup-content__img'
       - else
         = image_tag "", class:'pickup-content__img'
       %figcaption.text__box 
