@@ -1,0 +1,28 @@
+.signup-index-wrapper
+  .signuptopheader
+    .signuptopheader__logo
+      = link_to root_path do
+        = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3791839826"
+  .signup-index-main
+    .signup-index-main__head 
+      新規会員登録
+    %ul.signup-submit-button-form
+      .signup-index-mail-box
+        = link_to new_user_registration_path do
+          メールアドレスで登録する
+          %i
+            = fa_icon "envelope" 
+          
+      .signup-index-facebook-box
+        = link_to user_facebook_omniauth_authorize_path do
+          Facebookで登録する
+          %i
+            = fa_icon "facebook-square"
+      .signup-index-google-box
+        = link_to user_google_oauth2_omniauth_authorize_path do
+          .main__conect__lists__google__btn
+            Googleで登録する
+          .main__conect__lists__google__icon
+  = render "devise/shared/login_footer"
+
+

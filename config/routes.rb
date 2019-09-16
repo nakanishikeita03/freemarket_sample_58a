@@ -13,5 +13,13 @@ Rails.application.routes.draw do
   get '/mypage/profile', to: 'mypages#profile'
   root 'products#index'
 
+  resources :signup do
+    collection do
+      get 'index' #新規会員登録ページTOPへ移動
+      get 'step2' #【新規会員登録】電話番号認証ページへ移動
+      get 'step3' #【新規会員登録】住所入力ページへ移動
+    end
+  end
+
 end
 
