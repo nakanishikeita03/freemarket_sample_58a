@@ -1,0 +1,20 @@
+.profile_container
+  = render "shared/mypage/header"
+  .main-background
+    .left-content
+      = render 'modules/mypage-sidebar'
+    .right-profile
+      %section.right-container
+        %h2.right-container__head プロフィール
+        %form{action: "https://www.mercari.com/jp/mypage/profile/", method: "POST"}
+          .setting-profile-icon
+            %figure
+              = image_tag 'mypage/user-icon.png', size: '60x60', alt: 'user-icon', class:"user-icon"
+            %input{type: "text", class: "input-default", placeholder: "例)あずさ☆断捨離中"}
+          .setting-profile-content
+            %textarea{class:"textarea-default", name: "introduction", placeholder: "例)こんにちは☆ ご覧いただきありがとうございます！断捨離するため、メイク用品中心に出品しています。飽き性で新しもの好きです。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
+            %input{type: "hidden", value: "https://www.mercari.com/jp/mypage/profile/", name: "after_save_callback"}
+            %input{type: "submit", value: "変更する", class: "btn-default btn-red"}
+    
+= render "shared/mypage/sell-btn"
+= render "shared/mypage/footer"

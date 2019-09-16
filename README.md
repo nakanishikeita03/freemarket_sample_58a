@@ -4,15 +4,17 @@
 ## productsテーブル
 |Column|Type|Options|
 |---|---|---|
-|user_id|reference|null:false,foreign_key:true|
+|user_id|references|null:false,foreign_key:true|
 |name|string|null: false|
 |detail|text|null: false|
-|category|integer|null: false,default 0|
+|category|references|null: false|   現在はinteger型にしてます
 |price|integer|null: false|
 |status|integer|null:false,default 0|
 |state|integer|null: false,default 0|
-|city|integer|null: false|
+|city|references|null: false|       現在はinteger型にしてます
 |delivery|integer|null: false|
+|fee_payer|integer|null: false|
+|delivery_time|integer|null: false|
 
 
 ### Association
@@ -23,11 +25,11 @@
 ## imagesテーブル
 |Column|Type|Options|
 |---|---|---|
-|product_id|reference|null:false,foreign_key:true|
+|product_id|references|null:false,foreign_key:true|
 |image|string|null: false|
 
 ### Association
-- belongs to product 
+- belongs to product dependent: :destroy
 
 
 
@@ -55,9 +57,10 @@
 ## addressesテーブル
 |Column|Type|Options|
 |---|---|---|
-|postal_code|integer|null: false|
-|region|string|null: false|
-|city|string|null: false|
+|postal_code|integer|
+|prefecture|integer|
+|city|string|
+|street|string|
 |building|string|
 |user_id|references|null: false, foreign_key: true|
 

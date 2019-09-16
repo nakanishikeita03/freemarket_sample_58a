@@ -10,7 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_084750) do
+ActiveRecord::Schema.define(version: 2019_09_15_171301) do
+
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "postal_code"
+    t.integer "prefecture"
+    t.string "city"
+    t.string "street"
+    t.string "building"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "image"
+    t.index ["product_id"], name: "index_images_on_product_id"
+  end
+
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.text "detail", null: false
+    t.integer "category", null: false
+    t.integer "price", null: false
+    t.integer "status", default: 0, null: false
+    t.integer "state", default: 0, null: false
+    t.integer "city", null: false
+    t.integer "delivery", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "fee_payer", null: false
+    t.integer "delivery_time", null: false
+    t.index ["user_id"], name: "index_products_on_user_id"
+  end
 
   create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "provider"
@@ -41,5 +78,8 @@ ActiveRecord::Schema.define(version: 2019_09_12_084750) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "addresses", "users"
+  add_foreign_key "images", "products"
+  add_foreign_key "products", "users"
   add_foreign_key "sns_credentials", "users"
 end

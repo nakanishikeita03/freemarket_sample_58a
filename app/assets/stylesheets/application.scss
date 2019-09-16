@@ -3,18 +3,22 @@
 @import "products/footer";
 @import "products/index";
 @import "products/sell-btn";
+@import "products/new";
 @import "logout";
+@import "card/index";
+@import "card/new";
 @import "font-awesome";
 @import "devise/new";
+@import "devise/signin-1";
 @import "variable/flex";
 @import "variable/mixin";
 @import "variable/variable";
 @import "modules/mypage-sidebar";
 @import "modules/mypage-TOP";
-@import "devise/signin-1";
 @import "signup/signup-index";
 @import "signup/signup-step2";
-
+@import "modules/profile";
+@import "modules/identification";
 
 * {
   font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
