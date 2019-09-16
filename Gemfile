@@ -74,7 +74,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
 end
-
+gem 'mini_magick'
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'haml-rails'

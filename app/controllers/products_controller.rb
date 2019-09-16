@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @item_image = @product.images.build
   end
 
 
@@ -19,14 +20,12 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      # new_image_params[:images].each do |image|
-        @product.images.create(image: params[:image], product_id: @product.id)
-      # end
+      params[:product][:image][:image].each do |a|
+        @item_image = @product.images.create!(image: a)
       redirect_to controller: :products, action: :index
-    else
-      render :new
     end
   end
+end
 
 
   def destroy
@@ -56,14 +55,9 @@ class ProductsController < ApplicationController
 private
 
   def product_params
-    params.require(:product).permit(:name, :detail, :category, :price, :status, :state, :city, :delivery, :delivery_time, :fee_payer).merge(user_id: current_user.id)
+    params.require(:product).permit(:name, :detail, :category, :price, :status, :state, :city, :delivery, :delivery_time, :fee_payer, images_attributes: [:image]).merge(user_id: current_user.id)
   end
-
-  # def new_image_params
-  #   params.require(:product).permit(:image)
-  # end
   
-
   def set_products_instance
     @product = Product.find(params[:id])
   end
