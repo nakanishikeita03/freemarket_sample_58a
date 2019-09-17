@@ -13,8 +13,9 @@
           最大10枚までアップロードできます
         .sell-dropbox-container
           .sell-upload-drop-box
-            = f.fields_for @product.images do |ff|
-              = ff.file_field :image , accept: ".jpg, .jpeg, .png", multiple: true
+            = f.fields_for :image do |image|
+              = image.label :image
+              = image.file_field :image , accept: ".jpg, .jpeg, .png", multiple: true
             %pre
               ドラッグアンドドロップ
               またはクリックしてファイルをアップロード
