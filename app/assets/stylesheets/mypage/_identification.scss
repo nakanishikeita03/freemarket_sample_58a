@@ -118,13 +118,15 @@ input[type=button]{
   width: 95%;
   padding: 0 0px;
   border-radius: 4px;
-  border: 0;
+  border: 1px solid #ccc;
+  margin-top: 8px;
   background: 0;
   font-size: 16px;
   line-height: 1.5;
   cursor: pointer;
   position: relative;
   background: #fff;
+  padding: 10px 16px 8px;
 }
 
 // 最初からある矢印を消すため

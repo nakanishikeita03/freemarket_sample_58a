@@ -1,36 +1,4 @@
-@import "reset";
-@import "font-awesome";
-@import "mypage/variable/variable";
-
-// 共通ラッパー
-.signup__container{
-  background-color: $global-background;
-  height: 100%;
-  width: 100%;
-}
-
-// シンプルヘッダー　（新規会員登録、ログイン画面）
-.signup__simple__header{
-  height: 128px;
-  text-align: center;
-  background-color: $global-background;
-  &__logo{
-    a{
-    width: 185px;
-    line-height: 49px;
-      img{
-        margin: 40px 0 0;
-        width: 180px;
-        height: 50px;
-        &:hover {
-          opacity: 0.7;
-        }
-      }
-    }
-  }
-}
-
-// プログレスバー 色とfont-weightを変更するのみ
+// Progressバー
 .single-header {
   height: 128px;
   text-align: center;
@@ -45,7 +13,7 @@
     opacity: 0.7;
   }
   }
-.progress-bar {
+.progress-bar3 {
   background: #f5f5f5;
   padding: 40px 0 0 44px;
   border: 0;
@@ -54,9 +22,8 @@
   font-size: 0;
   text-align: center;
   }
-.progress-bar__active {
-  font-weight: 600;
-  color: #ea352d;
+.progress-bar3__active {
+  color: #888;
   margin: 0 40px 0 0;
   min-width: 60px;
   position: relative;
@@ -78,7 +45,7 @@
     display: block;
     width: 100%;
     height: 2px;
-    background: #ccc;
+    background: #ea352d;
     }
   }
 &__phone-number {
@@ -94,7 +61,7 @@
   height: 12px;
   margin: 8px auto 0;
   border-radius: 50%;
-  background: #ccc;
+  background: #ea352d;
   &::before {
     right: 50%;
     content: '';
@@ -104,7 +71,7 @@
     display: block;
     width: 100%;
     height: 2px;
-    background: #ccc;
+    background: #ea352d;
   }
   &::after {
     content: '';
@@ -115,13 +82,14 @@
     display: block;
     width: 100%;
     height: 2px;
-    background: #ccc;
+    background: #ea352d;
     }
   }
 &__address {
+  font-weight: 600;
   margin: 0 40px 0 0;
   font-size: 12px;
-  color: #888;
+  color: #ea352d;
   display: inline-block;
   z-index: 1;
   position: relative;
@@ -131,7 +99,7 @@
   height: 12px;
   margin: 8px auto 0;
   border-radius: 50%;
-  background: #ccc;
+  background: #ea352d;
   &::before {
     right: 50%;
     content: '';
@@ -141,7 +109,7 @@
     display: block;
     width: 100%;
     height: 2px;
-    background: #ccc;
+    background: #ea352d;
   }
   &::after {
     content: '';
@@ -152,13 +120,14 @@
     display: block;
     width: 100%;
     height: 2px;
-    background: #ccc;
+    background: #ea352d;
     }
   }
 &__payment {
+  font-weight: 600px;
   margin: 0 40px 0 0;
   font-size: 12px;
-  color: #888;
+  color: #ea352d;
   display: inline-block;
   z-index: 1;
   position: relative;
@@ -168,7 +137,7 @@
   height: 12px;
   margin: 8px auto 0;
   border-radius: 50%;
-  background: #ccc;
+  background: #ea352d;
   &::before {
     right: 50%;
     content: '';
@@ -178,7 +147,7 @@
     display: block;
     width: 100%;
     height: 2px;
-    background: #ccc;
+    background: #ea352d;
   }
   &::after {
     content: '';
@@ -220,36 +189,47 @@
     } 
   }
 }
+// ここまでprogressbar
 
-
-// フッター
-.signup__footer {
-  background: $global-background;
-  height: 180px;
-  text-align: center;
-  &__detail {
-    display: flex;
-    justify-content: space-around;
-    margin: 40px auto;
-    width: 400px;
-    font-size: 11px;
-    letter-spacing: 1px;
-    a {
-      color: $font-black;
-      &:hover {
-        opacity: 0.6;
-        text-decoration: underline;
+.signup-wrapper {
+  background-color: #f5f5f5;
+  .signup-main3 {
+    background-color: #FFFFFF;
+    font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+    margin: 0 auto 10px;
+    width: 700px;
+    &__head {
+      font-size: 22px;
+      font-weight: bold;
+      padding: 32px;
+      line-height: 33px;
+      text-align: center;
+      border-bottom:#eee solid 1px;
+    }
+    .a-3 {
+      width: 350px;
+      margin: 0 auto;
+      padding: 0px 10px 40px;
+      .signup3__form {
+        margin-top: 30px;
+        line-height: 17px;
+        display: flex;
+          p {
+            font-weight: 600;
+            font-size: 14px;
+          }
+        &__input {
+          height: 48px;
+          padding: 10px 16px 8px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: #fff;
+          line-height: 1.5;
+          font-size: 16px;
+          margin: 8px 0px 0px;
+          width: 315px;
+        }
       }
     }
-  }
-  &__logo img {
-    width: 80px;
-    height: 80px;
-    &:hover {
-      opacity: 0.7;
-    }
-  }
-  p {
-    font-size: 11px;
-  }
+  } 
 }

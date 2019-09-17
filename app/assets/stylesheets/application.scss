@@ -17,14 +17,11 @@
 @import "mypage/identification";
 @import "devise/new";
 @import "devise/signin-1";
-@import "variable/flex";
-@import "variable/mixin";
-@import "variable/variable";
-@import "modules/mypage-sidebar";
-@import "modules/mypage-TOP";
 @import "signup/signup-common";
 @import "signup/signup-index";
 @import "signup/signup-step2";
+@import "signup/signup-step3";
+@import "signup/signup-done";
 
 // 全ページ共通のフォント
 * {
