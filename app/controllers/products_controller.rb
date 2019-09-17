@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   before_action :authenticate_user!,      only: [:new,:create,:destroy,:edit,:update]
-  before_action :set_products_instance,   only:[:edit,:show]
+  before_action :set_products_instance
   before_action :set_products,            only:[:destroy,:update]
 
   def index
@@ -47,7 +47,13 @@ end
 
 
   def update
-    product.update(product_params) if product.user_id == current_user.id
+    @product.update(product_params) if @product.user_id == current_user.id
+    if @product.save
+      redirect_to controller: :products, action: :show
+      flash[:success] = "編集しました"
+    else 
+      redirect_to controller: :products, action: :edit
+    end
   end
 
 
@@ -59,7 +65,7 @@ private
   end
   
   def set_products_instance
-    @product = Product.find(params[:id])
+    @product = Product.find(38)
   end
 
   def set_products

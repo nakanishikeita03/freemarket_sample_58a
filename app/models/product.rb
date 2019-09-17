@@ -11,4 +11,7 @@ class Product < ApplicationRecord
   validates :state, presence: true
   validates :city, presence: true
   validates :delivery, presence: true
+  validates :fee_payer, presence: true
+  validates :delivery_time, presence: true
+
 end
