@@ -1,8 +1,8 @@
 .profile_container
-  = render "shared/mypage/header"
+  = render "shared/header"
   .main-background
     .left-content
-      = render 'modules/mypage-sidebar'
+      = render 'mypages/modules/mypage-sidebar'
     .right-profile
       %section.right-container
         %h2.right-container__head プロフィール
@@ -16,5 +16,5 @@
             %input{type: "hidden", value: "https://www.mercari.com/jp/mypage/profile/", name: "after_save_callback"}
             %input{type: "submit", value: "変更する", class: "btn-default btn-red"}
     
-= render "shared/mypage/sell-btn"
-= render "shared/mypage/footer"
+= render "shared/sell-btn"
+= render "shared/footer"

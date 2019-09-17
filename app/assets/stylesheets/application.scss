@@ -1,13 +1,20 @@
 @import "reset";
-@import "products/header";
-@import "products/footer";
-@import "products/index";
-@import "products/sell-btn";
-@import "products/new";
-@import "logout";
-@import "card/index";
-@import "card/new";
 @import "font-awesome";
+@import "shared/header";
+@import "shared/footer";
+@import "shared/sell-btn";
+@import "product/index";
+@import "product/new";
+@import "logout/index";
+@import "mypage/card/index";
+@import "mypage/card/new";
+@import "mypage/variable/flex";
+@import "mypage/variable/mixin";
+@import "mypage/variable/variable";
+@import "mypage/mypage-sidebar";
+@import "mypage/mypage-TOP";
+@import "mypage/profile";
+@import "mypage/identification";
 @import "devise/new";
 @import "devise/signin-1";
 @import "variable/flex";
@@ -18,8 +25,6 @@
 @import "signup/signup-common";
 @import "signup/signup-index";
 @import "signup/signup-step2";
-@import "modules/profile";
-@import "modules/identification";
 
 // 全ページ共通のフォント
 * {
@@ -37,12 +42,9 @@ $red:#ea352d;
 $link-blue: #0099e8;
 $font-black: #333333;
 
-
 a {
   text-decoration: none;
 }
-
-
 .display_none {
   display: none;
 }
