@@ -18,6 +18,7 @@ class ProductsController < ApplicationController
 
 
   def create
+    # binding.pry
     @product = Product.new(product_params)
     if @product.save
       params[:product][:image][:image].each do |a|
@@ -65,7 +66,7 @@ private
   end
   
   def set_products_instance
-    @product = Product.find(38)
+    @product = Product.find(42)
   end
 
   def set_products

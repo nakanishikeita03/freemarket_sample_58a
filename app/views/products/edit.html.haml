@@ -44,7 +44,7 @@
             %div
               .select-wrap
                 %i.fa.fa-angle-down
-                = f.select :category, [["---", ""], ["レディース", 1], ["メンズ", 2]]
+                = f.select :category, Product.categories.keys,{prompt: '---'}
           .form-group
             %label
               商品の状態
@@ -53,7 +53,7 @@
             %div
               .select-wrap
                 %i.fa.fa-angle-down
-                = f.select :state, [["---", ""], ["新品、未使用", 1], ["未使用に近い", 2], ["目立った傷や汚れなし", 3], ["やや傷や汚れあり", 4], ["傷や汚れあり", 5], ["全体的に状態が悪い", 6]]
+                = f.select :state, Product.states.keys,{prompt: '---'}
       .sell-content.clearfix
         %h3
           配送について
@@ -67,7 +67,7 @@
             %div
               .select-wrap
                 %i.fa.fa-angle-down
-                = f.select :fee_payer, [["---", ""], ["送料込み(出品者負担)", 1], ["着払い(購入者負担)", 2]]
+                = f.select :fee_payer, Product.fee_payers.keys,{prompt: '---'}
           .form-group
             %label
               配送料の方法
@@ -76,7 +76,7 @@
             %div
               .select-wrap
                 %i.fa.fa-angle-down
-                = f.select :delivery, [["---", ""], ["未定", 1], ["らくらくメルカリ便", 2], ["ゆうメール", 3], ["レターパック", 4], ["普通郵便(定形、定形外)", 5], ["クロネコヤマト", 6], ["ゆうパック", 7], ["クリックポスト", 8], ["ゆうパケット", 9]]
+                = f.select :delivery, Product.deliveries.keys,{prompt: '---'}
           .form-group
             %label
               発送元の地域
@@ -85,7 +85,7 @@
             %div
               .select-wrap
                 %i.fa.fa-angle-down
-                = f.select :city, [["---", ""], ["北海道", 1], ["青森県", 2]]
+                = f.select :city, Product.cities.keys,{prompt: '---'}
                 -# = collection_select :person, :prefecture_id, Prefecture.all, :id, :name
           .form-group
             %label
@@ -95,7 +95,7 @@
             %div
               .select-wrap
                 %i.fa.fa-angle-down
-                = f.select :delivery_time, [["---", ""], ["1~2日で発送", 1], ["2~3日で発送", 2], ["4~7日で発送", 3]]
+                = f.select :delivery_time, Product.delivery_times.keys,{prompt: '---'}
       .sell-content.clearfix
         %h3
           販売価格(300〜9,999,999)
@@ -144,7 +144,7 @@
             また、出品をもちまして
             = link_to "加盟店規約", 'https://www.mercari.com/jp/help_center/getting_started/counterfeit_goods/', class:"link-blue" 
             に同意したことになります。
-        =link_to "変更する", product_path, method: :patch, class:"button"
+        = f.submit "出品する", class:"button"
         =link_to "キャンセル", product_path,class:"back-btn"
 
   =render 'devise/shared/login_footer'
