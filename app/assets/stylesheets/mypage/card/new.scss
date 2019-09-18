@@ -38,7 +38,7 @@
           display: flex;
           .select-wrap-half{
             display: inline-block;
-            width: calc(50%-2px);
+            width: 50%;
             margin: 8px 0 0;
             position: relative;
             background: #fff;
@@ -54,6 +54,14 @@
               font-size: 16px;
               line-height: 1.5;
               cursor: pointer;
+            }
+            i{
+              top:5px;
+              right: 50px;
+              position: absolute;
+              z-index: 10;
+              color: #888;
+              font-size: 35px;
             }
           }
         }

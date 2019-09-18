@@ -36,13 +36,13 @@
                 必須
             .select-wrap
               .select-wrap-half
-                = f.select :category, Product.categories.keys,{prompt: '---'}
-                %i.icon-arrow-bottom
+                = f.select :expair_mm, [["01"], ["02"], ["03"], ["04"], ["05"], ["06"], ["07"], ["08"], ["09"], ["10"], ["11"], ["12"]]
+                %i.fa.fa-angle-down
                 %span
                   月
               .select-wrap-half
-                = f.select :category, Product.categories.keys,{prompt: '---'}
-                %i.icon-arrow-bottom
+                = f.select :expair_yy, [["19"], ["20"], ["21"], ["22"], ["23"], ["24"], ["25"], ["26"], ["27"], ["28"]]
+                %i.fa.fa-angle-down
                 %span
                   年
           .form-group
