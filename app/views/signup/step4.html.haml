@@ -20,6 +20,58 @@
         %li.progress-bar4__active__complete
           完了
           .progress-bar4__active__status__complete
-  .signup-main3
-    .signup-main3__head お支払い方法
+  .signup-main4
+    .signup-main4__head お支払い方法
+  .card-input-contents
+    = form_with url: 'users_path', local: true do |f|
+      .card-input-content
+        .form-group
+          %label
+            カード番号
+            %span
+              必須
+          = f.text_field :name, class: "input-default",  placeholder: "半角英数のみ"
+          %ul
+            %li 
+              =image_tag "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?2482339763", size: "49x20",alt:"visa"
+            %li 
+              =image_tag "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?2482339763", size: "34x20",alt:"master-card"
+            %li 
+              =image_tag "//www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?2482339763", size: "30x20",alt:"saison-card"
+            %li 
+              =image_tag "//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?2482339763", size: "32x20",alt:"jcb"
+            %li 
+              =image_tag "//www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?2482339763", size: "21x20",alt:"american_express"
+            %li 
+              =image_tag "//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?2482339763", size: "32x20",alt:"dinersclub"
+            %li 
+              =image_tag "//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?2482339763", size: "32x20",alt:"discover"
+        .form-group
+          %label
+            有効期限
+            %span
+              必須
+          .select-wrap
+            .select-wrap-half
+              = f.select :expair_mm, [["01"], ["02"], ["03"], ["04"], ["05"], ["06"], ["07"], ["08"], ["09"], ["10"], ["11"], ["12"]]
+              %i.fa.fa-angle-down
+              %span
+                月
+            .select-wrap-half
+              = f.select :expair_yy, [["19"], ["20"], ["21"], ["22"], ["23"], ["24"], ["25"], ["26"], ["27"], ["28"]]
+              %i.fa.fa-angle-down
+              %span
+                年
+        .form-group
+          %label
+            セキュリティーコード
+            %span
+              必須
+          = f.text_field :name, class: "input-default",  placeholder: "カード背面4桁もしくは3桁の番号"
+          .signup-seqcode
+            .signup-seqcode-text
+              ?
+            %span
+              カード背面の番号とは？
+        = f.submit "追加する", class:"add-btn"
   = render 'signup/login_footer'
