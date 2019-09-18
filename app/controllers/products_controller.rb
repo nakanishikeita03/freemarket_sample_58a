@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   before_action :authenticate_user!,      only: [:new,:create,:destroy,:edit,:update]
-  before_action :set_products_instance
+  # before_action :set_products_instance    only:[:show,:edit]
   before_action :set_products,            only:[:destroy,:update]
 
   def index
@@ -44,7 +44,7 @@ end
 
 
   def show
-    
+    @product = Product.find(params[:id])
   end
 
 
