@@ -73,12 +73,11 @@ private
 
 
   def set_products_instance
-    @product = Product.new
+    @product = Product.find(params[:id])
   end
 
   def set_products
     product = Product.find(params[:id])
   end
-
 
 end

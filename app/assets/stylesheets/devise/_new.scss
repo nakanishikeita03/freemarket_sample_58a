@@ -1,27 +1,33 @@
-.signup-main{
+.signin__container{
+  background-color: $global-background;
+  height: 100%;
+  width: 100%;
+}
+.signin-main{
   width: 460px;
   margin: 0 auto;
   background-color:white;
   &__section{
     font-size: 14px;
-    padding: 32px;
+    padding: 24px 32px;
     text-align: center;
     -moz-box-shadow: rgba(146, 179, 187, 0.2) 0px 0px 1px 0px;
     box-shadow:rgba(190, 190, 190, 0.37) 0px 1px 0px 0px;
     &__top{
-      margin-bottom:5px;
+      margin-bottom:0px;
     } 
   }
   &__conect{
     padding:40px 40px 40px;
     &__lists{
+      margin-top: 8px;
       &__mail{
         color: white;
         background-color: #0099e8;
         width: 100px;
         &__btn{
-          padding-top:17px;
-          color:white
+          line-height: 50px;
+          color:white;
         }
       }
       &__input{
@@ -58,7 +64,6 @@
     li{
       max-width: 343px;
       height: 50px;
-      border-radius: 4px;
       margin: auto;
       margin-bottom: 16px;
       width: 343px;
@@ -67,7 +72,7 @@
       a{
         float: right;
         width: 343px;
-        height: 60px;
+        height: 40px;
         text-decoration: none;
         color:#ffffff;
       }
