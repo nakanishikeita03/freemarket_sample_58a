@@ -21,10 +21,12 @@ class ProductsController < ApplicationController
     # binding.pry
     @product = Product.new(product_params)
     if @product.save
-      params[:product][:image][:image].each do |a|
-        @item_image = @product.images.create!(image: a)
-      redirect_to controller: :products, action: :index
+      new_image_params[:image][:image].each do |a|
+      @product.images.create!(image: a)
+      
     end
+
+    redirect_to controller: :products, action: :index
   end
 end
 
@@ -65,6 +67,11 @@ private
     params.require(:product).permit(:name, :detail, :category, :price, :status, :state, :city, :delivery, :delivery_time, :fee_payer, images_attributes: [:image]).merge(user_id: current_user.id)
   end
   
+  def new_image_params
+    params.require(:product).permit({image:[image:[]]})
+  end
+
+
   def set_products_instance
     @product = Product.find(42)
   end
