@@ -73,7 +73,8 @@ private
 
 
   def set_products_instance
-    @product = Product.find(42)
+    @product = Product.find(params[:id])_
+    # @product = Product.find(42)
   end
 
   def set_products
