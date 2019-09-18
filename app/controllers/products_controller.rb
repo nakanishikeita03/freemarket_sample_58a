@@ -64,11 +64,8 @@ private
   
 
   def set_products_instance
-<<<<<<< Updated upstream
-    @product = Product.find(params[:id])
-=======
+    @product = Product.find(params[:id])_
     # @product = Product.find(42)
->>>>>>> Stashed changes
   end
 
   def set_products
