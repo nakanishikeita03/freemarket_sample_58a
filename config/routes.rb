@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :mypages,only: [:index,]
   resources :logout, only: [:index,]
   resources :card,only:[:index]
+
   get '/mypage/identification', to: 'mypages#identification'
   get '/mypage/profile', to: 'mypages#profile'
   get '/mypage/card', to: 'mypages#card'
@@ -24,6 +25,5 @@ Rails.application.routes.draw do
       get 'done' #【新規会員登録】完了ページへ移動
     end
   end
-
 end
 

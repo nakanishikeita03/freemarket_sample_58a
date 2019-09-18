@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   before_action :authenticate_user!,      only: [:new,:create,:destroy,:edit,:update]
-  before_action :set_products_instance
+  before_action :set_products_instance,    only:[:show,:edit,:destroy]
   before_action :set_products,            only:[:destroy,:update]
 
   def index
@@ -32,7 +32,8 @@ end
 
 
   def destroy
-    product.destroy if product.user_id == current_user.id
+    @product.destroy if @product.user_id == current_user.id
+    redirect_to controller: :products, action: :index
   end
 
 
@@ -44,7 +45,7 @@ end
 
 
   def show
-    
+    @product = Product.find(params[:id])
   end
 
 

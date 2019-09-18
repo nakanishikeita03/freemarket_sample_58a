@@ -3,6 +3,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  def after_sign_up_path_for(resource)
+    step2_signup_index_path
+ end
 
   # GET /resource/sign_up
   # def new
@@ -74,5 +77,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     password = Devise.friendly_token.first(7)
     params.require(:user).permit(:nickname, :email, :f_name_kanji, :l_name_kanji, :f_name_kana, :l_name_kana, :birthday, :uid, :provider).merge(password: password, password_confirmation: password)
   end
+
 
 end
