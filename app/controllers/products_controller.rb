@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   before_action :authenticate_user!,      only: [:new,:create,:destroy,:edit,:update]
-  before_action :set_products_instance,   only:[:edit,:show]
+  before_action :set_products_instance
   before_action :set_products,            only:[:destroy,:update]
 
   def index
@@ -11,13 +11,24 @@ class ProductsController < ApplicationController
 
 
   def new
+    @product = Product.new
+    @item_image = @product.images.build
   end
 
 
 
   def create
-      Product.create(product_params)
+    # binding.pry
+    @product = Product.new(product_params)
+    if @product.save
+      new_image_params[:image][:image].each do |a|
+      @product.images.create!(image: a)
+      
+    end
+
+    redirect_to controller: :products, action: :index
   end
+end
 
 
   def destroy
@@ -39,7 +50,13 @@ class ProductsController < ApplicationController
 
 
   def update
-    product.update(product_params) if product.user_id == current_user.id
+    @product.update(product_params) if @product.user_id == current_user.id
+    if @product.save
+      redirect_to controller: :products, action: :show
+      flash[:success] = "編集しました"
+    else 
+      redirect_to controller: :products, action: :edit
+    end
   end
 
 
@@ -47,11 +64,16 @@ class ProductsController < ApplicationController
 private
 
   def product_params
-    params.require(:product).permit(:name, :detail, :category, :price, :status, :state, :city, :delivery, :image).merge(user_id: current_user.id)
+    params.require(:product).permit(:name, :detail, :category, :price, :status, :state, :city, :delivery, :delivery_time, :fee_payer, images_attributes: [:image]).merge(user_id: current_user.id)
+  end
+  
+  def new_image_params
+    params.require(:product).permit({image:[image:[]]})
   end
 
+
   def set_products_instance
-    @product = Product.find(params[:id])
+    @product = Product.find(42)
   end
 
   def set_products

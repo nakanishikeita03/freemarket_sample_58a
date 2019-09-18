@@ -1,11 +1,11 @@
-= render partial: "shared/mypage/header"
+= render partial: "shared/header"
 .main
   .main-content
-    = render 'modules/mypage-sidebar'
+    = render 'mypages/modules/mypage-sidebar'
 
     .logout-content
       .logout-btn
         = link_to "ログアウト", destroy_user_session_path, method: :delete
 
-= render "shared/mypage/sell-btn"
-= render "shared/mypage/footer"
+= render "shared/sell-btn"
+= render "shared/footer"
