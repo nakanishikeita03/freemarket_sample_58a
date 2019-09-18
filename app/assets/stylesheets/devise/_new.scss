@@ -1,8 +1,18 @@
+<<<<<<< Updated upstream
 .mercari_login_container{
   background: rgb(245, 245, 245);
   font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
   .header{
     height: 128px;
+=======
+.signup-main{
+  width: 460px;
+  margin: 0 auto;
+  background-color:white;
+  &__section{
+    font-size: 14px;
+    padding: 32px;
+>>>>>>> Stashed changes
     text-align: center;
     &__logo{
       a{

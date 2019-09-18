@@ -1,55 +1,94 @@
-.card-contents__input{
-  height: 562px;
+.card-input-contents{
+  height: 630px;
   width: 700px;
   background-color: #fff;
-  .card-content-container{
     h2{
-    font-size: 18px;
-    text-align: center;
-    padding: 12px 4%;
-    border-bottom: 1px solid #f5f5f5;
-    font-weight: bold;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 8px 24px;
+      border-bottom: 1px solid #f5f5f5;
+      text-align: center;
     }
-    .card-content-inner{
-      max-width: 570px;
-      margin: 0 auto;
-      padding: 40px;
-      border-bottom: 1px solid #eee;
-      .card-list__title{
-        max-width:320px;
-        font-size:16px;
+    form{
+      padding: 40px 40px 64px;
+      border-top: 1px solid #f5f5f5;
+      .card-input-content{
+        max-width: 343px;
         margin: 0 auto;
-        font-weight: bold;
-        padding: 24px 0;
-      }
-      .add-card{
-        background-color: #ea352d;
-        height: 50px;
-        max-width:320px;
-        margin: 0 auto;
-        .add-card__container{
-          margin: auto;
-          line-height: 50px;
-          text-align: center; 
-          i{
-            color:#fff;
+        .input-default{
+          width: 100%;
+          margin: 8px 0 0;
+          height: 48px;
+          padding: 10px 16px 8px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: #fff;
+          line-height: 1.5;
+          font-size: 16px;
+        }
+        ul{
+          margin: 8px 0 0;
+          font-size: 0;
+          display:flex;
+          li{
+            margin: 0 0 0 8px;
+          }
+        }
+        .select-wrap{
+          display: flex;
+          .select-wrap-half{
+            display: inline-block;
+            width: calc(50%-2px);
+            margin: 8px 0 0;
+            position: relative;
+            background: #fff;
+            select{
+              width: calc(100% - 38px);
+              position: relative;
+              z-index: 2;
+              height: 48px;
+              padding: 0 16px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              background: 0;
+              font-size: 16px;
+              line-height: 1.5;
+              cursor: pointer;
+            }
+          }
+        }
+        .signup-seqcode{
+          text-align: right;
+          font-size: 14px;
+          margin: 8px 0 0;
+          .signup-seqcode-text{
+            color: #0099e8;
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #0099e8;
+            color: #fff;
+            line-height: 14px;
+            font-size: 12px;
+            text-align: center;
           }
           span{
-            color:#fff
+            color: #0099e8;
           }
         }
       }
-    }
-    .settings-not-regist{
-      max-width: 570px;
-      margin: 0 auto;
-      a{
-        display: block;
-        margin: 40px 0 0;
-        text-align: right;
-        color: #0099e8;
-        font-size:14px;
+      .add-btn{
+        background: #ea352d;
+        border: 1px solid #ea352d;
+        color: #fff;
+        width: 100%;
+        margin: 8px 0 0;
+        height: 48px;
+        padding: 10px 16px 8px;
+        border-radius: 4px;
+        line-height: 1.5;
+        font-size: 16px;
       }
     }
-  }
 }

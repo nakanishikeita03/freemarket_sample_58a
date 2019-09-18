@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   resources :card,only:[:index]
   get '/mypage/identification', to: 'mypages#identification'
   get '/mypage/profile', to: 'mypages#profile'
+<<<<<<< Updated upstream
+=======
+  get '/mypage/card', to: 'mypages#card'
+  get '/mypage/card/create', to: 'mypages#card_new'
+>>>>>>> Stashed changes
   root 'products#index'
 
 end

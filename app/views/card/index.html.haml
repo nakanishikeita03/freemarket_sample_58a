@@ -1,7 +1,12 @@
 = render partial: "shared/mypage/header"
 .main
+<<<<<<< Updated upstream:app/views/card/index.html.haml
   .main-content
     = render 'modules/mypage-sidebar'
+=======
+  .mypage-main-content
+    = render 'mypages/modules/mypage-sidebar'
+>>>>>>> Stashed changes:app/views/mypages/card.html.haml
 
     .card-contents
       .card-content
@@ -14,7 +19,7 @@
             .add-card
               .add-card__link
                 .add-card__container
-                  = link_to card_index_path do
+                  = link_to mypage_card_create_path do
                     = fa_icon 'credit-card'
                     %span クレジットカードを登録する
           .settings-not-regist

@@ -9,6 +9,7 @@
 @import "card/new";
 @import "font-awesome";
 @import "devise/new";
+<<<<<<< Updated upstream
 @import "variable/flex";
 @import "variable/mixin";
 @import "variable/variable";
@@ -16,6 +17,12 @@
 @import "modules/mypage-TOP";
 @import "modules/profile";
 @import "modules/identification";
+=======
+@import "devise/signin-1";
+@import "signup/signup-common";
+@import "signup/signup-index";
+@import "signup/signup-step2";
+>>>>>>> Stashed changes
 
 * {
   font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
