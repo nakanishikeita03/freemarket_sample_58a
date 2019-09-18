@@ -36,7 +36,7 @@
             %tr
               %th 出品者
               %td
-                = link_to "#{@product.user.nickname}", "/", class: "user-name-string";
+                = link_to "#{@product.user.nickname}", mypages_path, class: "user-name-string";
                 .product-user-ratings
                   .product-user-rating
                     = image_tag("")
@@ -149,14 +149,14 @@
     - if user_signed_in? && current_user.id == @product.user_id
       .parent-own-product-container
         - unless @product.status
-          = link_to "商品の編集", "#", class: "parent-own-product-container__edit"
+          = link_to "商品の編集", edit_path(@product), class: "parent-own-product-container__edit"
           .parent-own-product-container__or
             or
           - unless @product.status == 0
-            = link_to "出品を停止する", "#", class: "parent-own-product-container__close"
+            = link_to "出品を停止する", stop_path(@product), class: "parent-own-product-container__close"
           - else
-            = link_to "出品を再開する", "#", class: "parent-own-product-container__open"
-        = link_to "商品を削除する", "/products/#{@product.id}", method: :delete, class: "parent-own-product-container__delete-btn"
+            = link_to "出品を再開する", resale_path(@product), class: "parent-own-product-container__open"
+        = link_to "商品を削除する", delete_path(@product), method: :delete, class: "parent-own-product-container__delete-btn"
 
     .product-detail-message
       .message-container
@@ -164,14 +164,14 @@
   .product-message-content
     .message-content
     .message-content__box__form
-      %form.product-show-message-form{:method => "post"}
-      %input{:type => "hidden"}
+      %form.product-show-message-form{:method :post}
+      %input{:type :hidden}
       %p.attention 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      %input{:type => "hidden"}
-      %input{:type => "hidden"}
-      %textarea.text{:type => "text", :name => "body"}
+      %input{:type :hidden}
+      %input{:type :hidden}
+      %textarea.text{:type :text, :name :body}
       .message-submit__details
-      %button{:type => "submit", :class => "product-show-message-submit button-default"}
+      %button{:type :submit, :class :product-show-message-submit button-default}
         %span.font-white コメントする 
       .nav-product-link
         .previous-product.items-link_to
