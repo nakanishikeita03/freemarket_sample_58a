@@ -9,10 +9,8 @@ Rails.application.routes.draw do
   resources :mypages,only: [:index,]
   resources :logout, only: [:index,]
   resources :card,only:[:index]
-  # get '/mypage/identification', to: 'mypages#identification'
-  # get '/mypage/profile', to: 'mypages#profile'
-  # root 'products/1#show'
+  get '/mypage/identification', to: 'mypages#identification'
+  get '/mypage/profile', to: 'mypages#profile'
   root 'products#index'
-
 end
 
