@@ -116,9 +116,6 @@
           ¥ #{@product.price}
         %span.product-tax (税込)
         %span.product-fee_payer
-          -# - if @product.fee_payer== 0 "送料込み(出品者負担)" product.fee_payer は現在実装中のためコメントアウト
-          -# - else
-            着払い
 
       - unless @product.user == current_user
         - if @product.state == 0
@@ -163,18 +160,6 @@
 
     .product-detail-message
       .message-container
-        -# .message-detail-content　detail は現在実装中のためコメントアウト
-          -# %ul.message-products
-          -#   %li.message-product
-        -#       - if @product.detail 
-                -# - @products.each do |detail|
-                  -# .message-user
-                    %figure
-                      -# .message-user-unknown comment は現在実装中のためコメントアウト
-                        -# - if comment.user.user_profile.user-icon.present?
-                        -#   = comment.user.user_profile.user-icon
-                        -# - else
-                        -#   = image_tag("user-icon.svg")
 
                     .message-body-container
                       %p.user-name-string-nickname
