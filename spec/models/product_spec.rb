@@ -26,6 +26,18 @@ describe Product do
       expect(product.errors[:price]).to include("can't be blank")
     end
 
+    it "statusが空では登録不可" do
+      product = build(:product, status: "")
+      product.valid?
+      expect(product.errors[:status]).to include("can't be blank")
+    end
+
+    it "stateが空では登録不可" do
+      product = build(:product, state: "")
+      product.valid?
+      expect(product.errors[:state]).to include("can't be blank")
+    end
+
     it "cityが空では登録不可" do
       product = build(:product, city: "")
       product.valid?
@@ -36,6 +48,18 @@ describe Product do
       product = build(:product, delivery: "")
       product.valid?
       expect(product.errors[:delivery]).to include("can't be blank")
+    end
+    
+    it "delivery_timeが空では登録不可" do
+      product = build(:product, delivery_time: "")
+      product.valid?
+      expect(product.errors[:delivery_time]).to include("can't be blank")
+    end
+
+    it "fee_payerが空では登録不可" do
+      product = build(:product, fee_payer: "")
+      product.valid?
+      expect(product.errors[:fee_payer]).to include("can't be blank")
     end
 
     it "すべて満たしていれば登録可" do

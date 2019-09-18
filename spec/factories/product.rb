@@ -7,12 +7,12 @@ FactoryBot.define do
     detail                {"これをきつく巻けば巻くほどLGTMが出やすくなります"}
     category              {"1"}
     price                 {"1000"}
-    status                {"0"}
+    status                {"1"}
     state                 {"1"}
     city                  {"1"}
     delivery              {"1"}
-    delivery_time         {"3"}
-    fee_payer             {"0"}
+    delivery_time         {"1"}
+    fee_payer             {"1"}
 
     user
     

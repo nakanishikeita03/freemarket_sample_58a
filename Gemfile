@@ -74,17 +74,19 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
 end
-
+gem 'mini_magick'
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'haml-rails'
 gem 'font-awesome-rails'
 gem 'devise'
 gem 'erb2haml'
+gem 'pry-byebug'
 
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'active_hash'
 gem 'dotenv-rails'
+
 

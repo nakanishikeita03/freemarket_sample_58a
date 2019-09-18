@@ -8,4 +8,6 @@ class MypagesController < ApplicationController
   def identification   
   end
 
+  def card
+  end
 end
