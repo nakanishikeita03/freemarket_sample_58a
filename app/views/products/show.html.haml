@@ -1,5 +1,5 @@
 .container
-  = render "header"
+  = render "/shared/header"
   .product-show-main-background
     %section.product-show-product-box-container
       %h1
@@ -10,7 +10,7 @@
           .slider
             .slider__product
               .image
-                = image_tag @product.images[0].image_url
+                = image_tag "#{@product.images[0].image}"
                 - unless @product.status == 0
                   .product-tag-sold-out-top
                     .sold-out-text-top SOLD
@@ -118,14 +118,14 @@
         %span.product-fee_payer
 
       - unless @product.user == current_user
-        - if @product.state == 0
+        - if @product.status == 0
           - if user_signed_in?
             = link_to "/products/#{@product.id}/buy", data: { turbolinks: false} do
               .product-buy-btn 購入画面に進む
           - else
             = link_to "/users/sign_in" do
               .product-buy-btn 購入画面に進む
-        -else
+        - else
           .product-buy-btn-sold 売り切れました
 
       .product-description
@@ -161,21 +161,6 @@
     .product-detail-message
       .message-container
 
-                    .message-body-container
-                      %p.user-name-string-nickname
-                        = comment.user.user_profile.nickname
-                        .message-body
-                          %p
-                          = comment.content
-                          .message-body__text
-                          .message-icons
-                            .message-icon-left
-                              %i.far.fa-clock
-                              %span.days-ago
-                                = comment.created_at.strftime("%Y/%m/%d %H:%M")
-                            .message-icon-right
-                              = link_to "" do
-                                %i.far.fa-flag
   .product-message-content
     .message-content
     .message-content__box__form
@@ -208,4 +193,4 @@
             %li
               = link_to "#", target: "_blank", class: "share-btn" do
                 = fa_icon "pinterest-square"
-  = render "footer"
+  = render "/shared/footer"
