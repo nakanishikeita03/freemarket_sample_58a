@@ -1,34 +1,34 @@
-.signup__container
+.signin__container
   = render 'signup/login_simple_header'
-  .signup-main
-    .main__section
-      .main__section__top
+  .signin-main
+    .signin-main__section
+      .signin-main__section__top
         アカウントをお持ちでない方はこちら
-      %ul.main__conect__lists
-        %li.main__conect__lists__mail
+      %ul.signin-main__conect__lists
+        %li.signin-main__conect__lists__mail
           = link_to new_user_registration_path do
-            .main__conect__lists__mail__btn
+            .signin-main__conect__lists__mail__btn
               新規会員登録
-    .main__conect
+    .signin-main__conect
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        %ul.main__conect__lists
-          %li.main__conect__lists__facebook
+        %ul.signin-main__conect__lists
+          %li.signin-main__conect__lists__facebook
             = link_to root_path do
-              .main__conect__lists__facebook__btn
+              .signin-main__conect__lists__facebook__btn
                 Facebookでログイン
                 %i.fbicon
                   = fa_icon "facebook-square"
-          %li.main__conect__lists__google2
+          %li.signin-main__conect__lists__google2
             = link_to root_path do
-              .main__conect__lists__google2__btn
+              .signin-main__conect__lists__google2__btn
                 Googleでログイン
-              .main__conect__lists__google2__icon
-          %li.main__conect__lists__input
+              .signin-main__conect__lists__google2__icon
+          %li.signin-main__conect__lists__input
             = f.email_field :email, autocomplete: "email", class:'input_box1',placeholder:'メールアドレス'
-          %li.main__conect__lists__input
+          %li.signin-main__conect__lists__input
             = f.password_field :password, autocomplete: "new-password", class:'input_box2',placeholder:'パスワード'
-          %li.main__conect__lists
-            .main__conect__lists__reCAPTCHA
+          %li.signin-main__conect__lists
+            .signin-main__conect__lists__reCAPTCHA
               = image_tag("https://i.gyazo.com/ce5541bb0a64b4d3a55f24edb0f9b140.png")
           .actions
             .actions__btn
