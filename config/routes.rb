@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/mypage/identification', to: 'mypages#identification'
   get '/mypage/profile', to: 'mypages#profile'
   get '/mypage/card', to: 'mypages#card'
+  get '/mypage/card/create', to: 'mypages#card_new'
   root 'products#index'
 
   resources :signup do
