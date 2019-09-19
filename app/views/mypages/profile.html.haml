@@ -1,5 +1,8 @@
 .profile_container
   = render "shared/header"
+  - breadcrumb :profile
+  = render "shared/breadcrumb"
+
   .main-background
     .left-content
       = render 'mypages/modules/mypage-sidebar'
