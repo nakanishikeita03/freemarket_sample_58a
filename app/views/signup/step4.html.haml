@@ -22,9 +22,9 @@
           .progress-bar4__active__status__complete
   .signup-main4
     .signup-main4__head お支払い方法
-  .card-input-contents
+  .card-input-contents4
     = form_with url: 'users_path', local: true do |f|
-      .card-input-content
+      .card-input-content4
         .form-group
           %label
             カード番号
@@ -73,5 +73,5 @@
               ?
             %span
               カード背面の番号とは？
-        = f.submit "追加する", class:"add-btn"
+        = f.submit "次へ進む", class:"add-btn"
   = render 'signup/login_footer'
