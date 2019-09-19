@@ -194,7 +194,7 @@
   .signup-main2 {
     background-color: #FFFFFF;
     font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
-    margin: 0 auto 10px;
+    margin: 0 auto 100px;
     width: 700px;
     &__head {
       background-color: #FFFFFF;
@@ -212,10 +212,8 @@
       width: 350px;
       margin: 0 auto;
       padding: 30px 10px;
-
       .signup-main2__form__phone-number {
         line-height: 17px;
-        display: flex;
           p {
             font-weight: 600;
             font-size: 14px;
