@@ -53,39 +53,26 @@
             %tr
               %th カテゴリー
               %td
-                -# - if !@product.category.parent_id  categoryは現在実装中のためコメントアウト
-                  = link_to "/" do
-                    .product-detail-table-sub
-                      -# = @product.category.name
-                -# - elsif !@product.category.parent.parent_id
-                  = link_to "/" do
-                    .product-detail-table-sub
-                      -# = @product.category.parent.name
-                  = link_to "/" do
-                    .product-detail-table-sub__sub
-                      %i.fas.fa-angle-right
-                      -# = @product.category.name
-                - else
-                  = link_to "/" do
-                    .product-detail-table-sub
-                      -# = @product.category.parent.parent.name
-                  = link_to "/" do
-                    .product-detail-table-sub__sub
-                      %i.fas.fa-angle-right
-                      -# = @product.category.parent.name
-                  = link_to "/" do
-                    .product-detail-table-sub__sub__sub
-                      %i.fas.fa-angle-right
-                      -# = @product.category.name
+
+                .product-detail-table-sub
+                  = @product.category
+                .product-detail-table-sub
+                .product-detail-table-sub__sub
+                  %i.fas.fa-angle-right
+                  = @product.category
+
+                .product-detail-table-sub
+                .product-detail-table-sub__sub
+                  %i.fas.fa-angle-right
+                .product-detail-table-sub__sub__sub
+                  %i.fas.fa-angle-right
+                  = @product.category
             %tr
               %th ブランド
               %td
-                = link_to "/" do
+                = link_to "//www.mercari.com/jp/brand/4136/" do
                   .brand-name
-                    -# - if @product.brand_id.present?　brandは現在実装中のためコメントアウト
-                      -# = @product.brand.name
-                    - else
-                      .no-name
+                    スリー
             %tr
               %th 商品の状態
               %td
@@ -95,7 +82,7 @@
               %th 配送料の負担
               %td
                 .product-detail
-                  -# = @product.fee_payer product.fee_payer は現在実装中のためコメントアウト
+                  = @product.fee_payer
             %tr
               %th 配送の方法
               %td
@@ -109,7 +96,7 @@
               %th 配送日の目安
               %td
                 .product-detail
-                  -# = @product.delivery-time　delivery-time は現在実装中のためコメントアウト
+                  = @product.delivery_time
 
       .product-price-box
         %span.product-price 
@@ -158,20 +145,17 @@
             = link_to "出品を再開する", resale_path(@product), class: "parent-own-product-container__open"
         = link_to "商品を削除する", delete_path(@product), method: :delete, class: "parent-own-product-container__delete-btn"
 
-    .product-detail-message
-      .message-container
-
   .product-message-content
     .message-content
     .message-content__box__form
-      %form.product-show-message-form{:method :post}
-      %input{:type :hidden}
+      %form.product-show-message-form{method: "post"}
+      %input{type: "hidden"}
       %p.attention 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      %input{:type :hidden}
-      %input{:type :hidden}
-      %textarea.text{:type :text, :name :body}
+      %input{type: "hidden"}
+      %input{type: "hidden"}
+      %textarea.text{type: "text", name: "body"}
       .message-submit__details
-      %button{:type :submit, :class :product-show-message-submit button-default}
+      %button{type: "submit", class: "product-show-message-submit__button-default"}
         %span.font-white コメントする 
       .nav-product-link
         .previous-product.items-link_to
