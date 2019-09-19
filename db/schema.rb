@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_15_171301) do
+ActiveRecord::Schema.define(version: 2019_09_19_093222) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "postal_code"
@@ -30,11 +30,6 @@ ActiveRecord::Schema.define(version: 2019_09_15_171301) do
     t.datetime "updated_at", null: false
     t.text "image"
     t.index ["product_id"], name: "index_images_on_product_id"
-  end
-
-  create_table "locations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -79,6 +74,7 @@ ActiveRecord::Schema.define(version: 2019_09_15_171301) do
     t.date "birthday", null: false
     t.string "provider"
     t.string "uid"
+    t.string "tel", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

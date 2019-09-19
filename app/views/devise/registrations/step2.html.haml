@@ -23,17 +23,18 @@
     
   .signup-main2
     .signup-main2__head 電話番号の確認
-    .a-2
-      .signup-main2__form
-        .signup-main2__form__phone-number
-          %p
-            携帯電話の番号
-        = text_field :user, :tel, placeholder: '携帯電話の番号を入力', class: "signup-main2__form__phone-number__input" 
-        .signup-main2__form__sub-head__text 本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
-        %input.signup-step2-submit{type: 'submit',value: 'SMSを送信する'} 
-        .signup-main2__under__text ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
-        .signup-main2__form__imformation-text
-          %p 
-            電話番号の確認が必要な理由＞
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      .a-2
+        .signup-main2__form
+          .signup-main2__form__phone-number
+            %p
+              携帯電話の番号
+            = f.text_field :tel, placeholder: '携帯電話の番号を入力', class: "signup-main2__form__phone-number__input" 
+            .signup-main2__form__sub-head__text 本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
+            = f.submit "次へ進む", class: '.signup-step2-submit'
+            .signup-main2__under__text ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
+            .signup-main2__form__imformation-text
+              %p 
+                電話番号の確認が必要な理由＞
 
   = render 'signup/login_footer'
