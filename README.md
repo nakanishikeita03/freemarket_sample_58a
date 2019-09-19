@@ -44,6 +44,7 @@
 |f_name_kanji|string|null: false,limit: 15, default: ""|
 |l_name_kanji|string|null: false,limit: 15, default: ""|
 |birthday|integer|null: false|
+|tel|integer|null: false|
 
 
 
@@ -57,6 +58,10 @@
 ## addressesテーブル
 |Column|Type|Options|
 |---|---|---|
+|f_name_kana|string|null: false,limit: 15, default: ""|
+|l_name_kana|string|null: false,limit: 15, default: ""|
+|f_name_kanji|string|null: false,limit: 15, default: ""|
+|l_name_kanji|string|null: false,limit: 15, default: ""|
 |postal_code|integer|
 |prefecture|integer|
 |city|string|

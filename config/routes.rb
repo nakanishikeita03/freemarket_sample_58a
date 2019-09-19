@@ -19,11 +19,15 @@ Rails.application.routes.draw do
   resources :signup do
     collection do
       get 'index' #新規会員登録ページTOPへ移動
-      get 'step2' #【新規会員登録】電話番号認証ページへ移動
       get 'step3' #【新規会員登録】住所入力ページへ移動
       get 'step4' #【新規会員登録】支払い方法登録ページへ移動
       get 'done' #【新規会員登録】完了ページへ移動
     end
+  end
+
+  devise_scope :user do
+    get    'users/signup/registration',   to: 'users/registrations#step1'
+    get    'users/signup/sms_confirmation',      to: 'users/registrations#step2'
   end
 end
 
