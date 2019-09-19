@@ -1,5 +1,7 @@
 .container
   = render partial: "shared/header"
+  - breadcrumb :identification
+  = render partial: "shared/breadcrumb"
   .main-background
     .left-content
       = render "mypages/modules/mypage-sidebar"
