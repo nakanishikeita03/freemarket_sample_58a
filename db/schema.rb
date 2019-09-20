@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_19_110013) do
+ActiveRecord::Schema.define(version: 2019_09_20_065702) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "postal_code"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 2019_09_19_110013) do
     t.string "f_name_kana", limit: 15, default: "", null: false
     t.string "l_name_kana", limit: 15, default: "", null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "cords", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "customer_id"
+    t.string "card_id"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cords_on_user_id"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -84,6 +94,7 @@ ActiveRecord::Schema.define(version: 2019_09_19_110013) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "cords", "users"
   add_foreign_key "images", "products"
   add_foreign_key "products", "users"
   add_foreign_key "sns_credentials", "users"
