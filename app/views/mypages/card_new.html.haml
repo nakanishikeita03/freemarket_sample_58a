@@ -6,14 +6,14 @@
     .card-input-contents
       %h2
         クレジットカード情報入力
-      = form_with id: "charge-form", url: 'users_path', local: true do |f|
+      = form_with id: "charge-form", url: new_card_path, local: true do |f|
         .card-input-content
           .form-group
             %label
               カード番号
               %span
                 必須
-            = f.text_field :name, name: "number", class: "input-default",  placeholder: "半角英数のみ"
+            = f.text_field name:"number" ,id:"number", class: "input-default",  placeholder: "半角英数のみ"
             %ul
               %li 
                 =image_tag "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?2482339763", size: "49x20",alt:"visa"
@@ -36,12 +36,12 @@
                 必須
             .select-wrap
               .select-wrap-half
-                = f.select :expair_mm, name: "exp_month",[["01"], ["02"], ["03"], ["04"], ["05"], ["06"], ["07"], ["08"], ["09"], ["10"], ["11"], ["12"]]
+                = f.select name:"exp_month",id:"exp_month",[["01"], ["02"], ["03"], ["04"], ["05"], ["06"], ["07"], ["08"], ["09"], ["10"], ["11"], ["12"]]
                 %i.fa.fa-angle-down
                 %span
                   月
               .select-wrap-half
-                = f.select :expair_yy, name: "exp_year",[["19"], ["20"], ["21"], ["22"], ["23"], ["24"], ["25"], ["26"], ["27"], ["28"]]
+                = f.select name: "exp_year",id: "exp_year",[["19"], ["20"], ["21"], ["22"], ["23"], ["24"], ["25"], ["26"], ["27"], ["28"]]
                 %i.fa.fa-angle-down
                 %span
                   年
@@ -50,7 +50,7 @@
               セキュリティーコード
               %span
                 必須
-            = f.text_field :name, class: "input-default", name: "cvc",  placeholder: "カード背面4桁もしくは3桁の番号"
+            = f.text_field name: "cvc",id: "cvc", class: "input-default", placeholder: "カード背面4桁もしくは3桁の番号"
             .signup-seqcode
               .signup-seqcode-text
                 ?
