@@ -52,12 +52,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    step3_signup_index_path
+    addresses_new_path
   end
 
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(resource)
-    step3_signup_index_path
+    addresses_new_path
   end
 
   def step1
@@ -83,9 +83,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if params[:user][:password].nil?
       @user = User.create(nickname:session[:nickname], email: session[:email], password: session[:password], password_confirmation: session[:password_confirmation], f_name_kana: session[:f_name_kana],l_name_kana: session[:l_name_kana], f_name_kanji: session[:f_name_kanji], l_name_kanji: session[:l_name_kanji], birthday: session[:birthday], tel: params[:user][:tel])
       sns = SnsCredential.create(user_id: @user.id,uid: params[:user][:uid], provider: params[:user][:provider])
-      redirect_to 
+      sign_in(@user)
+      redirect_to controller: '/addresses', action: 'step3'
     else 
-      super
+      redirect_to :back
     end
   end
 

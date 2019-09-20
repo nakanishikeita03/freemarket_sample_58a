@@ -17,6 +17,8 @@ class User < ApplicationRecord
   validates :l_name_kana, presence: true, length: { maximum: 15 }, format: { with: kana }
   validates :birthday, presence: true, format: { with: year_month_day }
   validates :tel, presence: true
+
+  
   def self.without_sns_data(auth)
     user = User.where(email: auth.info.email).first
 

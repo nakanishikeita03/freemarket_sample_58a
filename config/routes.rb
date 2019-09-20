@@ -9,11 +9,15 @@ Rails.application.routes.draw do
   resources :mypages,only: [:index,]
   resources :logout, only: [:index,]
   resources :card,only:[:index]
-
+  resources :addresses,only:[:create]
+  resources :card,only:[:create]
   get '/mypage/identification', to: 'mypages#identification'
   get '/mypage/profile', to: 'mypages#profile'
   get '/mypage/card', to: 'mypages#card'
   get '/mypage/card/create', to: 'mypages#card_new'
+  get '/addresses/new', to: 'addresses#step3'
+  get '/card/new', to: 'card#step4'
+  get '/signup/done', to: 'signup#done'
   root 'products#index'
 
   resources :signup do
