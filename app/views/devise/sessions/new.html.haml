@@ -13,13 +13,13 @@
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         %ul.signin-main__conect__lists
           %li.signin-main__conect__lists__facebook
-            = link_to root_path do
+            = link_to user_facebook_omniauth_authorize_path do
               .signin-main__conect__lists__facebook__btn
                 Facebookでログイン
                 %i.fbicon
                   = fa_icon "facebook-square"
           %li.signin-main__conect__lists__google2
-            = link_to root_path do
+            = link_to user_google_oauth2_omniauth_authorize_path do
               .signin-main__conect__lists__google2__btn
                 Googleでログイン
               .signin-main__conect__lists__google2__icon
