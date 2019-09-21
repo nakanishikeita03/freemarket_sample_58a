@@ -84,6 +84,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @user = User.create(nickname:session[:nickname], email: session[:email], password: session[:password], password_confirmation: session[:password_confirmation], f_name_kana: session[:f_name_kana],l_name_kana: session[:l_name_kana], f_name_kanji: session[:f_name_kanji], l_name_kanji: session[:l_name_kanji], birthday: session[:birthday], tel: params[:user][:tel])
       sns = SnsCredential.create(user_id: @user.id,uid: params[:user][:uid], provider: params[:user][:provider])
       sign_in(@user)
+      bypass_sign_in(@user)
       redirect_to controller: '/addresses', action: 'step3'
     else 
       redirect_to :back
