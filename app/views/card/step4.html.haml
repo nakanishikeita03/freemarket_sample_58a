@@ -23,7 +23,7 @@
   .signup-main4
     .signup-main4__head お支払い方法
   .card-input-contents4
-    = form_with id: "charge-form", url: card_pay_path,method: :post, local: true do |f|
+    = form_with id: "charge-form", url: "/card", method: :post, local: true do |f|
       .card-input-content4
         .form-group
           %label
