@@ -97,7 +97,7 @@ $(document).on('turbolinks:load', function() {
         number: parseInt($("#number").val()),
         cvc: parseInt($("#cvc").val()),
         exp_month: parseInt($("#exp_month").val()),
-        exp_year: 2020//parseInt($("#exp_year").val())
+        exp_year: parseInt($("#exp_year").val())
         
     };
     console.log(card);
