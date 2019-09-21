@@ -168,6 +168,26 @@
     height: 60px;
     line-height: 60px;
   }
+  .product-edit-btn {
+    background: #aaa;
+    cursor: not-allowed;
+    margin: 14px 0 0;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    height: 60px;
+    line-height: 60px;
+  }
+  .product-stop-btn {
+    background: #aaa;
+    cursor: not-allowed;
+    margin: 14px 0 0;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    height: 60px;
+    line-height: 60px;
+  }
   .product-description{
     padding: 32px 0 0;
     line-height: 1.5;
@@ -598,4 +618,9 @@
 
 .brand-name{
   font-size: 14px;
+}
+
+.product-btn-or{
+  text-align: center;
+  margin: 8px 0 0 0;
 }
