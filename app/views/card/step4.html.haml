@@ -23,7 +23,7 @@
   .signup-main4
     .signup-main4__head お支払い方法
   .card-input-contents4
-    = form_for '/card',method: :post, do |f|
+    = form_with id: "charge-form", url: card_pay_path,method: :post, local: true do |f|
       .card-input-content4
         .form-group
           %label
@@ -67,11 +67,11 @@
             セキュリティーコード
             %span
               必須
-          = f.text_field :cvc, class: "input-default",  placeholder: "カード背面4桁もしくは3桁の番号",id:"cvc"
+          = f.text_field :cvc, class: "cvc",  placeholder: "カード背面4桁もしくは3桁の番号",id:"cvc"
           .signup-seqcode
             .signup-seqcode-text
               ?
             %span
               カード背面の番号とは？
-        = f.submit "次へ進む", class:"add-btn",id: "token_submit"
+        = f.submit "次へ進む", class:"add-btn",id: "token_submit", type: "submit"
   = render 'signup/login_footer'

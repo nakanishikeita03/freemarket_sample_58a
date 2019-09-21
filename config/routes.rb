@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     end
   end
 
-
+  post 'card/pay' => 'card#pay'
 
 
 
