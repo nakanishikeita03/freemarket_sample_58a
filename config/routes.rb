@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/mypage/identification', to: 'mypages#identification'
   get '/mypage/profile', to: 'mypages#profile'
   get '/mypage/card', to: 'mypages#card'
-  get '/mypage/card/create', to: 'mypages#card_new'
+  get '/mypage/card/new', to: 'mypages#card_new'
   get '/addresses/new', to: 'addresses#step3'
   get '/card/new', to: 'card#step4'
   get '/signup/done', to: 'signup#done'
@@ -41,11 +41,6 @@ Rails.application.routes.draw do
   end
 
   post 'card/pay' => 'card#pay'
-
-
-
-
-
 
 end
 

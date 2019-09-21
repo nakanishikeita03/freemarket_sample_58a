@@ -6,7 +6,7 @@
     .card-input-contents
       %h2
         クレジットカード情報入力
-      = form_with id: "charge-form", url: card_pay_path,method: :post, local: true do |f|
+      = form_with id: "charge-form", url: "/card", method: :post, local: true do |f|
         .card-input-content
           .form-group
             %label
