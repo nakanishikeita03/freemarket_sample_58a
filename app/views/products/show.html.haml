@@ -107,7 +107,7 @@
       - unless @product.user == current_user
         - if @product.status == 0
           - if user_signed_in?
-            = link_to "/products/#{@product.id}/buy", data: { turbolinks: false} do
+            = link_to "/products/#{@product.id}/card/confirmation", data: { turbolinks: false} do
               .product-buy-btn 購入画面に進む
           - else
             = link_to "/users/sign_in" do
