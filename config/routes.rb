@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   get '/mypage/card', to: 'mypages#card'
   get '/mypage/card/create', to: 'mypages#card_new'
   root 'products#index'
-  # root 'products#show'
 
   resources :signup do
     collection do
