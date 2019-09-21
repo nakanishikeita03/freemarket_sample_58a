@@ -11,6 +11,7 @@ class CardController < ApplicationController
       customer = Payjp::Customer.retrieve(card.customer_id)
       @default_card_information = customer.cards.retrieve(card.card_id)
     else
+    end
   end
 
 
@@ -48,7 +49,7 @@ class CardController < ApplicationController
       card = Card.where(user_id: current_user.id).first
       Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
       Payjp::Charge.create(
-      amount:  #支払金額を入力（itemテーブル等に紐づけても良い）
+      amount: '300',#支払金額を入力（itemテーブル等に紐づけても良い）
       customer: card.customer_id, #顧客ID
       currency: 'jpy', #日本円
     )
