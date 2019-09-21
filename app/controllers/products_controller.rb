@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
 
-  before_action :authenticate_user!,      only: [:new,:create,:destroy,:edit,:update]
+  before_action :authenticate_user!,       only:[:new,:create,:destroy,:edit,:update]
   before_action :set_products_instance,    only:[:show,:edit,:destroy]
-  before_action :set_products,            only:[:destroy,:update]
+  before_action :set_products,             only:[:destroy,:update]
 
   def index
     @products = Product.includes(:images).where(status: 0).order("created_at DESC").limit(10)    #複数の指定なので返り値は配列

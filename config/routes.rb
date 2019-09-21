@@ -42,5 +42,15 @@ Rails.application.routes.draw do
 
   post 'card/pay' => 'card#pay'
 
+  resources :products,only:[:show] do
+    get 'card/pay', to: 'card#pay'
+    get 'card/confirmation', to:'card#confirmation'
+    get 'card/complete', to:'card#complete'
+  end
+
+
+
+
+
 end
 
