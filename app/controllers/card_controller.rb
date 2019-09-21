@@ -17,10 +17,11 @@ class CardController < ApplicationController
 
 
 
-  def create #payjpとCardのデータベース作成を実施します。
+  def pay #payjpとCardのデータベース作成を実施します。
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    binding.pry
     if params['payjp-token'].blank?
-      redirect_to action: "new"
+      redirect_to action: "step4"
     else
       customer = Payjp::Customer.create(card: params['payjp-token']) 
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)

@@ -6,14 +6,14 @@
     .card-input-contents
       %h2
         クレジットカード情報入力
-      = form_with id: "charge-form", url: "/card",method: :post, local: true do |f|
+      = form_with id: "charge-form", url: card_pay_path,method: :post, local: true do |f|
         .card-input-content
           .form-group
             %label
               カード番号
               %span
                 必須
-            = f.text_field name:"number" ,id:"nuber", class: "input-default",  placeholder: "半角英数のみ"
+            = f.text_field name:"number" ,id:"number", class: "input-default",  placeholder: "半角英数のみ"
             %ul
               %li 
                 =image_tag "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?2482339763", size: "49x20",alt:"visa"
