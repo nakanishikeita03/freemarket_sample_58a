@@ -107,7 +107,7 @@
       - unless @product.user_id == current_user.id
         - if @product.status == 0
           - if user_signed_in?
-            = link_to "/products/#{@product.id}/buy", data: { turbolinks: false} do
+            = link_to pay_product_path(@product), data: {turbolinks: false} do
               .product-buy-btn 購入画面に進む
           - else
             = link_to "/users/sign_in" do
@@ -116,7 +116,7 @@
           .product-buy-btn-sold 売り切れました
           
       -if current_user == product.user_id
-        = link_to "/products/#{@product.id}/edit", data: { turbolinks: false} do
+        = link_to edit_product_path(@product), data: {turbolinks: false} do
           .product-edit-btn 商品の編集
           .product-btn-or or
           .product-stop-btn 出品を一旦停止する
