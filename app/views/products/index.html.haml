@@ -18,14 +18,18 @@
           %li
             おもちゃ・ホビー・グッズ
     .pickup-contents
-      .pickup-contents-box
-        .pickup-contents__header
-          .pickup-contents__header-name
-            レディース新着アイテム
-          .pickup-contents__header-more
-            = link_to "もっと見る ＞", "#"
-        .pickup-contents__image
-          = render @products
+      .pickup-content
+        .pickup-content__img
+        .pickup-content__text__box
+      .pickup-content__price-box
+        .pickup-contents-box
+          .pickup-contents__header
+            .pickup-contents__header-name
+              レディース新着アイテム
+            .pickup-contents__header-more
+              = link_to "もっと見る ＞", "#"
+          .pickup-contents__image
+            = render @products
           
   .pickup-container
     .pickup-header

@@ -79,7 +79,19 @@
             position: relative;
             text-decoration: none;
             vertical-align: top;
-            
+          .price-box{
+            z-index: 2;
+            position: absolute;
+            flex:inline-block;
+            top: -30px;
+            left: 0;
+            padding: 4px 12px 4px 8px;
+            border-radius: 0 16px 16px 0;
+            font-weight: 600;
+            font-size: 16px;
+            color: #fff;
+            background: #rgba(0,0,0,0.3)
+            }
             .pickup-content__img{
               max-width: 100%;
               min-height: 80%;
@@ -90,7 +102,7 @@
               font-size: 14px;
               height: 20%;
               line-height: 1.4em;
-              padding: 0 12px;
+              padding: 0px 12px;
               white-space: normal;
               word-break: break-word;
 
