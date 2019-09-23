@@ -110,7 +110,7 @@
             .product-edit-btn 商品の編集
             .product-btn-or or
             .product-stop-btn 出品を一旦停止する
-          = link_to "/products/#{@product.id}/delete", data: { turbolinks: false} do
+          = link_to product_path(@product), method: :delete, data: { turbolinks: false} do
             .product-stop-btn この商品を削除する   
         -else 
           -if @product.status == 0
