@@ -104,54 +104,46 @@
         %span.product-tax (税込)
         %span.product-fee_payer
 
-      - unless @product.user_id == current_user.id
-        - if @product.status == 0
-          - if user_signed_in?
-            = link_to pay_product_path(@product), data: {turbolinks: false} do
+      -if user_signed_in?
+        -if @product.user_id == current_user.id
+          = link_to edit_product_path(@product), data: {turbolinks: false} do
+            .product-edit-btn 商品の編集
+            .product-btn-or or
+            .product-stop-btn 出品を一旦停止する
+          = link_to product_path(@product), method: :delete, data: { turbolinks: false} do
+            .product-stop-btn この商品を削除する   
+        -else 
+          -if @product.status == 0
+            = link_to pay_card_index_path(@product), data: {turbolinks: false} do
               .product-buy-btn 購入画面に進む
-          - else
-            = link_to "/users/sign_in" do
-              .product-buy-btn 購入画面に進む
-        - else
-          .product-buy-btn-sold 売り切れました
-          
-      -if current_user == product.user_id
-        = link_to edit_product_path(@product), data: {turbolinks: false} do
-          .product-edit-btn 商品の編集
-          .product-btn-or or
-          .product-stop-btn 出品を一旦停止する
-        = link_to "/products/#{@product.id}/delete", data: { turbolinks: false} do
-          .product-stop-btn この商品を削除する    
+          -else
+            .product-buy-btn-sold 売り切れました
 
-      .product-description
-        %p.product-description__inner
-          = @product.detail
-      .product-button-container.clearfix
-        .product-button-left
-          .product-button-like
-            %button{type: "button", name: "like!", class: "product-button"}
-              = fa_icon "heart"
-              %span.fade-in-down いいね!
-              %span.fade-in-down 0
-        .product-button__report
-          = link_to "", class: "product-button__report" do
-            = fa_icon "flag"
-            %span.fade-in-down 不適切な商品の報告            
-        .product-button-right
-          = link_to 'https://www.mercari.com/jp/safe/description/', target: "_blank", class: "safe-description" do
-            = fa_icon "lock"
-            あんしん・あんぜんへの取り組み
-    - if user_signed_in? && current_user.id == @product.user_id
-      .parent-own-product-container
-        - unless @product.status
-          = link_to "商品の編集", edit_path(@product), class: "parent-own-product-container__edit"
-          .parent-own-product-container__or
-            or
-          - unless @product.status == 0
-            = link_to "出品を停止する", stop_path(@product), class: "parent-own-product-container__close"
-          - else
-            = link_to "出品を再開する", resale_path(@product), class: "parent-own-product-container__open"
-        = link_to "商品を削除する", product_path, method: :delete, class: "parent-own-product-container__delete-btn"
+      -else
+        -if @product.status == 0
+          = link_to "/users/sign_in" do
+            .product-buy-btn 購入画面に進む
+        -else
+          .product-buy-btn-sold 売り切れました
+      -unless user_signed_in? && @product.user_id == current_user.id
+        .product-description
+          %p.product-description__inner
+            = @product.detail
+        .product-button-container.clearfix
+          .product-button-left
+            .product-button-like
+              %button{type: "button", name: "like!", class: "product-button"}
+                = fa_icon "heart"
+                %span.fade-in-down いいね!
+                %span.fade-in-down 0
+          .product-button__report
+            = link_to "", class: "product-button__report" do
+              = fa_icon "flag"
+              %span.fade-in-down 不適切な商品の報告            
+          .product-button-right
+            = link_to 'https://www.mercari.com/jp/safe/description/', target: "_blank", class: "safe-description" do
+              = fa_icon "lock"
+              あんしん・あんぜんへの取り組み
 
   .product-message-content
     .message-content
