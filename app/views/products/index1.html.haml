@@ -1,0 +1,62 @@
+= render 'shared/header'
+= render 'shared/sell-btn'
+.toppage-main
+  .top-image
+    = image_tag("https://www-mercari-jp.akamaized.net/assets/img/featured/camp/index/index_keyvisual.png?891577966", height:"290px")
+  .pickup-container
+    .pickup-header
+      %h2.pickup-header__name
+        人気のカテゴリ
+      .pickup-header__categoly
+        %ul
+          %li
+            レディース
+          %li
+            メンズ
+          %li
+            家電・スマホ・カメラ
+          %li
+            おもちゃ・ホビー・グッズ
+    .pickup-contents
+      .pickup-contents-box
+        .pickup-contents__header
+          .pickup-contents__header-name
+            レディース新着アイテム
+          .pickup-contents__header-more
+            = link_to "もっと見る ＞", "#"
+        .pickup-contents__image
+          = render @products
+          
+  .pickup-container
+    .pickup-header
+      %h2.pickup-header__name
+        人気のブランド
+      .pickup-header__categoly
+        %ul
+          %li
+            シャネル
+          %li
+            ルイヴィトン
+          %li
+            シュプリーム
+          %li
+            ナイキ
+    .pickup-contents
+      .pickup-contents-box
+        .pickup-contents__header
+          .pickup-contents__header-name
+            シャネル新着アイテム
+          .pickup-contents__header-more
+            = link_to "もっと見る ＞", "#"
+        .pickup-contents__image
+          .pickup-content
+          .pickup-content
+          .pickup-content
+          .pickup-content
+          .pickup-content
+          .pickup-content
+          .pickup-content
+          .pickup-content
+          .pickup-content
+          .pickup-content
+= render 'shared/footer'

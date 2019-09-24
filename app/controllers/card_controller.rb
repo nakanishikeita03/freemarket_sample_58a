@@ -55,7 +55,6 @@ class CardController < ApplicationController
       )
       product[:status] = 1
       product.save
-      
      redirect_to action: 'complete'
   end
 
