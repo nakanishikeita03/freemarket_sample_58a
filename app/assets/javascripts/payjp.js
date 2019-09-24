@@ -85,7 +85,7 @@
 // もう少し簡単そうなの
 
 
-$(document).on('turbolinks:load', function() {
+$(function() {
   var form = $("#charge-form");
   Payjp.setPublicKey('pk_test_7e69455f3e701137c2af4142'); //(自身の公開鍵)
 
