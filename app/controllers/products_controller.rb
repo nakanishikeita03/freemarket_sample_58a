@@ -57,7 +57,7 @@ end
   #       item_images_binary_datas << Base64.strict_encode64(binary_data)
   #     end
   #   end
-  # end
+  end
 
 
   def show
