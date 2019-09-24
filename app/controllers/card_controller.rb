@@ -2,22 +2,24 @@ class CardController < ApplicationController
 
   require "payjp"
 
+  before_action :authenticate_user!
+  before_action :card_exist, only: [:index,:pay,:delete,:show,:confirmation]
+
 
   def index
-    card = Card.where(user_id: current_user.id)
-
-    if card.exists?
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_card_information = customer.cards.retrieve(card.card_id)
-    else
-    end
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    customer = Payjp::Customer.retrieve(@card.customer_id)
+    @default_card_information = customer.cards.retrieve(@card.card_id)
   end
 
 
   def new
     card = Card.where(user_id: current_user.id)
-    redirect_to action: "show" if card.exists?
+    if card.exists?
+      redirect_to action: "show"
+    else
+      redirect_to action: "step4"
+    end
   end
   
 
@@ -27,10 +29,10 @@ class CardController < ApplicationController
 
   def create
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      if params['payjp-token'].blank?
+      if card_params['payjp-token'].blank?
         redirect_to action: "step4"
       else
-      customer = Payjp::Customer.create(card: params['payjp-token']) 
+      customer = Payjp::Customer.create(card: card_params['payjp-token']) 
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card, token: params['payjp-token'])
         if @card.save
           redirect_to controller: '/signup', action: 'done'
@@ -42,23 +44,23 @@ class CardController < ApplicationController
 
 
   def pay 
-      product = Product.find(params[:product_id])
+      product = Product.find(card_params[:product_id])
+      redirect_to "/products/#{product.id}" if product.status != 0  #ヘルパーが使用出来なかった為仮置。ルーティング調整したら変更する事
       card = Card.where(user_id: current_user.id).first
       Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
       Payjp::Charge.create(
-
-      amount:  product.price,#支払金額を入力（itemテーブル等に紐づけても良い）
-      customer: card.customer_id, #顧客ID
-      currency: 'jpy', #日本円
+      amount:  product.price,
+      customer: card.customer_id,
+      currency: 'jpy',
       )
       product[:status] = 1
       product.save
-      binding.pry
-     redirect_to action: 'complete' #完了画面に移動
+      
+     redirect_to action: 'complete'
   end
 
 
-  def delete #PayjpとCardデータベースを削除します
+  def delete 
        card = Card.where(user_id: current_user.id).first
     if card.blank?
     else
@@ -71,35 +73,45 @@ class CardController < ApplicationController
   end
 
   
-  def show #Cardのデータpayjpに送り情報を取り出します
-       card = Card.where(user_id: current_user.id).first
-    if card.blank?
-      redirect_to action: "new" 
-    else
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_card_information = customer.cards.retrieve(card.card_id)
-    end
+  def show 
+    card_information
+    
   end
 
 
   def confirmation
-    card = Card.where(user_id: current_user.id).first
-    if card.blank?
-      redirect_to action: "new"
-    else
-    
     @product = Product.find(params[:product_id])
-    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-    customer = Payjp::Customer.retrieve(card.customer_id)
-    @default_card_information = customer.cards.retrieve(card.card_id)
-    end
-  end
+    @adresses = Address.find(@product.user.id)
 
+    card_information
+  end
 
 
   def complete
     @product = Product.find(params[:product_id])
+    @adresses = Address.find(@product.user.id)
+  end
+
+
+
+  private
+
+  def card_exist
+    @card = Card.where(user_id: current_user.id).first
+    redirect_to action: "step4" if @card.blank?
+  end
+
+
+
+  def card_params
+    params.permit('payjp-token',:product_id)
+  end
+
+  
+  def card_information
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    customer = Payjp::Customer.retrieve(@card.customer_id)
+    @default_card_information = customer.cards.retrieve(@card.card_id)
   end
 
 
