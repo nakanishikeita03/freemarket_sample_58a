@@ -53,7 +53,6 @@ class CardController < ApplicationController
       )
       product[:status] = 1
       product.save
-      binding.pry
      redirect_to action: 'complete' #完了画面に移動
   end
 
@@ -100,6 +99,11 @@ class CardController < ApplicationController
 
   def complete
     @product = Product.find(params[:product_id])
+    @addresses = Address.find(@product.user.id)
+    card = Card.where(user_id: current_user.id).first
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    customer = Payjp::Customer.retrieve(card.customer_id)
+    @default_card_information = customer.cards.retrieve(card.card_id)
   end
 
 
