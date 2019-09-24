@@ -17,7 +17,6 @@ class ProductsController < ApplicationController
 
 
   def create
-    binding.pry
     @product = Product.new(product_params)
     if @product.save
       image_params[:images].each do |image|
