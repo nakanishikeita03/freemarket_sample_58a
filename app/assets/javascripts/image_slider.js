@@ -13,22 +13,6 @@ $(function() {
   });
 });
 
-$(function(){
-  var slick = $('.slider').slick({
-      appendArrows: $('#arrows')
-
-  });
-
-//以下は必要ないと思う
-  $('.slick-next').on('click', function () {
-      slick.slickNext();
-  });
-  $('.slick-prev').on('click', function () {
-      slick.slickPrev();
-  });
-});
-
-
 
 
 

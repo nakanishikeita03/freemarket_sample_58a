@@ -15,6 +15,13 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+.slider {
+    display: none;
+    }
+    .slider.slick-initialized {
+    display: block;
+}
+
 .slick-prev, .slick-next {
     width:60px; /* 画像幅 */
     height:34px /* 画像高さ */
