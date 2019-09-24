@@ -3,7 +3,7 @@ class CardController < ApplicationController
   require "payjp"
 
   before_action :authenticate_user!
-  before_action :card_exist, only: [:index,:pay,:delete,:show,:confirmation]
+  before_action :card_exist, only: [:index,:pay,:delete,:show,:confirmation,:complete]
 
 
   def index
@@ -89,6 +89,7 @@ class CardController < ApplicationController
   def complete
     @product = Product.find(params[:product_id])
     @adresses = Address.find(@product.user.id)
+    card_information
   end
 
 
