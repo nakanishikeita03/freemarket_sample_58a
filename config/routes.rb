@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/card/new', to: 'card#step4'
   get '/signup/done', to: 'signup#done'
   root 'products#index'
+  # root 'card#index'
 
   resources :signup do
     collection do

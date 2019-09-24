@@ -11,13 +11,12 @@
           .buy-content__product__inner
             .buy-product-main
               .buy-product-image
-                = image_tag "https://static.mercdn.net/thumb/photos/m47187028411_1.jpg?1568902155", height: "87.5px" , width: "64px"
                 = image_tag "#{@product.images[0].image}", height: "64px" , width: "64px"
-              .buy-product-name THREE シマリンググロスリップジャム15番
-              = @product
+              .buy-product-name 
+              = @product.name
             %form.buy-form
               %p.buy-price
-                ¥1500
+                ¥
                 = @product.price.to_s(:delimited)
                 %span送料込み
               .buy-have-point
@@ -26,10 +25,8 @@
                 .buy-price-table__left
                   支払金額
                 .buy-price-table__right
-                  ¥1500
+                  ¥
                   = @product.price.to_s(:delimited)
-              .buy-button
-                購入する
               - if @product.status_id == 0
                 = link_to "購入する", "#", method: "GET", class:"btn-default"
               - else 
@@ -44,7 +41,6 @@
               東京都渋谷区神南1丁目18−2
               = @addresses.prefecture + @addresses.city + @addresses.street + @addresses.building
               %br
-              山田花子
               = @users.f_name_kanji + " " + @user.l_name_kanji
 
             .user-info-fix
@@ -57,9 +53,11 @@
             %h3 支払方法
 
             .user-info-text
-              ********0890
+              = "**** **** ****"+ "#{@default_card_information.last4}"
               %br
-              06/23
+              - exp_month = @default_card_information.exp_month.to_s
+              - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+              = exp_month + " / " + exp_year
             .user-info-fix
               = link_to "#" do
                 変更する
