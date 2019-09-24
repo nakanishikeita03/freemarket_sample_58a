@@ -11,13 +11,25 @@
             必須
         %p
           最大10枚までアップロードできます
-        .sell-dropbox-container
-          .sell-upload-drop-box
-            = f.fields_for @product.images do |ff|
-              = ff.file_field :image , accept: ".jpg, .jpeg, .png", multiple: true
-            %pre
-              ドラッグアンドドロップ
-              またはクリックしてファイルをアップロード
+        = f.fields_for :images, @product.images.first do |image|
+          .o_image-zone1-parent
+            .o_image-zone1
+              #preview1
+              .o_image-label1
+                = image.label :image do
+                  .o_file-field
+                    = image.file_field :image, multiple: true, name: "images[images][]", class: "input-image"
+                  .k_ir_section__inner--form-input
+                    .k_ir_section__inner--form-input-content 
+                      %p
+                        クリックしてファイルをアップロード
+          .o_image-zone2-parent
+            .o_image-zone2
+              #preview2
+              .o_image-label2
+                = image.label :image do
+                  .o_file-field
+                    = image.file_field :image, multiple: true, name: "images[images][]", class: "input-image"
       .sell-content
         .form-group
           %label
