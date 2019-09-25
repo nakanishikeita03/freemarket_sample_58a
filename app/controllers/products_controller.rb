@@ -19,13 +19,10 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      image_params[:images].each do |image|
-        @product.images.create(image: image, product_id: @product.id) 
-      
-    end
-
     redirect_to controller: :products, action: :index
-  end
+    else
+      redirect_to controller: :products, action: :new
+    end
 end
 
 
@@ -107,10 +104,6 @@ private
 
   def product_params
     params.require(:product).permit(:name, :detail, :category, :price, :status, :state, :city, :delivery, :delivery_time, :fee_payer, images_attributes: [:image]).merge(user_id: current_user.id)
-  end
-  
-  def image_params
-    params.require(:images).permit({images: []})
   end
 
 
