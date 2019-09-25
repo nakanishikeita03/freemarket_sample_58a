@@ -3,7 +3,7 @@ class CardController < ApplicationController
   require "payjp"
 
   before_action :authenticate_user!
-  before_action :card_exist, only: [:index,:pay,:delete,:show,:confirmation,:complete]
+  before_action :card_exist, only: [:index,:pay,:destroy,:show,:confirmation,:complete]
 
 
   def index
@@ -59,7 +59,7 @@ class CardController < ApplicationController
   end
 
 
-  def delete 
+  def destroy
        card = Card.where(user_id: current_user.id).first
     if card.blank?
     else
@@ -68,13 +68,12 @@ class CardController < ApplicationController
       customer.delete
       card.delete
     end
-      redirect_to action: "new"
+      redirect_to mypage_card_path
   end
 
   
   def show 
     card_information
-    
   end
 
 
