@@ -17,9 +17,9 @@ Rails.application.routes.draw do
   get '/mypage/card/new', to: 'mypages#card_new'
   get '/addresses/new', to: 'addresses#step3'
   get '/card/new', to: 'card#step4'
+  delete '/card/destroy', to: 'card#destroy'
   get '/signup/done', to: 'signup#done'
   root 'products#index'
-  # root 'card#index'
 
   resources :signup do
     collection do
@@ -37,7 +37,6 @@ Rails.application.routes.draw do
     collection do
       post 'show', to: 'card#show'
       post 'pay', to: 'card#pay'
-      post 'delete', to: 'card#delete'
     end
   end
 
