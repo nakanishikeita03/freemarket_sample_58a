@@ -1,139 +1,135 @@
 $(function() {
-  var imagelabel1 = $('.o_image-label1')
-  var imagelabel2 = $('.o_image-label2')
-  var imagezone1 = $('.o_image-zone1-parent')
-  var imagezone2 = $('.o_image-zone2-parent')
 
-  // viewで表示する配列
+  //イメージの挿入
+  var dropzone = $('.dropzone-area');
+  var dropzone2 = $('.dropzone-area2');
   var images = [];
-  // データとして送信する配列
-  var image_files = [];
+  var inputs  =[];
+  var input_area = $('.input_area');
+  var preview = $('#preview');
+  var preview2 = $('#preview2');
 
-  // 画像アップロード
-  $(document).on('change', 'input[type= "file"]', function(){
+  $(document).on('change', 'input[type= "file"].upload-image',function(event){
     var file = $(this).prop('files')[0];
-    image_files.push(file);
     var reader = new FileReader();
-    
-    if (file.size >= 1000000) {
-      alert('1メガバイト以上の画像は登録できません。削除してください。。')
-    }
-    
-    if (file.type.match(/image/)) {
-      var img = $('<div class="add_img"><div class="img_area"><img></div></div>');
-    } else {
-      var img = $('<div class="add_img"><div class="img_area"><video controls="controls" autobuffer="true" width="110px" height="85px"></video></div></div>')
-    }
-    var btn = $('<div class="btn_wrapper"><a class="btn_delete">削除</a></div>');
-    img.append(btn);
-    
+    inputs.push($(this));
+    var img = $(`<div class= "img_view"><img></div>`);
     reader.onload = function(e) {
-      img.find('img').attr({ src: e.target.result });
-      img.find('video').attr({ src: e.target.result });
-    };
-    
+      var btn_wrapper = $('<div class="upload-image__prev--btn"><div class="edit-btn">編集</div><div class="delete-btn">削除</div></div>');
+      img.append(btn_wrapper);
+      img.find('img').attr({src: e.target.result
+      })
+    }
     reader.readAsDataURL(file);
     images.push(img);
-    
-    if (images.length <= 4) {
-      $('#preview1').text('');
-      $.each(images, function(i, image){
-        image.data('image', i);
-        $('#preview1').append(image);
+    if(images.length >= 5) {
+      dropzone2.css({
+        'display': 'block'
       })
-      imagelabel1.css({
-        width: `calc(100% - (20% * ${images.length})`
+      dropzone.css({
+        'display': 'none'
       })
-    } else if (images.length == 5) {
-      $('#preview1').text('');
-      $.each(images, function(i, image){
-        image.data('image', i);
-        $('#preview1').append(image);
-      })
-      imagelabel1.css({
-        display: "none"
-      })
-      imagezone2.css({
-        display: "block"
-      })
-    } else {
-      var secondrow_images = images.slice(5);
-      $.each(secondrow_images, function(i, image){
-        image.data('image', i + 5);
-        $('#preview2').append(image);
-      })
-      imagelabel2.css({
-        width: `calc(100% - (20% * ${images.length - 5})`
-      })
-    }
-    if (images.length == 10) {
-      imagelabel2.css({
-        display: "none"
-      })
-    }
-  })
-
-  // 画像削除
-  $(document).on('click', '.btn_delete', function(){
-    var target_image = $(this).parent().parent();
-    var target_image_num = target_image.data('image');
-    target_image.remove();
-    // images・image_filesから削除を押した画像を削除する
-    images.splice(target_image_num, 1);
-    image_files.splice(target_image_num, 1);
-
-    if (images.length == 0) {
-      $('input[type="file"]').data('image', 0)
-    }
-
-    if (images.length <= 4) {
-      $('#preview1').text('');
-      $.each(images, function(i, image){
-        image.data('image', i);
-        $('#preview1').append(image);
-      })
-      imagelabel1.css({
-        display: 'block',
-        width: `calc(100% - (20% * ${images.length})`
-      })
-      imagezone2.css({
-        display: 'none'
-      })
-    } else if (images.length == 5) {
-      $('#preview1').text('');
-      $.each(images, function(i, image){
-        image.data('image', i);
-        $('#preview1').append(image);
-      })
-      imagezone1.css({
-        display: 'block'
-      })
-      imagelabel2.css({
-        width: '100%'
-      })
-      imagelabel1.css({
-        display: 'none'
-      })
-      $('#preview2').text('')
-    } else {
-      var firstrow_images = images.slice(0, 5)
-      $('#preview1').text('')
-      $.each(firstrow_images, function(i, image) {
-        image.data('image', i)
-        $('#preview1').append(image)
-      })
-
-      var secondrow_images = images.slice(5)
-      $.each(secondrow_images, function(i, image){
-        image.data('image', i + 5)
-        $('#preview2').append(image)
-        imagelabel2.css({
-          display: 'block',
-          width: `calc(100% - (20% * ${images.length - 5})`
+      $.each(images, function(index, image) {
+        image.attr('data-image', index);
+        preview2.append(image);
+        dropzone2.css({
+          'width': `calc(100% - (120px * ${images.length - 5}))`
         })
       })
+      if(images.length == 9) {
+        dropzone2.find('p').replaceWith('<p>ここをクリック</p>')
+      }
+    } else {
+        $('#preview').empty();
+        $.each(images, function(index, image) {
+          image.attr('data-image', index);
+          preview.append(image);
+        })
+        dropzone.css({
+          'width': `calc(100% - (120px * ${images.length}))`
+        })
+      }
+      if(images.length == 4) {
+        dropzone.find('p').replaceWith('<p>ここをクリック</p>')
+      }
+    if(images.length == 10) {
+      dropzone2.css({
+        'display': 'none'
+      })
+      return;
+    }
+    // 新しいインプットの表示
+    var new_image = $(`<input id="upload-image__btn" class="upload-image" data-image= ${images.length} type="file" name="product[images_attributes][${images.length}][image]">`);
+    input_area.prepend(new_image);
+  });
+
+  // 削除
+  $(document).on('click', '.delete-btn', function() {
+    var target_image = $(this).parent().parent();
+    $.each(inputs, function(index, input){
+      if ($(this).data('image') == target_image.data('image')){
+        $(this).remove();
+        target_image.remove();
+        var num = $(this).data('image');
+        images.splice(num, 1);
+        inputs.splice(num, 1);
+        if(inputs.length == 0) {
+          $('input[type= "file"].upload-image').attr({
+            'data-image': 0
+          })
+        }
+      }
+    })
+    $('input[type= "file"].upload-image:first').attr({
+      'data-image': inputs.length
+    })
+    $.each(inputs, function(index, input) {
+      var input = $(this)
+      input.attr({
+        'data-image': index
+      })
+      $('input[type= "file"].upload-image:first').after(input)
+    })
+    if (images.length >= 5) {
+      dropzone2.css({
+        'display': 'block'
+      })
+      $.each(images, function(index, image) {
+        debugger;
+        image.attr('data-image', index);
+        preview2.append(image);
+      })
+      dropzone2.css({
+        'width': `calc(100% - (120px * ${images.length - 5}))`
+      })
+      if(images.length == 9) {
+        dropzone2.find('p').replaceWith('<i class="fa fa-camera"></i>')
+      }
+      if(images.length == 8) {
+        dropzone2.find('i').replaceWith('<p>ココをクリックしてください</p>')
+      }
+    } else {
+      dropzone.css({
+        'display': 'block'
+      })
+      $.each(images, function(index, image) {
+        image.attr('data-image', index);
+        preview.append(image);
+      })
+      dropzone.css({
+        'width': `calc(100% - (120px * ${images.length}))`
+      })
+    }
+    if(images.length == 4) {
+      dropzone2.css({
+        'display': 'none'
+      })
+    }
+    if(images.length == 3) {
+      dropzone.find('i').replaceWith('<p>ココをクリックしてください</p>')
     }
   })
+
   
 //価格表示
 $('#sell-price').on('keyup', function(){

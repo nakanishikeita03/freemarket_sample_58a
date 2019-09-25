@@ -11,26 +11,33 @@
             必須
         %p
           最大10枚までアップロードできます
-        = f.fields_for :images, @product.images.first do |image|
-          .o_image-zone1-parent
-            .o_image-zone1
-              #preview1
-              .o_image-label1
-                = image.label :image do
-                  .o_file-field
-                    = image.file_field :image, multiple: true, name: "images[images][]", class: "input-image"
-                  .k_ir_section__inner--form-input
-                    .k_ir_section__inner--form-input-content 
-                      %p
-                        クリックしてファイルをアップロード
-          .o_image-zone2-parent
-            .o_image-zone2
-              #preview2
-              .o_image-label2
-                = image.label :image do
-                  .o_file-field
-                    = image.file_field :image, multiple: true, name: "images[images][]", class: "input-image"
-
+        .sellbox-form__upload--drop#click-btn
+          .sellbox-form__upload--drop--post
+            -# ファイルのフォーム
+            = f.fields_for :image do |image|
+              .dropzone-container
+                #preview
+                -# jsでの追加部分
+                -#img_view
+                    img src
+                    -#.upload-image__prev--btn
+                      btnedit 編集
+                      btnelete 削除
+                .dropzone-area
+                  = image.label :image, class: "dropzone-box", for: "upload-image__btn" do
+                    .input_area
+                      = image.file_field :image, id: "upload-image__btn", class: "upload-image", 'data-image': 0, type: "file", name: "product[images_attributes][0][image]"
+                    %p
+                      ドラッグアンドドロップ
+                      %br
+                      またはクリックしてファイルをダウンロード
+                #preview2
+                .dropzone-area2
+                  = image.label :image, class: "dropzone-box", for: "upload-image__btn" do
+                    %p
+                      ドラッグアンドドロップ
+                      %br
+                      またはクリックしてファイルをダウンロード
       .sell-content
         .form-group
           %label
