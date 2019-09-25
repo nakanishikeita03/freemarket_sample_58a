@@ -7,30 +7,29 @@
           = @product.name
       .product-main-content
         .product-photo
-          .slider
-            .slider__product
-              .image
-                = image_tag "#{@product.images[0].image}"
-                - unless @product.status == 0
-                  .product-tag-sold-out-top
-                    .sold-out-text-top SOLD
-                - else
-                  .none-sold
-
-              .owl-dot
-                - @product.images.each.with_index do |image, index|
-                  - if image.present?
-                    .owl-dot__product.current
-                      .owl-dot__product__box
-                        = image_tag image.image_url
-                  - else
-                    .owl-dot__product
-                      .owl-dot__product__box
-                        = image_tag image.image
-                - if @product.images.length > 5
-                  - for i in 1..(10 - @product.images.length)
-                    .owl-dot__dummy
-                
+          //メイン画像
+          .image
+            = image_tag @image.image.to_s, size: "300x300"
+            - unless @product.status == 0
+              .product-tag-sold-out-top
+                .sold-out-text-top SOLD
+            - else
+              .none-sold
+          //サムネイル画像
+          .owl-dot
+            - @product.images.each.with_index do |image, index|
+              - if image.present?
+                .owl-dot__product.current
+                  .owl-dot__product__box
+                    = image_tag image.image_url, class: "image-sub"
+              - else
+                .owl-dot__product
+                  .owl-dot__product__box
+                    = image_tag image.image, class: "image-sub"
+            - if @product.images.length > 5
+              - for i in 1..(10 - @product.images.length)
+                .owl-dot__dummy
+        
         %table.product-detail-table
           %tbody
             %tr

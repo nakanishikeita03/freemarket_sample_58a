@@ -62,6 +62,8 @@ end
 
   def show
     @product = Product.find(params[:id])
+    @images = @product.images
+    @image = @images.first
   end
 
 
