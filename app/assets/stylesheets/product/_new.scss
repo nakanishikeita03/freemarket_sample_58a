@@ -1,5 +1,3 @@
-@import "product/new-mixin";
-
       .sellbox-form {
         border-top: 1px solid #eee;
         &__upload {
@@ -11,7 +9,6 @@
             font-weight: bold;
             &--require {
               background-color: #ea352d;
-              // @include require();
             }
           }
           p {
@@ -24,7 +21,6 @@
             width: 100%;
             height: 162px;
             margin: 16px auto 0;
-              // 投稿ボックス
             &--post {
               .dropzone-container{
                 display: block;
@@ -95,6 +91,9 @@
                       padding: 50px;
                     }
                   }
+                }
+                .nothing{
+                  border:none;
                 }
                 #preview2{
                   display: inline-block;

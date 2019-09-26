@@ -28,9 +28,9 @@ $(function() {
         dropzone.css({
           'width': `calc(100% - (120px * ${images.length}))`
         })
-      // if(images.length == 5) {
-      //   $(".dropzone-box").remove();
-      // }
+      if(images.length == 5) {
+        $(".dropzone-area").addClass('nothing');;
+      }
     // 新しいインプットの表示
     var new_image = $(`<input id="upload-image__btn" class="upload-image" data-image= ${images.length} type="file" name="product[images_attributes][${images.length}][image]">`);
     input_area.prepend(new_image);
