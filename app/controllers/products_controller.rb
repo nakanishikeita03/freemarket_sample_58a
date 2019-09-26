@@ -34,6 +34,8 @@ end
 
 
   def edit
+    @product= Product.find(params[:id])
+    @images = @product.images.order(id: "DESC")
     # require 'base64'
     # require 'aws-sdk'
 
@@ -64,6 +66,12 @@ end
 
 
   def update
+    binding.pry
+    if @product.update(product_params)
+      redirect_to root_path
+    else
+      render 'edit'
+    end
     # @product.update(product_params) if @product.user_id == current_user.id
 
     # if @product.save

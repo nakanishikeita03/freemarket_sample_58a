@@ -11,25 +11,26 @@
             必須
         %p
           最大10枚までアップロードできます
-        = f.fields_for :images, @product.images.first do |image|
-          .o_image-zone1-parent
-            .o_image-zone1
-              #preview1
-              .o_image-label1
-                = image.label :image do
-                  .o_file-field
-                    = image.file_field :image, multiple: true, name: "images[images][]", class: "input-image"
-                  .k_ir_section__inner--form-input
-                    .k_ir_section__inner--form-input-content 
+          .sellbox-form__upload--drop#click-btn
+            .sellbox-form__upload--drop--post
+              .dropzone-container
+                #preview
+                  - @images.each_with_index do |image, i|
+                    .update__img-view{"data-image": i}
+                      =image_tag(image.image_url, class: "edit__img")
+                      .upload-image__prev--btn
+                        .edit-btn 編集
+                        .update__delete-btn 削除
+                = f.fields_for :image do |image|
+                  .dropzone-area
+                    = image.label :image, class: "dropzone-box", for: "upload-image__btn" do
+                      .input_area
+                        = image.file_field :image, id: "upload-image__btn", class: "upload-image", 'data-image': 0, type: "file", name: "product[images_attributes][0][image]"
+                        -# - image.hidden_field :id, value: @images.id 
+                        -# - image.hidden_field :id, value: image.id 
                       %p
-                        クリックしてファイルをアップロード
-          .o_image-zone2-parent
-            .o_image-zone2
-              #preview2
-              .o_image-label2
-                = image.label :image do
-                  .o_file-field
-                    = image.file_field :image, multiple: true, name: "images[images][]", class: "input-image"
+                        クリックしてファイルを追加
+
       .sell-content
         .form-group
           %label
