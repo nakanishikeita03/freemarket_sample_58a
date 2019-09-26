@@ -19,6 +19,8 @@ class User < ApplicationRecord
   validates :f_name_kana, presence: true, length: { maximum: 15 }, format: { with: kana }
   validates :l_name_kana, presence: true, length: { maximum: 15 }, format: { with: kana }
   validates :birthday, presence: true, format: { with: year_month_day }
+  validates :password,presence: true
+  validates :password_confirmation,presence: true
   validates :tel, presence: true
 
   
@@ -34,7 +36,8 @@ class User < ApplicationRecord
       else
         user = User.new(
           nickname: auth.info.name,
-          email: auth.info.email
+          email: auth.info.email,
+          password: Devise.friendly_token.first(7)
         )
         sns = SnsCredential.new(
           uid: auth.uid,
@@ -49,7 +52,8 @@ class User < ApplicationRecord
     unless user.present?
       user = User.new(
         nickname: auth.info.name,
-        email: auth.info.email
+        email: auth.info.email,
+        password: Devise.friendly_token.first(7)
       )
     end
     return {user: user}
