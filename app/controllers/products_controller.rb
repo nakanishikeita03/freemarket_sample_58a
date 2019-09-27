@@ -70,57 +70,21 @@ end
 
   def update
     # binding.pry
-
-   beforeimgs=Image.where(product_id: @product.id)
-   beforeimgs.each do |beforeimg|
-    beforeimg.destroy
-   end
-    @images.each do |id,image|
-    img = Image.create(image)
-    end
-
-
-    # ids = @product.images.map(&:id)
-    
-    # exist_ids = registered_image_params[:ids].map(&:to_i)
-    
-    if @product.update(product_params)
-      redirect_to root_path
+    if @images.present?
+      beforeimgs=Image.where(product_id: @product.id)
+      beforeimgs.each do |beforeimg|
+        beforeimg.destroy
+      end
+      # ids = @product.images.map(&:id)
+      # exist_ids = registered_image_params[:ids].map(&:to_i)
+      if @product.update(product_params)
+        redirect_to root_path
+      else
+        render 'edit'
+      end
     else
       render 'edit'
     end
-    # @product.update(product_params) if @product.user_id == current_user.id
-
-    # if @product.save
-    #   redirect_to controller: :products, action: :show
-    #   flash[:success] = "編集しました"
-    # else 
-    #   redirect_to controller: :products, action: :edit
-    # end
-
-    # # itemにもともと登録されている画像のid
-    # ids = @item.images.map(&:id)
-    # # 上記のうち編集後も残っている画像のid
-    # exist_ids = registered_image_params[:ids].map(&:to_i)
-    # exist_ids.clear if exist_ids[0] == 0
-
-    # if @item.update(item_params) && (exist_ids.length != 0 || image_params[:images][0] != " ")
-    #   unless ids.length == exist_ids.length
-    #     delete_ids = ids - exist_ids
-    #     delete_ids.each do |id|
-    #       @item.images.find(id).destroy
-    #     end
-    #   end
-
-    #   unless image_params[:images][0] == " "
-    #     image_params[:images].each do |image|
-    #       @item.images.create(image: image, item_id: @item.id)
-    #     end
-    #   end
-    #   flash[:success] = "編集しました"
-    # else
-    #   render 'items/edit'
-    # end
   end
 
 
@@ -132,7 +96,7 @@ private
   end
   
   def image_params
-    @images = params.require(:product).permit(:images_attributes)
+    @images = params.require(:product).permit(images_attributes: [:image])
   end
 
   def set_products_instance
