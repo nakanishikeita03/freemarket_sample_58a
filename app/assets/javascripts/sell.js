@@ -75,71 +75,72 @@ $(function() {
       })
   })
 // 編集画面
-var dropZone = $('.dropzone-area')
-var dropZone2 = $('.dropzone-area2')
-var editImg = $('.edit__img');
-var editImages = []
-editImages.push(editImg);
-if(editImages.length <= 4 ){
-  dropZone.css({
-    'width': `calc(100% - (120px * ${editImg.length}))`
-  })
-} else { 
-  dropZone.css({
-    'width': `calc(100% - (120px * ${editImages.length}))`
-  })
-}
-// 編集画面の削除
-$(document).on('click', '.update__delete-btn', function() {
-  var editImages = $('.update__img-view');
-  // var editImages = 
-  var target_image = $(this).parent().parent();
-  $.each(editImages, function(index, input){
-    if ($(this).data('image') == target_image.data('image')){
-      $(this).remove();
-      target_image.remove();
-      var num = $(this).data('image');
-      editImages.splice(num, 1);
-      $.each(editImages, function(index, editImage) {
-        editImage.attr('data-image', index);
-      })
-      if(inputs.length == 0) {
-        $('input[type= "file"].upload-image').attr({
-          'data-image': 0
-        })
-      }
-    }
-  })
-  $('input[type= "file"].upload-image:first').attr({
-    'data-image': inputs.length
-  })
-  $.each(inputs, function(index, input) {
-    var input = $(this)
-    input.attr({
-      'data-image': index
-    })
-    $('input[type= "file"].upload-image:first').after(input)
-  })
+// var dropZone = $('.dropzone-area')
+// var dropZone2 = $('.dropzone-area2')
+// var editImg = $('.edit__img');
+// var editImages = []
+// editImages.push(editImg);
+// editImages.push(editImg);
+// if(editImages.length <= 4 ){
+//   dropZone.css({
+//     'width': `calc(100% - (120px * ${editImg.length}))`
+//   })
+// } else { 
+//   dropZone.css({
+//     'width': `calc(100% - (120px * ${editImages.length}))`
+//   })
+// }
+// // 編集画面の削除
+// $(document).on('click', '.update__delete-btn', function() {
+//   var editImages = $('.update__img-view');
+//   // var editImages = 
+//   var target_image = $(this).parent().parent();
+//   $.each(editImages, function(index, input){
+//     if ($(this).data('image') == target_image.data('image')){
+//       $(this).remove();
+//       target_image.remove();
+//       var num = $(this).data('image');
+//       editImages.splice(num, 1);
+//       $.each(editImages, function(index, editImage) {
+//         editImage.attr('data-image', index);
+//       })
+//       if(inputs.length == 0) {
+//         $('input[type= "file"].upload-image').attr({
+//           'data-image': 0
+//         })
+//       }
+//     }
+//   })
+//   $('input[type= "file"].upload-image:first').attr({
+//     'data-image': inputs.length
+//   })
+//   $.each(inputs, function(index, input) {
+//     var input = $(this)
+//     input.attr({
+//       'data-image': index
+//     })
+//     $('input[type= "file"].upload-image:first').after(input)
+//   })
 
-    dropzone.css({
-      'display': 'block'
-    })
-    $.each(images, function(index, image) {
-      image.attr('data-image', index);
-      preview.append(image);
-    })
-    dropzone.css({
-      'width': `calc(100% - (120px * ${images.length}))`
-    })
-  if(images.length == 4) {
-    dropzone2.css({
-      'display': 'none'
-    })
-  }
-  if(images.length == 3) {
-    dropzone.find('i').replaceWith('<p>ココをクリックしてください</p>')
-  }
-})
+//     dropzone.css({
+//       'display': 'block'
+//     })
+//     $.each(images, function(index, image) {
+//       image.attr('data-image', index);
+//       preview.append(image);
+//     })
+//     dropzone.css({
+//       'width': `calc(100% - (120px * ${images.length}))`
+//     })
+//   if(images.length == 4) {
+//     dropzone2.css({
+//       'display': 'none'
+//     })
+//   }
+//   if(images.length == 3) {
+//     dropzone.find('i').replaceWith('<p>ココをクリックしてください</p>')
+//   }
+// })
   
 //価格表示
 $('#sell-price').on('keyup', function(){
