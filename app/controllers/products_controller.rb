@@ -69,10 +69,12 @@ end
 
 
   def update
-    binding.pry
+    # binding.pry
 
-    Image.find(@product.id).destroy
-
+   beforeimgs=Image.where(product_id: @product.id)
+   beforeimgs.each do |beforeimg|
+    beforeimg.destroy
+   end
     @images.each do |id,image|
     img = Image.create(image)
     end
