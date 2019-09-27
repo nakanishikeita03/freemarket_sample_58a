@@ -1,0 +1,31 @@
+.category_list
+  - @category.each do |main_category| 
+    %ul.parent_top
+      %li.parent_list
+        = link_to "#{main_category.name}",'#',class:"maincategory"
+        %ul.child_top
+          - main_category.sub_categories.each do |sub_category|
+            %li.child_list
+              = link_to "#{sub_category.name}","/product",class:"subcategory"
+              %ul.gchild_top
+                - sub_category.sub2_categories.each do |sub2_category|
+                  %li.gchild_list
+                    = link_to "#{sub2_category.name}",'#',class:"sub2category"
+
+
+
+
+
+                    
+-# - @category.each do |main_category|
+-#   %li{class:"init-bottom", href:'/products'}
+-#     .category
+-#       = link_to "#{main_category.name}",'#',class:"catemain"
+      -# %ul
+      -#   - main_category.sub_categories.each do |sub_category|
+      -#     %li
+      -#       = link_to "#{sub_category.name}", '#', class:"catesub"
+      -#       %ul
+      -#         - sub_category.sub2_categories.each do |sub2_category|
+      -#           %li
+      -#             = link_to "#{sub2_category.name}", '#', class:"catesubsub"

@@ -46,7 +46,7 @@
 .header-bottom {
   width: 80%;
   margin: 0 auto;
-  padding: 0 10px 10px;
+  padding: 0px 10px;
   display: flex;
   justify-content: space-between;
   font-size: 14px;
@@ -101,10 +101,11 @@
 //カテゴリ検索のバー
 .category_list{
   position: absolute;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
   z-index: 1;
   font-size: 14px;
-  height: 680px;
-  display:  none;
+  height: 620px;
+  // display:  none;
   background-color: #fff;
   color: #333;
 }
@@ -112,25 +113,31 @@
 .parent_top{
   background-color: #fff;
   display: flex;
-  padding: 0 16px;
   height: 44px;
   line-height: 44px;
   cursor: pointer;
+  &:hover{
+    background-color:red;
+    .maincategory{
+    color: white;
+    }
+  }
   .parent_list{
     display: flex;
-    width: 180px;
-    &:hover{
-      background-color:red;
-      color: white;
+    width: 200px;
+    .maincategory{
+      padding: 0 16px;
+      width: 200px;
     }
   }
 }
 
 .child_top{
   background-color: #fff;
-  display: none;
-  padding: 8px 0 8px 0;
-  height: 680px;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  // display: none;
+  padding: 0 0 8px 0;
+  height: 620px;
   width: auto;
   position: absolute;
   top: 0;
@@ -143,14 +150,19 @@
     &:hover{
       background-color:#eee;
     }
+    .subcategory{
+      padding: 0 16px;
+      width: 200px;
+    }
   }
 }
 
 .gchild_top{
   background-color: #fff;
-  display: none;
-  padding: 8px 0 8px 0;
-  height: 680px;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  // display: none;
+  padding: 0 0 8px 0;
+  height: 620px;
   width: auto;
   overflow: scroll;
   position: absolute;
@@ -160,9 +172,12 @@
   .gchild_list{
     height: 32px;
     line-height: 32px;
-    width: 220px;
+    width: 260px;
     &:hover{
       background-color:#eee;
+    }
+    .sub2category{
+      padding: 0 16px;
     }
   }
 }

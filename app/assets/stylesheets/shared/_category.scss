@@ -1,0 +1,22 @@
+.header-bottom__left__list:hover li a{
+  height: 3.2rem;
+  overflow: visible;
+  z-index:100;
+}
+.header-bottom__left__list__category_field li a{
+  position: relative;
+  top:17px;
+  display: block;
+  width: 224px;
+  text-decoration: none;
+  line-height: 50px;
+  list-style-type : none;
+  margin: 0;
+  padding-left: 10px;
+  color:#333;
+  background:white;
+  height: 0;
+  overflow: hidden;
+  font-size: 14px;
+  
+}
