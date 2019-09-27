@@ -79,7 +79,7 @@ class CardController < ApplicationController
 
   def confirmation
     @product = Product.find(params[:product_id])
-    @addresses = Address.find(@product.user.id)
+    @addresses = Address.find(1)
 
     card_information
   end
@@ -87,7 +87,7 @@ class CardController < ApplicationController
 
   def complete
     @product = Product.find(params[:product_id])
-    @addresses = Address.find(@product.user.id)
+    @addresses = Address.find(1)
     card_information
   end
 

@@ -3,7 +3,8 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!,       only:[:new,:create,:destroy,:edit,:update]
   before_action :set_products_instance,    only:[:show,:destroy]
   before_action :set_products,             only:[:edit,:destroy,:update]
-
+  before_action :image_params,             only:[:update]
+  
   def index
     @products = Product.includes(:images).where(status: 0).order("created_at DESC").limit(10)    #複数の指定なので返り値は配列
     
@@ -69,6 +70,18 @@ end
 
   def update
     binding.pry
+
+    Image.find(@product.id).destroy
+
+    @images.each do |id,image|
+    img = Image.create(image)
+    end
+
+
+    # ids = @product.images.map(&:id)
+    
+    # exist_ids = registered_image_params[:ids].map(&:to_i)
+    
     if @product.update(product_params)
       redirect_to root_path
     else
@@ -115,7 +128,10 @@ private
   def product_params
     params.require(:product).permit(:name, :detail, :category, :price, :status, :state, :city, :delivery, :delivery_time, :fee_payer, images_attributes: [:image]).merge(user_id: current_user.id)
   end
-
+  
+  def image_params
+    @images = params.require(:product).permit(:images_attributes)
+  end
 
   def set_products_instance
     @product = Product.new

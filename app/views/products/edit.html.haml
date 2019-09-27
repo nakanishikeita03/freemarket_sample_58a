@@ -11,26 +11,19 @@
             必須
         %p
           最大10枚までアップロードできます
-          .sellbox-form__upload--drop#click-btn
-            .sellbox-form__upload--drop--post
+        .sellbox-form__upload--drop#click-btn
+          .sellbox-form__upload--drop--post
+            = f.fields_for :image do |image|
               .dropzone-container
                 #preview
-                  - @images.each_with_index do |image, i|
-                    .update__img-view{"data-image": i}
-                      =image_tag(image.image_url, class: "edit__img")
-                      .upload-image__prev--btn
-                        .edit-btn 編集
-                        .update__delete-btn 削除
-                = f.fields_for :image do |image|
-                  .dropzone-area
-                    = image.label :image, class: "dropzone-box", for: "upload-image__btn" do
-                      .input_area
-                        = image.file_field :image, id: "upload-image__btn", class: "upload-image", 'data-image': 0, type: "file", name: "product[images_attributes][0][image]"
-                        -# - image.hidden_field :id, value: @images.id 
-                        -# - image.hidden_field :id, value: image.id 
-                      %p
-                        クリックしてファイルを追加
-
+                .dropzone-area
+                  = image.label :image, class: "dropzone-box", for: "upload-image__btn" do
+                    .input_area
+                      = image.file_field :image, id: "upload-image__btn", class: "upload-image", 'data-image': 0, type: "file", name: "product[images_attributes][0][image]"
+                    %p
+                      ドラッグアンドドロップ
+                      %br
+                      またはクリックしてファイルをダウンロード
       .sell-content
         .form-group
           %label
@@ -159,5 +152,4 @@
             に同意したことになります。
         = f.submit "出品する", class:"button"
         =link_to "キャンセル", product_path,class:"back-btn"
-
   =render 'signup/login_footer'
