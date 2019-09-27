@@ -70,7 +70,7 @@ end
 
   def update
     # binding.pry
-    if @images.present?
+    if @images.present? && @product.update(product_params)
       beforeimgs=Image.where(product_id: @product.id)
       beforeimgs.each do |beforeimg|
         beforeimg.destroy
