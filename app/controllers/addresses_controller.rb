@@ -8,7 +8,7 @@ class AddressesController < ApplicationController
     if @address.save
     redirect_to controller: '/card', action: 'step4'
     else
-    redirect_to controller: '/addresses', action: 'step3'
+    redirect_to({action: 'step3'}, notice: '住所情報を入れ直してください')
     end
     
   end
