@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
     if @product.save
     redirect_to controller: :products, action: :index
     else
-      redirect_to controller: :products, action: :new
+      redirect_to({action: :new}, notice: '出品できません')
     end
 end
 
@@ -80,9 +80,11 @@ end
       if @product.update(product_params)
         redirect_to root_path
       else
+        flash.now[:alert] = '更新できません'
         render 'edit'
       end
     else
+      flash.now[:alert] = '写真がありません'
       render 'edit'
     end
   end
