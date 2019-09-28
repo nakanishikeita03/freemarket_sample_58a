@@ -37,8 +37,15 @@ end
 
 
   def edit
+    require 'aws-sdk'
     @product= Product.find(params[:id])
     @images = @product.images.order(id: "DESC")
+
+    client = Aws::S3::Client.new(
+                            region: 'ap-northeast-1',
+                            access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+                            secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
+                            )
   end
 
 
