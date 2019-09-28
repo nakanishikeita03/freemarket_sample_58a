@@ -7,9 +7,11 @@ class ProductsController < ApplicationController
   
   def index
     @products = Product.includes(:images).where(status: 0).order("created_at DESC").limit(10)    #複数の指定なので返り値は配列
-    
   end
 
+  def category
+    @products = Product.page(params[:page]).per(100)
+  end
 
   def new
     @product = Product.new
@@ -22,7 +24,7 @@ class ProductsController < ApplicationController
     if @product.save
     redirect_to controller: :products, action: :index
     else
-      redirect_to controller: :products, action: :new
+      redirect_to({action: :new}, notice: '出品できません')
     end
 end
 
@@ -62,7 +64,7 @@ end
 
 
   def update
-    if @images.present?
+    if @images.present? && @product.update(product_params)
       beforeimgs=Image.where(product_id: @product.id)
       beforeimgs.each do |beforeimg|
         beforeimg.destroy
@@ -70,9 +72,11 @@ end
       if @product.update(product_params)
         redirect_to root_path
       else
+        flash.now[:alert] = '更新できません'
         render 'edit'
       end
     else
+      flash.now[:alert] = '写真がありません'
       render 'edit'
     end
   end
