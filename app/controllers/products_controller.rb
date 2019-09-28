@@ -35,28 +35,21 @@ end
 
 
   def edit
-    @product= Product.find(params[:id])
-    @images = @product.images.order(id: "DESC")
-    # require 'base64'
-    # require 'aws-sdk'
-
-  #   item_images_binary_datas = []
-  #   if Rails.env.production?
-  #     client = Aws::S3::Client.new(
-  #                             region: 'ap-northeast-1',
-  #                             access_key_id: ENV["AWS_ACCESS_KEY_ID"],
-  #                             secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
-  #                             )
-  #     @product.images.each do |image|
-  #       binary_data = client.get_object(bucket: 'o-freemarket', key: image.image.file.path).body.read
-  #       item_images_binary_datas << Base64.strict_encode64(binary_data)
-  #     end
-  #   else
-  #     @product.images.each do |image|
-  #       binary_data = File.read(image.image.file.path)
-  #       item_images_binary_datas << Base64.strict_encode64(binary_data)
-  #     end
-  #   end
+    require 'aws-sdk'
+    
+    if Rails.env.production?
+      client = Aws::S3::Client.new(
+                              region: 'ap-northeast-1',
+                              access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+                              secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
+                              )
+      @product.images.each do |image|
+        binary_data = client.get_object(bucket: 'freemarketsample58a', key: image.image.file.path).body.read
+      end
+    else
+      @product= Product.find(params[:id])
+      @images = @product.images.order(id: "DESC")
+    end
   end
 
 
@@ -69,14 +62,11 @@ end
 
 
   def update
-    # binding.pry
     if @images.present?
       beforeimgs=Image.where(product_id: @product.id)
       beforeimgs.each do |beforeimg|
         beforeimg.destroy
       end
-      # ids = @product.images.map(&:id)
-      # exist_ids = registered_image_params[:ids].map(&:to_i)
       if @product.update(product_params)
         redirect_to root_path
       else
