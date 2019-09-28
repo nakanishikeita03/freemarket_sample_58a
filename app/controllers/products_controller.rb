@@ -38,15 +38,14 @@ end
 
   def edit
     require 'aws-sdk'
-    
+
     if Rails.env.production?
       client = Aws::S3::Client.new(
                               region: 'ap-northeast-1',
                               access_key_id: ENV["AWS_ACCESS_KEY_ID"],
                               secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
                               )
-      @product.images.each do |image|
-        binary_data = client.get_object(bucket: 'freemarketsample58a', key: image.image.file.path).body.read
+      @images = client.get_object(bucket: 'freemarketsample58a', key: image.image.file.path).body.read
       end
     else
       @product= Product.find(params[:id])
