@@ -7,9 +7,11 @@ class ProductsController < ApplicationController
   
   def index
     @products = Product.includes(:images).where(status: 0).order("created_at DESC").limit(10)    #複数の指定なので返り値は配列
-    
   end
 
+  def category
+    @products = Product.page(params[:page]).per(100)
+  end
 
   def new
     @product = Product.new
