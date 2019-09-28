@@ -89,6 +89,9 @@ end
     end
   end
 
+  def search
+    @products = Product.search(params[:search])
+  end
 
 
 private
