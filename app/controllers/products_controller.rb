@@ -37,19 +37,8 @@ end
 
 
   def edit
-    require 'aws-sdk'
-    if Rails.env.production?
-      client = Aws::S3::Client.new(
-                              region: 'ap-northeast-1',
-                              access_key_id: ENV["AWS_ACCESS_KEY_ID"],
-                              secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
-                              )
-      @product= Product.find(params[:id])
-      @images = @product.images.order(id: "DESC")
-    else
-      @product= Product.find(params[:id])
-      @images = @product.images.order(id: "DESC")
-    end
+    @product= Product.find(params[:id])
+    @images = @product.images.order(id: "DESC")
   end
 
 
