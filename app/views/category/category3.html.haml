@@ -1,1 +1,58 @@
-category3
+= render 'shared/header'
+= render 'shared/sell-btn'
+.category-toppage-main
+  .pickup-container
+    .pickup-header
+      .pickup-header__categoly
+        %ul
+          %li
+            アクセサリー
+          %li
+            パンツ
+          %li
+            トップス
+          %li
+            ワンピース
+          %li
+            靴
+          %li
+            ジャケット/アウター
+          %li
+            小物
+          %li
+            スーツ/フォーマル/ドレス
+          %li
+            バッグ
+    .pickup-contents
+      .pickup-content
+        .pickup-content__img
+        .pickup-content__text__box
+      .pickup-content__price-box
+        .pickup-contents-box
+          .pickup-contents__header
+            .pickup-contents__header-name
+              レディースの商品一覧
+          .pickup-contents__image
+            = render @products
+          
+  .pickup-container
+    .pickup-contents
+      .pickup-contents-box
+        .pickup-contents__header
+        .pickup-contents__image
+          .pickup-content
+          .pickup-content
+          .pickup-content
+          .pickup-content
+          .pickup-content
+          .pickup-content
+          .pickup-content
+          .pickup-content
+          .pickup-content
+          .pickup-content
+          -# = paginate(@products)
+        .category-ladies-btn レディース
+        .category-ladies-pickup-content
+          .category-ladies-pickup-content-box
+            %span レディースの着ない服、いらない洋服を売るならメルカリへ。レディースの商品は100万点以上あります。人気のあるカテゴリーはチャームとカジュアルパンツです。人気の商品は「ドールチャーム」や「フォロワー様限定♡個性派韓国ファッション♡長さ調節ok!カジュアルパンツ」があります。レディースの買い取りやリサイクル処分、服の整理を検討中の方にお勧めです。
+= render 'shared/footer'
