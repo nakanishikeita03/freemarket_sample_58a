@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_21_041714) do
+ActiveRecord::Schema.define(version: 2019_09_25_091402) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "postal_code"
@@ -46,6 +46,12 @@ ActiveRecord::Schema.define(version: 2019_09_21_041714) do
     t.index ["product_id"], name: "index_images_on_product_id"
   end
 
+  create_table "main_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name", null: false
@@ -70,6 +76,22 @@ ActiveRecord::Schema.define(version: 2019_09_21_041714) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sns_credentials_on_user_id"
+  end
+
+  create_table "sub2_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "sub_category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sub_category_id"], name: "index_sub2_categories_on_sub_category_id"
+  end
+
+  create_table "sub_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "main_category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["main_category_id"], name: "index_sub_categories_on_main_category_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -98,4 +120,6 @@ ActiveRecord::Schema.define(version: 2019_09_21_041714) do
   add_foreign_key "images", "products"
   add_foreign_key "products", "users"
   add_foreign_key "sns_credentials", "users"
+  add_foreign_key "sub2_categories", "sub_categories"
+  add_foreign_key "sub_categories", "main_categories"
 end
