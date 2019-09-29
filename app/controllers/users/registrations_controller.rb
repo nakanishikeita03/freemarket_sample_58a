@@ -3,7 +3,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
   # GET /resource/sign_up
   # def new
   #   super
@@ -62,6 +61,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def step1
     @user = User.new
+    session[:provider] = session[:provider]
+    session[:uid] = session[:uid]
   end
   
   def step2
@@ -74,29 +75,33 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session[:f_name_kanji] = params[:user][:f_name_kanji]
     session[:l_name_kanji] = params[:user][:l_name_kanji]
     session[:birthday] = birthday_join
+    session[:provider] = session[:provider]
+    session[:uid] = session[:uid]
     @user = User.create(nickname:session[:nickname], email: session[:email], password: session[:password], password_confirmation: session[:password_confirmation], f_name_kana: session[:f_name_kana],l_name_kana: session[:l_name_kana], f_name_kanji: session[:f_name_kanji], l_name_kanji: session[:l_name_kanji], birthday: session[:birthday], tel: params[:user][:tel])
   end
 
 
 
   def create
-    if params[:user][:password].nil?
+    password = Devise.friendly_token.first(7)
+    if session[:provider].present? && session[:uid].present?
+      @user = User.create(nickname:session[:nickname], email: session[:email], password: "password", password_confirmation: "password", f_name_kana: session[:f_name_kana],l_name_kana: session[:l_name_kana], f_name_kanji: session[:f_name_kanji], l_name_kanji: session[:l_name_kanji], birthday: session[:birthday], tel: params[:user][:tel])
+      sns = SnsCredential.create(user_id: @user.id,uid: session[:uid], provider: session[:provider])
+    else
       @user = User.create(nickname:session[:nickname], email: session[:email], password: session[:password], password_confirmation: session[:password_confirmation], f_name_kana: session[:f_name_kana],l_name_kana: session[:l_name_kana], f_name_kanji: session[:f_name_kanji], l_name_kanji: session[:l_name_kanji], birthday: session[:birthday], tel: params[:user][:tel])
-      sns = SnsCredential.create(user_id: @user.id,uid: params[:user][:uid], provider: params[:user][:provider])
+    end
+
+    if @user.save
+      redirect_to controller: '/addresses', action: 'step3'
       sign_in(@user)
       bypass_sign_in(@user)
-      redirect_to controller: '/addresses', action: 'step3'
-    else 
-      redirect_to :back
+    else
+      redirect_to signup_index_path, notice: '初めから入れ直してください'
+      
     end
   end
 
   private
-  def user_via_sns_params
-    password = Devise.friendly_token.first(7)
-    params.require(:user).permit(:nickname, :email, :f_name_kanji, :l_name_kanji, :f_name_kana, :l_name_kana, :birthday, :tel, :uid, :provider).merge(password: password, password_confirmation: password)
-  end
-
 
 
   def birthday_join
@@ -106,5 +111,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
     birthday = year.to_s + "-" + month.to_s + "-" + day.to_s
     return birthday
   end
-
+ 
 end

@@ -3,12 +3,16 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!,       only:[:new,:create,:destroy,:edit,:update]
   before_action :set_products_instance,    only:[:show,:destroy]
   before_action :set_products,             only:[:edit,:destroy,:update]
-
+  before_action :image_params,             only:[:update]
+  
   def index
     @products = Product.includes(:images).where(status: 0).order("created_at DESC").limit(10)    #複数の指定なので返り値は配列
     # @category = MainCategory.all.includes(sub_categories: :sub2_categories)
   end
 
+  def category
+    @products = Product.page(params[:page]).per(100)
+  end
 
   def new
     @product = Product.new
@@ -21,7 +25,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to controller: :products, action: :index
     else
-      redirect_to controller: :products, action: :new
+      redirect_to({action: :new}, notice: '出品できません')
     end
 end
 
@@ -34,26 +38,15 @@ end
 
 
   def edit
-    # require 'base64'
-    # require 'aws-sdk'
+    require 'aws-sdk'
+    @product= Product.find(params[:id])
+    @images = @product.images.order(id: "DESC")
 
-  #   item_images_binary_datas = []
-  #   if Rails.env.production?
-  #     client = Aws::S3::Client.new(
-  #                             region: 'ap-northeast-1',
-  #                             access_key_id: ENV["AWS_ACCESS_KEY_ID"],
-  #                             secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
-  #                             )
-  #     @product.images.each do |image|
-  #       binary_data = client.get_object(bucket: 'o-freemarket', key: image.image.file.path).body.read
-  #       item_images_binary_datas << Base64.strict_encode64(binary_data)
-  #     end
-  #   else
-  #     @product.images.each do |image|
-  #       binary_data = File.read(image.image.file.path)
-  #       item_images_binary_datas << Base64.strict_encode64(binary_data)
-  #     end
-  #   end
+    client = Aws::S3::Client.new(
+                            region: 'ap-northeast-1',
+                            access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+                            secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
+                            )
   end
 
 
@@ -66,40 +59,26 @@ end
 
 
   def update
-    # @product.update(product_params) if @product.user_id == current_user.id
-
-    # if @product.save
-    #   redirect_to controller: :products, action: :show
-    #   flash[:success] = "編集しました"
-    # else 
-    #   redirect_to controller: :products, action: :edit
-    # end
-
-    # # itemにもともと登録されている画像のid
-    # ids = @item.images.map(&:id)
-    # # 上記のうち編集後も残っている画像のid
-    # exist_ids = registered_image_params[:ids].map(&:to_i)
-    # exist_ids.clear if exist_ids[0] == 0
-
-    # if @item.update(item_params) && (exist_ids.length != 0 || image_params[:images][0] != " ")
-    #   unless ids.length == exist_ids.length
-    #     delete_ids = ids - exist_ids
-    #     delete_ids.each do |id|
-    #       @item.images.find(id).destroy
-    #     end
-    #   end
-
-    #   unless image_params[:images][0] == " "
-    #     image_params[:images].each do |image|
-    #       @item.images.create(image: image, item_id: @item.id)
-    #     end
-    #   end
-    #   flash[:success] = "編集しました"
-    # else
-    #   render 'items/edit'
-    # end
+    if @images.present? && @product.update(product_params)
+      beforeimgs=Image.where(product_id: @product.id)
+      beforeimgs.each do |beforeimg|
+        beforeimg.destroy
+      end
+      if @product.update(product_params)
+        redirect_to root_path
+      else
+        flash.now[:alert] = '更新できません'
+        render 'edit'
+      end
+    else
+      flash.now[:alert] = '写真がありません'
+      render 'edit'
+    end
   end
 
+  def search
+    @products = Product.search(params[:search])
+  end
 
 
 private
@@ -107,7 +86,10 @@ private
   def product_params
     params.require(:product).permit(:name, :detail, :category, :price, :status, :state, :city, :delivery, :delivery_time, :fee_payer, images_attributes: [:image]).merge(user_id: current_user.id)
   end
-
+  
+  def image_params
+    @images = params.require(:product).permit(images_attributes: [:image])
+  end
 
   def set_products_instance
     @product = Product.new

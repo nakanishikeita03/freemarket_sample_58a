@@ -37,7 +37,7 @@ class CardController < ApplicationController
         if @card.save
           redirect_to controller: '/signup', action: 'done'
         else
-          redirect_to action: "step4"
+          redirect_to({action: "step4"}, notice: 'カード情報を入れ直してください')
         end
     end
   end
@@ -79,7 +79,7 @@ class CardController < ApplicationController
 
   def confirmation
     @product = Product.find(params[:product_id])
-    @addresses = Address.find(@product.user.id)
+    @addresses = Address.find_by(user_id: current_user.id)
 
     card_information
   end
@@ -87,7 +87,7 @@ class CardController < ApplicationController
 
   def complete
     @product = Product.find(params[:product_id])
-    @addresses = Address.find(@product.user.id)
+    @addresses = Address.find_by(user_id: current_user.id)
     card_information
   end
 

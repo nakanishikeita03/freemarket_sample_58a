@@ -10,26 +10,20 @@
           %span
             必須
         %p
-          最大10枚までアップロードできます
-        = f.fields_for :images, @product.images.first do |image|
-          .o_image-zone1-parent
-            .o_image-zone1
-              #preview1
-              .o_image-label1
-                = image.label :image do
-                  .o_file-field
-                    = image.file_field :image, multiple: true, name: "images[images][]", class: "input-image"
-                  .k_ir_section__inner--form-input
-                    .k_ir_section__inner--form-input-content 
-                      %p
-                        クリックしてファイルをアップロード
-          .o_image-zone2-parent
-            .o_image-zone2
-              #preview2
-              .o_image-label2
-                = image.label :image do
-                  .o_file-field
-                    = image.file_field :image, multiple: true, name: "images[images][]", class: "input-image"
+          最大5枚までアップロードできます
+        .sellbox-form__upload--drop#click-btn
+          .sellbox-form__upload--drop--post
+            = f.fields_for :image do |image|
+              .dropzone-container
+                #preview
+                .dropzone-area
+                  = image.label :image, class: "dropzone-box", for: "upload-image__btn" do
+                    .input_area
+                      = image.file_field :image, id: "upload-image__btn", class: "upload-image", 'data-image': 0, type: "file", name: "product[images_attributes][0][image]"
+                    %p
+                      ドラッグアンドドロップ
+                      %br
+                      またはクリックしてファイルをダウンロード
       .sell-content
         .form-group
           %label
@@ -82,7 +76,7 @@
                 = f.select :fee_payer, Product.fee_payers.keys,{prompt: '---'}
           .form-group
             %label
-              配送料の方法
+              配送の方法
               %span
                 必須
             %div
@@ -125,21 +119,21 @@
                   %p
                     ¥
                   %div
-                    = f.number_field :price, min:300, max:9999999, class: "input-default", placeholder: "例）300", value: ""
+                    = f.number_field :price, min:300, max:9999999, class: "input-default", id: "sell-price", placeholder: "例）300", value: ""
             %li.price-group.border
               .clear-fix
                 .sell-price-title
                   販売手数料(10%)
                 .sell-price-input
                   .right
-                    ー
+                    #mercari_fee
             %li.price-group.border
               .clear-fix
                 .sell-price-title.bold
                   販売利益
                 .sell-price-input
                   .right
-                    ー
+                    #seller_gain
       .sell-content.exhibit-btn
         %div
           %p
@@ -156,7 +150,6 @@
             また、出品をもちまして
             = link_to "加盟店規約", 'https://www.mercari.com/jp/help_center/getting_started/counterfeit_goods/', class:"link-blue" 
             に同意したことになります。
-        = f.submit "出品する", class:"button"
+        = f.submit "変更する", class:"button"
         =link_to "キャンセル", product_path,class:"back-btn"
-
   =render 'signup/login_footer'
