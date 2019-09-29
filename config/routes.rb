@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/card/new', to: 'card#step4'
   delete '/card/destroy', to: 'card#destroy'
   get '/signup/done', to: 'signup#done'
+  get '/searches/detail_search', to: 'searches#detail_search'
   root 'products#index'
   devise_for :users,
 
@@ -18,8 +19,8 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
   resources :products
-  resources :mypages,only: [:index,]
-  resources :logout, only: [:index,]
+  resources :mypages,only: [:index]
+  resources :logout, only: [:index]
   resources :card,only:[:index]
   resources :addresses,only:[:create]
   resources :card,only:[:create]
