@@ -95,4 +95,5 @@ gem 'jquery-rails'
 gem 'gon'
 gem 'aws-sdk'
 gem 'kaminari'
+gem 'ransack'
 

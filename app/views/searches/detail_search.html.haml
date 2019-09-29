@@ -15,7 +15,9 @@
             ="1-#{@products.count}件表示"
         -else
           %h2.search-result-nil
-            新着商品
+            検索結果
+          .search-result-number
+            ="1-#{@products.count}件表示"
         .items-box-content
           = render @products
 = render 'shared/footer'
