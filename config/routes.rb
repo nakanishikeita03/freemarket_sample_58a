@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
+  get '/products/search', to: 'products#search'
   resources :products
   resources :mypages,only: [:index,]
   resources :logout, only: [:index,]
