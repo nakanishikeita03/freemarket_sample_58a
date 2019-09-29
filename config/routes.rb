@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   get '/signup/done', to: 'signup#done'
   root 'products#index'
 
+  get '/category/:id',to: 'category#category'
+  get '/category2/:id',to: 'category#category2'
+  get '/category3/:id',to: 'category#category3'
+
   resources :signup do
     collection do
       get 'index' #新規会員登録ページTOPへ移動

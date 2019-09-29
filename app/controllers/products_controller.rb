@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.includes(:images).where(status: 0).order("created_at DESC").limit(10)    #複数の指定なので返り値は配列
-    @category = MainCategory.all.includes(sub_categories: :sub2_categories)
+    # @category = MainCategory.all.includes(sub_categories: :sub2_categories)
   end
 
 
