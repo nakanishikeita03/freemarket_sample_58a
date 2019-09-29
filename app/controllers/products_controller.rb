@@ -74,12 +74,6 @@ end
       render 'edit'
     end
   end
-
-  def search
-    @products = Product.search(params[:search])
-  end
-
-
 private
 
   def product_params
