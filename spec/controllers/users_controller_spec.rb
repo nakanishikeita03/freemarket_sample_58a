@@ -1,5 +1,5 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# describe RegistrationsController do
+describe RegistrationsController do
 
-# end
+end
