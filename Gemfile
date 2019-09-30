@@ -97,3 +97,4 @@ gem 'aws-sdk'
 gem 'kaminari'
 gem 'ransack'
 
+
