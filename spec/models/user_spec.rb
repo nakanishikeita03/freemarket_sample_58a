@@ -123,6 +123,11 @@ describe User do
       user.valid?
       expect(user.errors[:birthday][0]).to include("は不正な値です")
     end
+    it "telが空だと登録不可 " do
+      user = build(:user, tel: "")
+      user.valid?
+      expect(user.errors[:tel][0]).to include("を入力してください")
+    end
     it "すべて満たしていれば登録可" do
       user = build(:user)
       expect(user).to be_valid
