@@ -13,6 +13,16 @@ class AddressesController < ApplicationController
     
   end
 
+  def update
+    @address= Address.find_by(user_id: current_user.id)
+    if @address.update(address_params)
+      redirect_to root_path
+    else
+      flash.now[:alert] = '更新できません'
+      render 'edit'
+    end
+  end
+
     private
     def address_params
       params.require(:address).permit(:l_name_kanji, :f_name_kanji, :l_name_kana, :f_name_kana, :postal_code, :city, :prefecture, :street, :building).merge(user_id: current_user.id)
