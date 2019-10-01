@@ -4,7 +4,7 @@ describe SearchesController, type: :controller  do
   let(:user) {create(:user)}
 
   describe 'GET #index' do
-  it "商品一覧ページに遷移するか" do
+  it "検索ページに遷移するか" do
     login_user user
     get :index
     expect(response).to render_template :index
