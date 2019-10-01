@@ -4,7 +4,7 @@ RSpec.describe AddressesController, type: :controller do
     let(:user) {create(:user)}
   
     describe 'GET #step3' do
-    it "商品一覧ページに遷移するか" do
+    it "住所登録ページに遷移するか" do
       login_user user
       get :step3
       expect(response).to render_template :step3

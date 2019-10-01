@@ -13,7 +13,9 @@ FactoryBot.define do
     delivery              {"1"}
     delivery_time         {"1"}
     fee_payer             {"1"}
-
+    images {[
+      FactoryBot.build(:image, product: nil)  #itemと同時にimage作成
+    ]}
     user
     
   end
