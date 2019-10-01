@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to controller: :products, action: :index
     else
-      redirect_to({action: :new}, notice: '出品できません')
+      render "new"
     end
 end
 
