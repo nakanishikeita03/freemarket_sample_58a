@@ -1,11 +1,14 @@
 class MypagesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
   end
 
   def profile
   end
 
-  def identification   
+  def identification 
+    @address= Address.find_by(user_id: current_user.id)  
   end
 
   def card

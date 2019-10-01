@@ -16,6 +16,11 @@
         align-items:center;
         @include border_line;
         position: relative;
+        .fa-chevron-right{
+          display: block;
+          margin: 0 0 0 auto;
+          color: #ccc;
+        }
       }
     }
   }

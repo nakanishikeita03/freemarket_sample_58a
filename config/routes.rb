@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :mypages,only: [:index]
   resources :logout, only: [:index]
   resources :card,only:[:index]
-  resources :addresses,only:[:create]
+  resources :addresses,only:[:create,:update]
   resources :card,only:[:create]
   resources :searches,only:[:index]
   
