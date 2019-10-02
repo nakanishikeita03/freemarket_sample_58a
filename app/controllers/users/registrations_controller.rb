@@ -96,7 +96,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       sign_in(@user)
       bypass_sign_in(@user)
     else
-      redirect_to signup_index_path, notice: '初めから入れ直してください'
+      render "step1"
       
     end
   end

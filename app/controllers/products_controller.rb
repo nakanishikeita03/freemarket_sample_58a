@@ -71,11 +71,9 @@ end
       if @product.update(product_params)
         redirect_to root_path
       else
-        flash.now[:alert] = '更新できません'
         render 'edit'
       end
     else
-      flash.now[:alert] = '写真がありません'
       render 'edit'
     end
   end

@@ -13,7 +13,7 @@ class User < ApplicationRecord
          kana = /\A([ァ-ン]|ー)+\z/
          year_month_day = /\A\d{4}-\d{2}-\d{2}\z/
 
-  validates :nickname, presence: true, length: { maximum: 15 }
+  validates :nickname, presence: true, length: { maximum: 15 },profanity_filter: true
   validates :f_name_kanji, presence: true, length: { maximum: 15 }, format: { with: kanji }
   validates :l_name_kanji, presence: true, length: { maximum: 15 }, format: { with: kanji }
   validates :f_name_kana, presence: true, length: { maximum: 15 }, format: { with: kana }
