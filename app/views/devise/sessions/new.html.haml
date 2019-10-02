@@ -29,7 +29,8 @@
             = f.password_field :password, autocomplete: "new-password", class:'input_box2',placeholder:'パスワード'
           %li.signin-main__conect__lists
             .signin-main__conect__lists__reCAPTCHA
-              = recaptcha_tags
+              = image_tag("https://i.gyazo.com/ce5541bb0a64b4d3a55f24edb0f9b140.png")
+              -# = recaptcha_tags
           .actions
             .actions__btn
               = f.submit 'ログイン', class: "submit_btn"
