@@ -95,4 +95,4 @@ gem 'jquery-rails'
 gem 'gon'
 gem 'aws-sdk'
 gem 'kaminari'
-
+gem "recaptcha", require: "recaptcha/rails"
