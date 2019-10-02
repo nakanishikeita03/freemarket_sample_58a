@@ -1,17 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users,
-  controllers: {
-    sessions: 'users/sessions',
-    registrations: "users/registrations",
-    omniauth_callbacks: 'users/omniauth_callbacks'
-  }
-  get '/products/search', to: 'products#search'
-  resources :products
-  resources :mypages,only: [:index,]
-  resources :logout, only: [:index,]
-  resources :card,only:[:index]
-  resources :addresses,only:[:create]
-  resources :card,only:[:create]
+ 
   get '/mypage/identification', to: 'mypages#identification'
   get '/mypage/profile', to: 'mypages#profile'
   get '/mypage/card', to: 'mypages#card'
@@ -20,7 +8,24 @@ Rails.application.routes.draw do
   get '/card/new', to: 'card#step4'
   delete '/card/destroy', to: 'card#destroy'
   get '/signup/done', to: 'signup#done'
+  get '/searches/detail_search', to: 'searches#detail_search'
   root 'products#index'
+  devise_for :users,
+
+
+  controllers: {
+    sessions: 'users/sessions',
+    registrations: "users/registrations",
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
+  resources :products
+  resources :mypages,only: [:index]
+  resources :logout, only: [:index]
+  resources :card,only:[:index]
+  resources :addresses,only:[:create,:update]
+  resources :card,only:[:create]
+  resources :searches,only:[:index]
+  
 
   get '/category/:id',to: 'category#category'
   get '/category2/:id',to: 'category#category2'
@@ -28,8 +33,8 @@ Rails.application.routes.draw do
 
   resources :signup do
     collection do
-      get 'index' #新規会員登録ページTOPへ移動
-      get 'done' #【新規会員登録】完了ページへ移動
+      get 'index'
+      get 'done' 
     end
   end
 

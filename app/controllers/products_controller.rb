@@ -7,6 +7,10 @@ class ProductsController < ApplicationController
   
   def index
     @products = Product.includes(:images).where(status: 0).order("created_at DESC").limit(10)    #複数の指定なので返り値は配列
+    @ladiesproducts = Product.includes(:images).where(category: 1).order("created_at DESC").limit(10)
+    @mensproducts = Product.includes(:images).where(category: 2).order("created_at DESC").limit(10)
+    @appliancesproducts = Product.includes(:images).where(category: 3).order("created_at DESC").limit(10)
+    @toysproducts = Product.includes(:images).where(category: 6).order("created_at DESC").limit(10)
     # @category = MainCategory.all.includes(sub_categories: :sub2_categories)
   end
 
@@ -25,7 +29,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to controller: :products, action: :index
     else
-      redirect_to({action: :new}, notice: '出品できません')
+      render "new"
     end
 end
 
@@ -75,12 +79,6 @@ end
       render 'edit'
     end
   end
-
-  def search
-    @products = Product.search(params[:search])
-  end
-
-
 private
 
   def product_params

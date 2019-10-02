@@ -8,7 +8,7 @@
     .right-identity-information
       %section.right-container
         %h2.right-container__head 本人情報の登録
-        %form{action: "https://www.mercari.com/jp/mypage/identification/save/", method: "POST", class: "right-container__inner"}
+        = form_for @address, html: { class: 'right-container__inner'} do |f| 
           .form-group__first
             %p
               お客さまの本人情報をご登録ください。
@@ -21,38 +21,43 @@
           .form-group
             %label お名前
             %br
-            後藤 梓
+            =current_user.l_name_kanji + current_user.f_name_kanji
           .form-group
             %label お名前カナ
             %br
-            ゴトウ アズサ
+            =current_user.l_name_kana + current_user.f_name_kana
           .form-group
             %label{for: "birthday"} 生年月日
             %br
-            1980年 7月20日
+            =current_user.birthday
           .form-group
             %label{for: "zip_code"} 郵便番号
             %span.form-arbitrary 任意
-            %input{type: "text", class: "input-default", placeholder: "例) 1234567"}
+            = f.text_field :postal_code, class: "input-default",  placeholder: "例) 1234567"
+            -# %input{type: "text", class: "input-default", placeholder: "例) 1234567"}
           .form-group
             %label{for: "prefecture"} 都道府県
             %span.form-arbitrary 任意
             .select-wrap
-              = collection_select :person, :prefecture_id, Prefecture.all, :id, :name
+              = f.select :prefecture, Address.prefectures.keys,{prompt: '---',class:"select-wrap"}
               %i.fa.fa-angle-down
           .form-group
             %label{for: "city"} 市区町村
             %span.form-arbitrary 任意
-            %input{type: "text", class: "input-default", placeholder: "例) 渋谷区"}
+            = f.text_field :city, class: "input-default",  placeholder: "例) 1234567"
+            -# %input{type: "text", class: "input-default", placeholder: "例) 渋谷区"}
           .form-group
             %label{for: "address1_label"} 番地
             %span.form-arbitrary 任意
-            %input{type: "text", class: "input-default", placeholder: "例) 神南1丁目18-2"}
+            = f.text_field :street, class: "input-default",  placeholder: "例) 1234567"
+            -# %input{type: "text", class: "input-default", placeholder: "例) 神南1丁目18-2"}
           .form-group
             %label{for: "address2_label"} 建物名
             %span.form-arbitrary 任意
-            %input{type: "text", class: "input-default", placeholder: "例) フレーム神南坂4F"}
-          %input{type: "submit", value: "登録する", class: "btn-default btn-red form-group"}
+            = f.text_field :building, class: "input-default",  placeholder: "例) 1234567"
+            -# %input{type: "text", class: "input-default", placeholder: "例) フレーム神南坂4F"}
+          = f.submit "変更する", class:"btn-default btn-red form-group"
+          -# %input{type: "submit", value: "登録する", class: "btn-default btn-red form-group"}
           .form-group.text-right
             = link_to 'https://www.mercari.com/jp/help_center/article/423/', target: "_blank" do
               本人確認書類の登録について

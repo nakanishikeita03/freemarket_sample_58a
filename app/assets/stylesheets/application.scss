@@ -7,9 +7,11 @@
 @import "shared/breadcrumb";
 @import "shared/flash";
 @import "product/index";
-@import "products/show";
+@import "product/show";
 @import "product/new";
 @import "product/edit";
+@import "product/slick-theme";
+@import "product/slick";
 @import "card/confirmation";
 @import "card/complete";
 @import "logout/index";
@@ -30,9 +32,8 @@
 @import "signup/signup-step3";
 @import "signup/signup-step4";
 @import "signup/signup-done";
-@import "product/slick-theme";
-@import "product/slick";
-
+@import "searches/index";
+@import "searches/form_bar";
 // 全ページ共通のフォント
 * {
   font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
