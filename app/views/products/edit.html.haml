@@ -4,6 +4,7 @@
     %h2
       商品の情報の入力
     = form_for @product do |f|
+      = render 'layouts/error_messages', model: f.object
       .sell-upload-box
         %h3
           出品画像
