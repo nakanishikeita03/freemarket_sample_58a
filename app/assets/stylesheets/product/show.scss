@@ -582,6 +582,32 @@
     border-radius: 15px;
     line-height: 1.5;
     word-break: break-all;
+    .message-icons{
+      margin: 8px 0 0;
+      font-size:14px;
+      display: flex;
+      .message-icon-left{
+        display: block;
+        color: #fff;
+        width: 50%;
+      .fa-history{
+        color:#808080;
+      }
+      span{
+        color: #808080;
+      }
+    }
+    .message-icon-right{
+      display: block;
+        width: 50%;
+        text-align: right;
+        .message-delete{
+          .fa-trash{
+            color:#808080;
+          }
+        }
+    }
+    }
   }
 }
 .product-message-form{
