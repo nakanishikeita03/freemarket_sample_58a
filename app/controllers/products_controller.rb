@@ -1,12 +1,16 @@
 class ProductsController < ApplicationController
 
   before_action :authenticate_user!,       only:[:new,:create,:destroy,:edit,:update]
-  before_action :set_products_instance,    only:[:show,:destroy]
-  before_action :set_products,             only:[:edit,:destroy,:update]
+  before_action :create_products_instance,    only:[:new,:show,:destroy]
+  before_action :set_products,             only:[:show,:edit,:destroy,:update]
   before_action :image_params,             only:[:update]
   
   def index
     @products = Product.includes(:images).where(status: 0).order("created_at DESC").limit(10)    #複数の指定なので返り値は配列
+    @ladiesproducts = Product.includes(:images).where(category: 1).order("created_at DESC").limit(10)
+    @mensproducts = Product.includes(:images).where(category: 2).order("created_at DESC").limit(10)
+    @appliancesproducts = Product.includes(:images).where(category: 3).order("created_at DESC").limit(10)
+    @toysproducts = Product.includes(:images).where(category: 6).order("created_at DESC").limit(10)
     # @category = MainCategory.all.includes(sub_categories: :sub2_categories)
   end
 
@@ -20,23 +24,19 @@ class ProductsController < ApplicationController
     @item_image = @product.images.build
   end
 
-
   def create
     @product = Product.new(product_params)
     if @product.save
       redirect_to controller: :products, action: :index
     else
-      redirect_to({action: :new}, notice: '出品できません')
+      render "new"
     end
-end
-
-
-  def destroy
-    @product.destroy if @product.user_id == current_user.id
-    redirect_to controller: :products, action: :index
   end
 
-
+  def show
+  @images = @product.images
+  @image = @images.first
+  end
 
   def edit
     require 'aws-sdk'
@@ -50,14 +50,13 @@ end
                             )
   end
 
-
+  
   def show
     @product = Product.find(params[:id])
     @sub2_category = Sub2Category.includes(sub_category: :main_category).find(@product.category)
     @images = @product.images
     @image = @images.first
   end
-
 
 
   def update
@@ -69,14 +68,19 @@ end
       if @product.update(product_params)
         redirect_to root_path
       else
-        flash.now[:alert] = '更新できません'
         render 'edit'
       end
     else
-      flash.now[:alert] = '写真がありません'
       render 'edit'
     end
   end
+
+
+  def destroy
+    @product.destroy if @product.user_id == current_user.id
+    redirect_to controller: :products, action: :index
+  end
+
 private
 
   def product_params
@@ -87,7 +91,7 @@ private
     @images = params.require(:product).permit(images_attributes: [:image])
   end
 
-  def set_products_instance
+  def create_products_instance
     @product = Product.new
   end
 

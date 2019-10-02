@@ -1,4 +1,6 @@
 class AddressesController < ApplicationController
+  before_action :authenticate_user!
+  
   def step3
     @address = Address.new
   end
@@ -8,9 +10,19 @@ class AddressesController < ApplicationController
     if @address.save
     redirect_to controller: '/card', action: 'step4'
     else
-    redirect_to({action: 'step3'}, notice: '住所情報を入れ直してください')
+    render "step3"
     end
     
+  end
+
+  def update
+    @address= Address.find_by(user_id: current_user.id)
+    if @address.update(address_params)
+      redirect_to root_path
+    else
+      flash.now[:alert] = '更新できません'
+      render 'edit'
+    end
   end
 
     private
