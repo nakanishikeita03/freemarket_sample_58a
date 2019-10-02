@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   get '/category/:id',to: 'category#category'
   get '/category2/:id',to: 'category#category2'
   get '/category3/:id',to: 'category#category3'
+  get '/set_sub_category',to: 'category#set_sub_category'
+  get '/set_sub2_category',to: 'category#set_sub2_category'
 
   resources :signup do
     collection do
