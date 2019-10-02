@@ -4,8 +4,8 @@ class User < ApplicationRecord
   has_many :products,dependent: :destroy
   has_many :cards,dependent: :destroy
   has_many :addresses,dependent: :destroy
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :comments 
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook google_oauth2]
@@ -24,6 +24,7 @@ class User < ApplicationRecord
   validates :tel, presence: true
 
   
+#oauth認証メソッド
   def self.without_sns_data(auth)
     user = User.where(email: auth.info.email).first
 

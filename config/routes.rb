@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   delete '/card/destroy', to: 'card#destroy'
   get '/signup/done', to: 'signup#done'
   get '/searches/detail_search', to: 'searches#detail_search'
+  get '/category/:id',to: 'category#category'
+  get '/category2/:id',to: 'category#category2'
+  get '/category3/:id',to: 'category#category3'
   root 'products#index'
   devise_for :users,
 
@@ -18,7 +21,9 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-  resources :products
+  resources :products do
+    resources :comments, only: [:create]
+  end
   resources :mypages,only: [:index]
   resources :logout, only: [:index]
   resources :card,only:[:index]
@@ -59,10 +64,6 @@ Rails.application.routes.draw do
     get 'card/confirmation', to:'card#confirmation'
     get 'card/complete', to:'card#complete'
   end
-
-
-
-
 
 end
 
