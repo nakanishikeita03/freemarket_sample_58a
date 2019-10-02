@@ -58,6 +58,8 @@ class ProductsController < ApplicationController
     @sub2_category = Sub2Category.includes(sub_category: :main_category).find(@product.category)
     @images = @product.images
     @image = @images.first
+    @comment = Comment.new
+    @comments = Comment.where(product_id: @product.id)
   end
 
 

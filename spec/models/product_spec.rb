@@ -8,10 +8,22 @@ describe Product do
       expect(product.errors[:name]).to include("を入力してください")
     end
 
+    it "nameが不適切ワードでは登録不可" do
+      product = build(:product, name: "アホ")
+      product.valid?
+      expect(product.errors[:name]).to include("に不適切な単語が含まれています")
+    end
+
     it "detailが空では登録不可" do
       product = build(:product, detail: "")
       product.valid?
       expect(product.errors[:detail]).to include("を入力してください")
+    end
+
+    it "detailが不適切ワードでは登録不可" do
+      product = build(:product, detail: "アホ")
+      product.valid?
+      expect(product.errors[:detail]).to include("に不適切な単語が含まれています")
     end
 
     it "categoryが空では登録不可" do
