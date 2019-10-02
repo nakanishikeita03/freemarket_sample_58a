@@ -34,6 +34,8 @@ class ProductsController < ApplicationController
   def show
   @images = @product.images
   @image = @images.first
+  @comment = Comment.new
+  @comments = @product.comments.includes(:user)
   end
 
   def edit
