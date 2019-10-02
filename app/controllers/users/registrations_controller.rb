@@ -50,6 +50,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
+  # prepend_before_action :check_captcha, only: [:create]
+  # prepend_before_action :customize_sign_up_params, only: [:create]
+
   def after_sign_up_path_for(resource)
     addresses_new_path
   end
@@ -66,18 +69,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
   
   def step2
-    session[:nickname] = params[:user][:nickname]
-    session[:email] = params[:user][:email]
-    session[:password] = params[:user][:password]
-    session[:password_confirmation] = params[:user][:password_confirmation]
-    session[:f_name_kana] = params[:user][:f_name_kana]
-    session[:l_name_kana] = params[:user][:l_name_kana]
-    session[:f_name_kanji] = params[:user][:f_name_kanji]
-    session[:l_name_kanji] = params[:user][:l_name_kanji]
-    session[:birthday] = birthday_join
-    session[:provider] = session[:provider]
-    session[:uid] = session[:uid]
-    @user = User.create(nickname:session[:nickname], email: session[:email], password: session[:password], password_confirmation: session[:password_confirmation], f_name_kana: session[:f_name_kana],l_name_kana: session[:l_name_kana], f_name_kanji: session[:f_name_kanji], l_name_kanji: session[:l_name_kanji], birthday: session[:birthday], tel: params[:user][:tel])
+    # binding.pry
+    if verify_recaptcha
+      session[:nickname] = params[:user][:nickname]
+      session[:email] = params[:user][:email]
+      session[:password] = params[:user][:password]
+      session[:password_confirmation] = params[:user][:password_confirmation]
+      session[:f_name_kana] = params[:user][:f_name_kana]
+      session[:l_name_kana] = params[:user][:l_name_kana]
+      session[:f_name_kanji] = params[:user][:f_name_kanji]
+      session[:l_name_kanji] = params[:user][:l_name_kanji]
+      session[:birthday] = birthday_join
+      session[:provider] = session[:provider]
+      session[:uid] = session[:uid]
+      @user = User.create(nickname:session[:nickname], email: session[:email], password: session[:password], password_confirmation: session[:password_confirmation], f_name_kana: session[:f_name_kana],l_name_kana: session[:l_name_kana], f_name_kanji: session[:f_name_kanji], l_name_kanji: session[:l_name_kanji], birthday: session[:birthday], tel: params[:user][:tel])
+    else
+      redirect_to signup_index_path, notice: 'reCAPTCH認証を行なってください'
+    end
   end
 
 
@@ -100,7 +108,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       
     end
   end
-
   private
 
 
@@ -111,5 +118,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     birthday = year.to_s + "-" + month.to_s + "-" + day.to_s
     return birthday
   end
- 
+
+  def customize_sign_up_params
+    devise_parameter_sanitizer.permit :sign_up, keys: [:username, :email, :password, :password_confirmation, :remember_me]
+  end
+
+
 end
