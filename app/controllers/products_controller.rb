@@ -16,6 +16,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @categories = MainCategory.all
     @item_image = @product.images.build
   end
 
@@ -52,6 +53,7 @@ end
 
   def show
     @product = Product.find(params[:id])
+    @sub2_category = Sub2Category.includes(sub_category: :main_category).find(@product.category)
     @images = @product.images
     @image = @images.first
   end
