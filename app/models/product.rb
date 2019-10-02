@@ -5,7 +5,7 @@ class Product < ApplicationRecord
   has_many :comments 
 
   validates :name, presence: true, profanity_filter: true
-  validates :detail, presence: true
+  validates :detail, presence: true, profanity_filter: true
   validates :category, presence: true
   validates :price, presence: true
   validates :status, presence: true
