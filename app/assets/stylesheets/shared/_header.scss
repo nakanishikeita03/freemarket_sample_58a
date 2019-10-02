@@ -124,10 +124,10 @@
   }
   .parent_list{
     display: flex;
-    width: 200px;
+    width: 240px;
     .maincategory{
       padding: 0 16px;
-      width: 200px;
+      width: 240px;
     }
   }
 }
@@ -141,18 +141,19 @@
   width: auto;
   position: absolute;
   top: 0;
-  left: 200px;
+  left: 240px;
   cursor: pointer;
   .child_list{
     height: 32px;
     line-height: 32px;
-    width: 200px;
+    width: 240px;
     &:hover{
       background-color:#eee;
     }
     .subcategory{
+      display: flex;
       padding: 0 16px;
-      width: 200px;
+      width: 240px;
     }
   }
 }
@@ -167,7 +168,7 @@
   overflow: scroll;
   position: absolute;
   top: 0;
-  left: 200px;
+  left: 240px;
   cursor: pointer;
   .gchild_list{
     height: 32px;
@@ -177,6 +178,7 @@
       background-color:#eee;
     }
     .sub2category{
+      display: flex;
       padding: 0 16px;
     }
   }
