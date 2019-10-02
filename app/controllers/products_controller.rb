@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
 
   before_action :authenticate_user!,       only:[:new,:create,:destroy,:edit,:update]
-  before_action :set_products_instance,    only:[:show,:destroy]
-  before_action :set_products,             only:[:edit,:destroy,:update]
+  before_action :create_products_instance,    only:[:new,:show,:destroy]
+  before_action :set_products,             only:[:show,:edit,:destroy,:update]
   before_action :image_params,             only:[:update]
   
   def index
@@ -19,10 +19,8 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
     @item_image = @product.images.build
   end
-
 
   def create
     @product = Product.new(product_params)
@@ -31,15 +29,12 @@ class ProductsController < ApplicationController
     else
       render "new"
     end
-end
-
-
-  def destroy
-    @product.destroy if @product.user_id == current_user.id
-    redirect_to controller: :products, action: :index
   end
 
-
+  def show
+  @images = @product.images
+  @image = @images.first
+  end
 
   def edit
     require 'aws-sdk'
@@ -52,15 +47,6 @@ end
                             secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
                             )
   end
-
-
-  def show
-    @product = Product.find(params[:id])
-    @images = @product.images
-    @image = @images.first
-  end
-
-
 
   def update
     if @images.present? && @product.update(product_params)
@@ -77,6 +63,13 @@ end
       render 'edit'
     end
   end
+
+
+  def destroy
+    @product.destroy if @product.user_id == current_user.id
+    redirect_to controller: :products, action: :index
+  end
+
 private
 
   def product_params
@@ -87,7 +80,7 @@ private
     @images = params.require(:product).permit(images_attributes: [:image])
   end
 
-  def set_products_instance
+  def create_products_instance
     @product = Product.new
   end
 

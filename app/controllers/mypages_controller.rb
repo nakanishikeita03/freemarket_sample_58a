@@ -12,7 +12,7 @@ class MypagesController < ApplicationController
   end
 
   def card
-    @card = Card.where(user_id: current_user.id).first
+    @card = Card.find_by(user_id: current_user.id)
     if @card.present?
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     customer = Payjp::Customer.retrieve(@card.customer_id)
