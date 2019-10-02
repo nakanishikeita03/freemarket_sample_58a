@@ -9,6 +9,7 @@
       %section.right-container
         %h2.right-container__head 本人情報の登録
         = form_for @address, html: { class: 'right-container__inner'} do |f| 
+          = render 'layouts/error_messages', model: f.object
           .form-group__first
             %p
               お客さまの本人情報をご登録ください。

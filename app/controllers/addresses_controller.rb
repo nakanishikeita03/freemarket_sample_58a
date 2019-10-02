@@ -1,6 +1,6 @@
 class AddressesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def step3
     @address = Address.new
   end
@@ -20,8 +20,7 @@ class AddressesController < ApplicationController
     if @address.update(address_params)
       redirect_to root_path
     else
-      flash.now[:alert] = '更新できません'
-      render 'edit'
+      render 'mypages/identification'
     end
   end
 
