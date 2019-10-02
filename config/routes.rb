@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
   resources :products do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create,:destroy]
   end
   resources :mypages,only: [:index]
   resources :logout, only: [:index]

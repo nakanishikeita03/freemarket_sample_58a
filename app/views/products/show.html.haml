@@ -157,6 +157,15 @@
                       = comment.user.nickname
                 .message-body
                   = comment.text
+                  .message-icons
+                    .message-icon-left
+                      = fa_icon "history"
+                      %span
+                        1時間
+                    .message-icon-right
+                      .message-delete
+                        = link_to("/products/#{@product.id}/comments/#{comment.id}",{method:"delete"}) do
+                          = fa_icon "trash"
                   %i.icon-ballon
         .product-message-form
           = form_for(@comment, url:"/products/#{@product.id}/comments") do |f|
@@ -165,16 +174,6 @@
             =f.text_field :text, class:"message-form"
             .message-submit__details
               = f.submit "コメントする", class:"comment-button"
-              %span.font-white コメントする
-      -# %form.product-show-message-form{method: "post"}
-      -# %input{type: "hidden"}
-      -# %p.attention 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      -# %input{type: "hidden"}
-      -# %input{type: "hidden"}
-      -# %textarea.text{type: "text", name: "body"}
-      -# .message-submit__details
-      -# %button{type: "submit", class: "product-show-message-submit__button-default"}
-      -#   %span.font-white コメントする 
       .nav-product-link
         .previous-product.items-link_to
           =fa_icon "chevron-left"
