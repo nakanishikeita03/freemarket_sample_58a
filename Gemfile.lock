@@ -1228,8 +1228,8 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.3)
   rails-controller-testing
-  recaptcha
   ransack
+  recaptcha
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
