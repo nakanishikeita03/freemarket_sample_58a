@@ -1,36 +1,36 @@
-/* Slider */
+/* 画像スライダー（slickをベースにデザイン・幅・位置を調整） */
 
 .slick-slider {
-    position: relative;
-    display: block;
-    box-sizing: border-box;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -ms-touch-action: pan-y;
-    touch-action: pan-y;
-    -webkit-tap-highlight-color: transparent;
+	position: relative;
+	display: block;
+	box-sizing: border-box;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-ms-touch-action: pan-y;
+	touch-action: pan-y;
+	-webkit-tap-highlight-color: transparent;
 }
 
 .slider {
-    display: none;
-    }
-    .slider.slick-initialized {
-    display: block;
+	display: none;
+	}
+	.slider.slick-initialized {
+	display: block;
 }
 
 .slick-prev, .slick-next {
-    width:60px; /* 画像幅 */
-    height:34px /* 画像高さ */
+	width:60px; /* 画像幅 */
+	height:34px /* 画像高さ */
 }
 .slick-prev:before, .slick-next:before {
-    content:"";
+	content:"";
 }
 button.slick-prev, button.slick-next {
-    z-index:2;
+	z-index:2;
 }
 .slick-prev{left:40px; /* 任意の値 */}
 .slick-next{right:40px; /* 任意の値 */}
@@ -40,102 +40,102 @@ button.slick-prev, button.slick-next {
 
 
 .slick-list {
-    position: relative;
-    overflow: hidden;
-    display: block;
-    margin: 0;
-    padding: 0;
+	position: relative;
+	overflow: hidden;
+	display: block;
+	margin: 0;
+	padding: 0;
 
-    &:focus {
-        outline: none;
-    }
+	&:focus {
+		outline: none;
+	}
 
-    &.dragging {
-        cursor: pointer;
-        cursor: hand;
-    }
+	&.dragging {
+		cursor: pointer;
+		cursor: hand;
+	}
 }
 .slick-slider .slick-track,
 .slick-slider .slick-list {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
 }
 
 .slick-track {
-    position: relative;
-    left: 0;
-    top: 0;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+	position: relative;
+	left: 0;
+	top: 0;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 
-    &:before,
-    &:after {
-        content: "";
-        display: table;
-    }
+	&:before,
+	&:after {
+		content: "";
+		display: table;
+	}
 
-    &:after {
-        clear: both;
-    }
+	&:after {
+		clear: both;
+	}
 
-    .slick-loading & {
-        visibility: hidden;
-    }
+	.slick-loading & {
+		visibility: hidden;
+	}
 }
 .slick-slide {
-    float: left;
-    height: 100%;
-    min-height: 1px;
-    [dir="rtl"] & {
-        float: right;
-    }
-    img {
-        display: block;
-    }
-    &.slick-loading img {
-        display: none;
-    }
+	float: left;
+	height: 100%;
+	min-height: 1px;
+	[dir="rtl"] & {
+		float: right;
+	}
+	img {
+		display: block;
+	}
+	&.slick-loading img {
+		display: none;
+	}
 
-    display: none;
+	display: none;
 
-    &.dragging img {
-        pointer-events: none;
-    }
+	&.dragging img {
+		pointer-events: none;
+	}
 
-    .slick-initialized & {
-        display: block;
-    }
+	.slick-initialized & {
+		display: block;
+	}
 
-    .slick-loading & {
-        visibility: hidden;
-    }
+	.slick-loading & {
+		visibility: hidden;
+	}
 
-    .slick-vertical & {
-        display: block;
-        height: auto;
-        border: 1px solid transparent;
-    }
+	.slick-vertical & {
+		display: block;
+		height: auto;
+		border: 1px solid transparent;
+	}
 }
 .slick-arrow.slick-hidden {
-    display: none;
+	display: none;
 }
 
 .single { max-width: 600px; margin: 0 auto 50px;}
 .single img{ width: 100%;}
 
 .slick-dots {
-    position: absolute !important;
-    bottom: 20px !important;
-    li {
-      font-size: 20px !important;
-      button:before {
-        content: "●" !important;
-        font-size: 14px !important;
-        color: white !important;
-      }
-    }
-  }
+	position: absolute !important;
+	bottom: 20px !important;
+	li {
+		font-size: 20px !important;
+		button:before {
+			content: "●" !important;
+			font-size: 14px !important;
+			color: white !important;
+		}
+	}
+}

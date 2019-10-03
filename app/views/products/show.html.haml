@@ -29,7 +29,6 @@
             - if @product.images.length > 5
               - for i in 1..(10 - @product.images.length)
                 .owl-dot__dummy
-        
         %table.product-detail-table
           %tbody
             %tr
@@ -52,14 +51,12 @@
             %tr
               %th カテゴリー
               %td
-
                 .product-detail-table-sub
                   = @product.category
                 .product-detail-table-sub
                 .product-detail-table-sub__sub
                   %i.fas.fa-angle-right
                   = @product.category
-
                 .product-detail-table-sub
                 .product-detail-table-sub__sub
                   %i.fas.fa-angle-right
@@ -96,13 +93,11 @@
               %td
                 .product-detail
                   = @product.delivery_time
-
       .product-price-box
         %span.product-price 
           ¥ #{@product.price}
         %span.product-tax (税込)
         %span.product-fee_payer
-
       -if user_signed_in?
         -if @product.user_id == current_user.id
           = link_to edit_product_path(@product), data: {turbolinks: false} do
@@ -117,7 +112,6 @@
               .product-buy-btn 購入画面に進む
           -else
             .product-buy-btn-sold 売り切れました
-
       -else
         -if @product.status == 0
           = link_to "/users/sign_in" do
@@ -143,7 +137,6 @@
             = link_to 'https://www.mercari.com/jp/safe/description/', target: "_blank", class: "safe-description" do
               = fa_icon "lock"
               あんしん・あんぜんへの取り組み
-
   .product-message-content
     .message-content
     .message-content__box__form
@@ -163,7 +156,6 @@
           .next-product.items-link_to
             = link_to "次の商品へ", "https://item.mercari.com/jp/"
             = fa_icon "chevron-right"
-
         .product-social-media-box
           .text-center
           %ul.social-media-box
