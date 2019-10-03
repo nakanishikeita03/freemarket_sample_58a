@@ -131,3 +131,16 @@ select{
 select::-ms-expand{
   display: none;
 }
+.btn-default {
+  margin: 8px 0 0;
+  background-color: #ea352d;
+  color: #fff;
+  border: 1px solid #ea352d;
+  width: 100%;
+  font-size: 14px;
+  line-height: 48px;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: inline-block;
+  text-decoration: none;
+}
