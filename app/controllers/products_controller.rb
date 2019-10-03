@@ -34,23 +34,16 @@ class ProductsController < ApplicationController
   end
 
   def show
-  @images = @product.images
-  @image = @images.first
-  @comment = Comment.new
-  @comments = @product.comments.includes(:user)
+    @images = @product.images
+    @image = @images.first
+    @comment = Comment.new
+    @comments = @product.comments.includes(:user)
   end
 
   def edit
-    # require 'aws-sdk'
     @categories = MainCategory.all
     @product= Product.find(params[:id])
     @images = @product.images.order(id: "DESC")
-
-    # client = Aws::S3::Client.new(
-    #                         region: 'ap-northeast-1',
-    #                         access_key_id: ENV["AWS_ACCESS_KEY_ID"],
-    #                         secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
-    #                         )
   end
 
   
@@ -66,18 +59,22 @@ class ProductsController < ApplicationController
 
 
   def update
-    if @images.present? && @product.update(product_params)
-      beforeimgs=Image.where(product_id: @product.id)
-      beforeimgs.each do |beforeimg|
-        beforeimg.destroy
-      end
-      if @product.update(product_params)
-        redirect_to root_path
-      else
-        render 'edit'
-      end
+    if params[:product][:category] == "null"
+      redirect_to(root_path, notice: '編集できませんでした')
     else
-      render 'edit'
+      if @images.present? && @product.update(product_params)
+        beforeimgs=Image.where(product_id: @product.id)
+        beforeimgs.each do |beforeimg|
+          beforeimg.destroy
+        end
+        if @product.update(product_params)
+          redirect_to root_path
+        else
+          redirect_to(root_path, notice: '編集できませんでした')
+        end
+      else
+        redirect_to(root_path, notice: '編集できませんでした')
+      end
     end
   end
 
