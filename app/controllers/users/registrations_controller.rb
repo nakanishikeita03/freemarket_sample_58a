@@ -16,22 +16,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   def step2
     #step1で入力した値をsession保持
-    # if verify_recaptcha
-    session[:nickname] = params[:user][:nickname]
-    session[:email] = params[:user][:email]
-    session[:password] = params[:user][:password]
-    session[:password_confirmation] = params[:user][:password_confirmation]
-    session[:f_name_kana] = params[:user][:f_name_kana]
-    session[:l_name_kana] = params[:user][:l_name_kana]
-    session[:f_name_kanji] = params[:user][:f_name_kanji]
-    session[:l_name_kanji] = params[:user][:l_name_kanji]
-    session[:birthday] = birthday_join
-    session[:provider] = session[:provider]
-    session[:uid] = session[:uid]
-    @user = User.create(nickname:session[:nickname], email: session[:email], password: session[:password], password_confirmation: session[:password_confirmation], f_name_kana: session[:f_name_kana],l_name_kana: session[:l_name_kana], f_name_kanji: session[:f_name_kanji], l_name_kanji: session[:l_name_kanji], birthday: session[:birthday], tel: params[:user][:tel])
-    # else
-    #   redirect_to signup_index_path, notice: 'reCAPTCH認証を行なってください'
-    # end
+    if verify_recaptcha
+      session[:nickname] = params[:user][:nickname]
+      session[:email] = params[:user][:email]
+      session[:password] = params[:user][:password]
+      session[:password_confirmation] = params[:user][:password_confirmation]
+      session[:f_name_kana] = params[:user][:f_name_kana]
+      session[:l_name_kana] = params[:user][:l_name_kana]
+      session[:f_name_kanji] = params[:user][:f_name_kanji]
+      session[:l_name_kanji] = params[:user][:l_name_kanji]
+      session[:birthday] = birthday_join
+      session[:provider] = session[:provider]
+      session[:uid] = session[:uid]
+      @user = User.create(nickname:session[:nickname], email: session[:email], password: session[:password], password_confirmation: session[:password_confirmation], f_name_kana: session[:f_name_kana],l_name_kana: session[:l_name_kana], f_name_kanji: session[:f_name_kanji], l_name_kanji: session[:l_name_kanji], birthday: session[:birthday], tel: params[:user][:tel])
+    else
+      redirect_to signup_index_path, notice: 'reCAPTCH認証を行なってください'
+    end
   end
 
 
