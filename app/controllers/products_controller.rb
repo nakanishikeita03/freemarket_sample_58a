@@ -19,6 +19,8 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @product = Product.new
+    @categories = MainCategory.all
     @item_image = @product.images.build
   end
 
@@ -34,6 +36,8 @@ class ProductsController < ApplicationController
   def show
   @images = @product.images
   @image = @images.first
+  @comment = Comment.new
+  @comments = @product.comments.includes(:user)
   end
 
   def edit
@@ -47,6 +51,17 @@ class ProductsController < ApplicationController
                             secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
                             )
   end
+
+  
+  def show
+    @product = Product.find(params[:id])
+    @sub2_category = Sub2Category.includes(sub_category: :main_category).find(@product.category)
+    @images = @product.images
+    @image = @images.first
+    @comment = Comment.new
+    @comments = Comment.where(product_id: @product.id)
+  end
+
 
   def update
     if @images.present? && @product.update(product_params)

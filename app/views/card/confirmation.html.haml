@@ -39,7 +39,7 @@
               %br
               = @addresses.prefecture + @addresses.city + @addresses.street + @addresses.building
               %br
-              = "#{@product.user.f_name_kanji}" + " " + "#{@product.user.l_name_kanji}"
+              = current_user.l_name_kanji + " " + current_user.f_name_kanji
             .user-info-fix
               = link_to "#" do
                 変更する

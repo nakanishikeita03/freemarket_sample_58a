@@ -52,17 +52,18 @@
               %th カテゴリー
               %td
                 .product-detail-table-sub
-                  = @product.category
+                  = @sub2_category.sub_category.main_category.name
                 .product-detail-table-sub
                 .product-detail-table-sub__sub
                   %i.fas.fa-angle-right
-                  = @product.category
+                  = @sub2_category.sub_category.name
+
                 .product-detail-table-sub
                 .product-detail-table-sub__sub
                   %i.fas.fa-angle-right
                 .product-detail-table-sub__sub__sub
                   %i.fas.fa-angle-right
-                  = @product.category
+                  = @sub2_category.name
             %tr
               %th ブランド
               %td
@@ -137,24 +138,43 @@
             = link_to 'https://www.mercari.com/jp/safe/description/', target: "_blank", class: "safe-description" do
               = fa_icon "lock"
               あんしん・あんぜんへの取り組み
-  .product-message-content
     .message-content
     .message-content__box__form
-      %form.product-show-message-form{method: "post"}
-      %input{type: "hidden"}
-      %p.attention 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      %input{type: "hidden"}
-      %input{type: "hidden"}
-      %textarea.text{type: "text", name: "body"}
-      .message-submit__details
-      %button{type: "submit", class: "product-show-message-submit__button-default"}
-        %span.font-white コメントする 
+      .product-message-content
+        -if @comments 
+          -@comments.each do |comment| 
+            .product-message-comment
+              .message-items
+                .message-user
+                  = image_tag 'mypage/user-icon.png', size: '30x30', alt: 'user-icon', class:"user-icon"
+                  .message-user-name
+                    %p
+                      = comment.user.nickname
+                .message-body
+                  = comment.text
+                  .message-icons
+                    .message-icon-left
+                      = fa_icon "history"
+                      %span
+                        1時間
+                    .message-icon-right
+                      .message-delete
+                        = link_to("/products/#{@product.id}/comments/#{comment.id}",{method:"delete"}) do
+                          = fa_icon "trash"
+                  %i.icon-ballon
+        .product-message-form
+          = form_for(@comment, url:"/products/#{@product.id}/comments") do |f|
+            %p.attention 
+              相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+            =f.text_field :text, class:"message-form"
+            .message-submit__details
+              = f.submit "コメントする", class:"comment-button"
       .nav-product-link
         .previous-product.items-link_to
           =fa_icon "chevron-left"
-          = link_to "前の商品へ", "https://item.mercari.com/jp/"
+          = link_to "前の商品へ", "#"
           .next-product.items-link_to
-            = link_to "次の商品へ", "https://item.mercari.com/jp/"
+            = link_to "次の商品へ", "#"
             = fa_icon "chevron-right"
         .product-social-media-box
           .text-center

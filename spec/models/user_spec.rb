@@ -12,6 +12,11 @@ describe User do
       user.valid?
       expect(user.errors[:nickname][0]).to include("は15文字以内で入力してください")
     end
+    it "nicknameが不適切ワードでは登録不可" do
+      user = build(:user, nickname: "アホ")
+      user.valid?
+      expect(user.errors[:nickname]).to include("に不適切な単語が含まれています")
+    end
     it "emailが空では登録不可" do
       user = build(:user, email: "")
       user.valid?
