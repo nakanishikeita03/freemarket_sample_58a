@@ -42,6 +42,7 @@ class ProductsController < ApplicationController
 
   def edit
     require 'aws-sdk'
+    @categories = MainCategory.all
     @product= Product.find(params[:id])
     @images = @product.images.order(id: "DESC")
 

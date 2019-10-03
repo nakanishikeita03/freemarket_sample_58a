@@ -51,7 +51,15 @@
             %div
               .select-wrap
                 %i.fa.fa-angle-down
-                = f.select :category, Product.categories.keys,{prompt: '---'}
+                = f.collection_select :category, @categories, :id, :name, {prompt: '---'}, class: "k_ir_section__inner--form3-right-select-category", id: "category_parent"
+              .display_none.select-wrap
+                %i.fa.fa-angle-down
+                %select.k_ir_section__inner--form3-right-select-category#category_children
+
+              .display_none.select-wrap
+                %i.fa.fa-angle-down
+                %select.k_ir_section__inner--form3-right-select-category#category_grandchildren
+                
           .form-group
             %label
               商品の状態
@@ -151,6 +159,6 @@
             また、出品をもちまして
             = link_to "加盟店規約", 'https://www.mercari.com/jp/help_center/getting_started/counterfeit_goods/', class:"link-blue" 
             に同意したことになります。
-        = f.submit "変更する", class:"button"
+        = f.submit "変更する", class:"button",id: "product_botton"
         =link_to "キャンセル", product_path,class:"back-btn"
   =render 'signup/login_footer'
