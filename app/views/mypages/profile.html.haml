@@ -2,7 +2,6 @@
   = render "shared/header"
   - breadcrumb :profile
   = render "shared/breadcrumb"
-
   .main-background
     .left-content
       = render 'mypages/modules/mypage-sidebar'
@@ -18,6 +17,5 @@
             %textarea{class:"textarea-default", name: "introduction", placeholder: "例)こんにちは☆ ご覧いただきありがとうございます！断捨離するため、メイク用品中心に出品しています。飽き性で新しもの好きです。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
             %input{type: "hidden", value: "https://www.mercari.com/jp/mypage/profile/", name: "after_save_callback"}
             %input{type: "submit", value: "変更する", class: "btn-default btn-red"}
-    
 = render "shared/sell-btn"
 = render "shared/footer"

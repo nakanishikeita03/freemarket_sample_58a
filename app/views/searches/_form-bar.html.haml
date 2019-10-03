@@ -18,7 +18,6 @@
           = f.search_field :price_gteq, class: "detail_search__group--form detail_form-mini", placeholder: "¥ Min"
           %p 〜
           = f.search_field :price_lteq, class: "detail_search__group--form detail_form-mini", placeholder: "¥ Max"
-
       .detail_search__group
         .detail_search__group--label
           = fa_icon "search"
@@ -89,7 +88,6 @@
           %label
             = f.check_box :status_in, {multiple: true, class: "detail_checkbox"}, '1', nil
             = '売却済み'
-      
       .detail_search__btns
         .detail_search__btn--grey
           = link_to "クリア", "/searches",type: "button", class: "detail_search__btn"

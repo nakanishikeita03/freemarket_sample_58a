@@ -3,7 +3,7 @@
     %h1.single-header__logo
       = link_to root_path do 
         = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3951034907"
-    %nav.progress-bar
+    %nav.progress-bar3
       %ol.clearfix
         %li.progress-bar3__active
           会員情報
@@ -20,7 +20,6 @@
         %li.progress-bar3__active__complete
           完了
           .progress-bar3__active__status__complete
-
   .signup-main3      
     .signup-main3__head 発送元・お届け先住所入力
     .a-3
@@ -64,5 +63,4 @@
           %span.content__option 任意
         = f.text_field :building, autocomplete: "building", placeholder: '例) 柳ビル103', class: "signup3__form__input"
         %input.next-btn{type: 'submit',value: '次へ進む'} 
-
   = render 'signup/login_footer'
