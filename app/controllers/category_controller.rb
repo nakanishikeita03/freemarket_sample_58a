@@ -4,14 +4,14 @@ class CategoryController < ApplicationController
     @categories = MainCategory.includes(sub_categories: :sub2_categories).find_by(id: params[:id])
     category_id = @categories.sub_categories.map(&:sub2_categories).flatten
     category_id.collect!{|category| category[:id]}
-    @products = Product.includes(:images).where(category: category_id).order("created_at DESC").page(params[:page]).per(100)
+    @products = Product.includes(:images).where(category: category_id).order("created_at DESC").page(params[:page]).per(10)
   end
 
 
   def category2
     @categories = SubCategory.includes(:sub2_categories).find_by(id: params[:id])
     category_id = @categories.sub2_categories.map {|category| category["id"]}
-    @products = Product.includes(:images).where(category: category_id).order("created_at DESC").page(params[:page]).per(100)
+    @products = Product.includes(:images).where(category: category_id).order("created_at DESC").page(params[:page]).per(10)
   end
 
 
