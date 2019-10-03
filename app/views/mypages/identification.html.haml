@@ -35,7 +35,6 @@
             %label{for: "zip_code"} 郵便番号
             %span.form-arbitrary 任意
             = f.text_field :postal_code, class: "input-default",  placeholder: "例) 1234567"
-            -# %input{type: "text", class: "input-default", placeholder: "例) 1234567"}
           .form-group
             %label{for: "prefecture"} 都道府県
             %span.form-arbitrary 任意
@@ -46,19 +45,15 @@
             %label{for: "city"} 市区町村
             %span.form-arbitrary 任意
             = f.text_field :city, class: "input-default",  placeholder: "例) 1234567"
-            -# %input{type: "text", class: "input-default", placeholder: "例) 渋谷区"}
           .form-group
             %label{for: "address1_label"} 番地
             %span.form-arbitrary 任意
             = f.text_field :street, class: "input-default",  placeholder: "例) 1234567"
-            -# %input{type: "text", class: "input-default", placeholder: "例) 神南1丁目18-2"}
           .form-group
             %label{for: "address2_label"} 建物名
             %span.form-arbitrary 任意
             = f.text_field :building, class: "input-default",  placeholder: "例) 1234567"
-            -# %input{type: "text", class: "input-default", placeholder: "例) フレーム神南坂4F"}
           = f.submit "変更する", class:"btn-default btn-red form-group"
-          -# %input{type: "submit", value: "登録する", class: "btn-default btn-red form-group"}
           .form-group.text-right
             = link_to 'https://www.mercari.com/jp/help_center/article/423/', target: "_blank" do
               本人確認書類の登録について
