@@ -18,9 +18,9 @@ class AddressesController < ApplicationController
   def update
     @address= Address.find_by(user_id: current_user.id)
     if @address.update(address_params)
-      redirect_to root_path
+      redirect_to(mypage_identification_path,notice: '住所情報を変更しました')
     else
-      render 'mypages/identification'
+      redirect_to(mypage_identification_path,notice: '住所変更できませんでした')
     end
   end
 
