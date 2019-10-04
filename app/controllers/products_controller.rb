@@ -9,8 +9,8 @@ class ProductsController < ApplicationController
     @products = Product.includes(:images).where(status: 0).order("created_at DESC").limit(10)    #複数の指定なので返り値は配列
     @ladiesproducts = Product.includes(:images).where(category: 1..180).order("created_at DESC").limit(10)
     @mensproducts = Product.includes(:images).where(category: 181..310).order("created_at DESC").limit(10)
-    @appliancesproducts = Product.includes(:images).where(category: 799..871).order("created_at DESC").limit(10)
-    @toysproducts = Product.includes(:images).where(category: 612..669).order("created_at DESC").limit(10)
+    @appliancesproducts = Product.includes(:images).where(category: 797..871).order("created_at DESC").limit(10)
+    @toysproducts = Product.includes(:images).where(category: 610..708).order("created_at DESC").limit(10)
     # @category = MainCategory.all.includes(sub_categories: :sub2_categories)
   end
 
