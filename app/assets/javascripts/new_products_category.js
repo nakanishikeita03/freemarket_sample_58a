@@ -58,6 +58,7 @@ $(function(){
 
     $(document).on('click','#product_botton', function(){
       var category_id = $('#category_grandchildren').val()
+      if (category_id.length !== 0) {
       $("#category_parent").empty()
       var test = `<option value='${category_id}'></option>`
       $('#category_parent').append(test)
