@@ -36,7 +36,7 @@
             %h3 配送先
             .user-info-text
               〒150-0041
-              = @addresses.postal_code.to_s.insert(3, " - ")
+              = @addresses.postal_code.to_s
               %br
               東京都渋谷区神南1丁目18−2
               = @addresses.prefecture + @addresses.city + @addresses.street + @addresses.building
