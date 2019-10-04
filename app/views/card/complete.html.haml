@@ -28,7 +28,7 @@
           .buy-content__user-info__inner
             %h3 配送先
             .user-info-text
-              = @addresses.postal_code.to_s.insert(3, " - ")
+              = @addresses.postal_code.to_s
               %br
               = @addresses.prefecture + @addresses.city + @addresses.street + @addresses.building
               %br
