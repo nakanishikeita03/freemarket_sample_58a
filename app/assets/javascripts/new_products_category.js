@@ -57,12 +57,11 @@ $(function(){
     })
 
     $(document).on('click','#product_botton', function(){
-      var id = $("#category_parent").val()
       var category_id = $('#category_grandchildren').val()
       $("#category_parent").empty()
       var test = `<option value='${category_id}'></option>`
       $('#category_parent').append(test)
-      var id = $("#category_parent").val()
+      }
     })
 
 })

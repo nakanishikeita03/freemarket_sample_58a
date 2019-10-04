@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @categories = MainCategory.all
+    # @categories = MainCategory.all
     @item_image = @product.images.build
   end
 
@@ -41,14 +41,14 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @categories = MainCategory.all
+    # @categories = MainCategory.all
     @product= Product.find(params[:id])
     @images = @product.images.order(id: "DESC")
   end
 
   
   def show
-    @categories = MainCategory.all
+    # @categories = MainCategory.all
     @product = Product.find(params[:id])
     @sub2_category = Sub2Category.includes(sub_category: :main_category).find(@product.category)
     @images = @product.images
@@ -59,9 +59,9 @@ class ProductsController < ApplicationController
 
 
   def update
-    if params[:product][:category] == "null"
-      redirect_to(root_path, notice: '編集できませんでした')
-    else
+    # if params[:product][:category] == "null"
+      # redirect_to(root_path, notice: '編集できませんでした')
+    # else
       if @images.present? && @product.update(product_params)
         beforeimgs=Image.where(product_id: @product.id)
         beforeimgs.each do |beforeimg|
@@ -70,12 +70,14 @@ class ProductsController < ApplicationController
         if @product.update(product_params)
           redirect_to root_path
         else
-          redirect_to(root_path, notice: '編集できませんでした')
+          render "edit"
+          # redirect_to(root_path, notice: '編集できませんでした')
         end
       else
-        redirect_to(root_path, notice: '編集できませんでした')
+        render "edit"
+        # redirect_to(root_path, notice: '編集できませんでした')
       end
-    end
+    # end
   end
 
 

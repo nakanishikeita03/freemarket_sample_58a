@@ -51,7 +51,7 @@
             %div
               .select-wrap
                 %i.fa.fa-angle-down
-                = f.collection_select :category, @categories, :id, :name, {prompt: '---'}, class: "k_ir_section__inner--form3-right-select-category", id: "category_parent"
+                = f.collection_select :category, @category, :id, :name, {prompt: '---'}, class: "k_ir_section__inner--form3-right-select-category", id: "category_parent"
               .display_none.select-wrap
                 %i.fa.fa-angle-down
                 %select.k_ir_section__inner--form3-right-select-category#category_children
