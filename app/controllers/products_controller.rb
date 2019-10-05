@@ -69,12 +69,12 @@ class ProductsController < ApplicationController
         if @product.update(product_params)
           redirect_to root_path
         else
-          render "edit"
-          # redirect_to(root_path, notice: '編集できませんでした')
+          # render "edit"
+          redirect_to(edit_product_path, notice: '編集できませんでした')
         end
       else
-        render "edit"
-        # redirect_to(root_path, notice: '編集できませんでした')
+        # render "edit"
+        redirect_to(edit_product_path, notice: '編集できませんでした')
       end
     # end
   end
