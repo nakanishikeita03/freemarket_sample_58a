@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!,       only:[:new,:create,:destroy,:edit,:update]
   before_action :create_products_instance,    only:[:new,:show,:destroy]
   before_action :set_products,             only:[:show,:edit,:destroy,:update]
-  before_action :image_params,             only:[:update]
+  before_action :product_update_params,             only:[:update]
   
   def index
     @ladiesproducts = Product.includes(:images).where(status: 0).where(category: 1..180).order("created_at DESC").limit(10)
@@ -58,25 +58,17 @@ class ProductsController < ApplicationController
 
 
   def update
-    # if params[:product][:category] == "null"
-      # redirect_to(root_path, notice: '編集できませんでした')
-    # else
-      if @images.present? && @product.update(product_params)
-        beforeimgs=Image.where(product_id: @product.id)
-        beforeimgs.each do |beforeimg|
-          beforeimg.destroy
-        end
-        if @product.update(product_params)
-          redirect_to root_path
-        else
-          # render "edit"
-          redirect_to(edit_product_path, notice: '編集できませんでした')
-        end
+    if params[:product][:images_attributes] == nil
+      @product.update(product_update_params)
+      redirect_to root_path
+    else
+      @product.images.destroy_all
+      if @product.update(product_params)
+        redirect_to root_path
       else
-        # render "edit"
         redirect_to(edit_product_path, notice: '編集できませんでした')
       end
-    # end
+    end
   end
 
 
@@ -91,8 +83,8 @@ private
     params.require(:product).permit(:name, :detail, :category, :price, :status, :state, :city, :delivery, :delivery_time, :fee_payer, images_attributes: [:image]).merge(user_id: current_user.id)
   end
   
-  def image_params
-    @images = params.require(:product).permit(images_attributes: [:image])
+  def product_update_params
+    params.require(:product).permit(:name, :detail, :category, :price, :status, :state, :city, :delivery, :delivery_time, :fee_payer).merge(user_id: current_user.id)
   end
 
   def create_products_instance
