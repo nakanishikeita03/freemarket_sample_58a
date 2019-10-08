@@ -60,11 +60,11 @@ class ProductsController < ApplicationController
   def update
     if params[:product][:images_attributes] == nil
       @product.update(product_update_params)
-      redirect_to root_path
+      redirect_to action: 'show'
     else
       @product.images.destroy_all
       if @product.update(product_params)
-        redirect_to root_path
+        rredirect_to action: 'show'
       else
         redirect_to(edit_product_path, notice: '編集できませんでした')
       end
