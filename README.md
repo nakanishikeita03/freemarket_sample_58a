@@ -41,7 +41,6 @@ Basic認証をかけています。ご覧の際は以下のIDとPassを入力し
 def step2
       session[:nickname] = params[:user][:nickname]
 ```
-<!-- - gem Antivirusを用いて不適切なワードは登録できないようにしました。 -->
 
 ### SNSアカウントでのログイン機能
 
@@ -90,3 +89,85 @@ def step2
 
 
 ## コメント
+
+### コメント投稿機能
+
+![メルカリコメント投稿 mov](https://user-images.githubusercontent.com/53807858/67623073-05d47480-f85c-11e9-9ff6-038ef064291c.gif)
+
+### コメント削除機能
+### コメントビュー作成
+
+## 検索
+
+### あいまい検索
+
+![メルカリあいまい検索 mov](https://user-images.githubusercontent.com/53807858/67623676-1dfbc200-f863-11e9-998a-63988149b5df.gif)
+
+- LIKE句を用いて、Productテーブルのnameカラムと入力した値が合致したレコードを取得できるように実装しました。
+
+```
+  def self.search(search)
+    return Product.all unless search
+    Product.where(['name LIKE ?', "%#{search}%"])
+  end
+```
+
+### 詳細検索
+
+![詳細検索 mov](https://user-images.githubusercontent.com/53807858/67623680-2bb14780-f863-11e9-9476-a36178292307.gif)
+
+- gem ransackを用いて、それぞれのカラムに入力した値と合致するレコードを取得できるように実装しました。
+  また価格順/出品順に並び替えることもできます。
+
+### 検索ビューページ
+
+## その他
+
+### DB設計
+
+![メルカリER図 (1)](https://user-images.githubusercontent.com/53807858/67630498-01e03b00-f8cc-11e9-8197-c37aba2f4a82.png)
+
+
+### ドメイン取得/SSLサーバー証明書の取得
+
+  - Certificate ManagerでSSLサーバ証明書を発行し、お名前.comで取得したドメインをRoute53/ELBで常時SSL化しています。
+
+### 各種バリデーション
+
+  - 正規表現を用いて形式に当てはまらない値は保存できないようにしました。
+
+  ```
+  kanji = /\A[一-龥]+\z/
+  kana = /\A([ァ-ン]|ー)+\z/
+  year_month_day = /\A\d{4}-\d{2}-\d{2}\z/
+
+  validates :f_name_kanji, presence: true, length: { maximum: 15 }, format: { with: kanji }
+  validates :f_name_kana, presence: true, length: { maximum: 15 }, format: { with: kana }
+  validates :birthday, presence: true, format: { with: year_month_day }
+  ```
+
+  - gem Antivirusを用いて不適切なワードは登録できないようにしました。
+
+  ![メルカリantivirus mov](https://user-images.githubusercontent.com/53807858/67630727-96986800-f8cf-11e9-92e3-9adea4fc05df.gif)
+
+### 単体テスト/統合テスト(RSpec)
+
+### スクラムマスター
+  - ウィークリースクラム、デイリースクラムを立てアジャイル開発をしました。
+
+# 使用技術一覧
+
+- Ruby 2.5.1
+- Ruby on Rails 5.2.3
+- MySQL 5.6.43
+- Haml 5.1.2
+- Sass 3.7.4
+- jQuery 3.4.1
+- Rspec 3.9
+- AWS
+  - EC2
+  - ELB
+  - S3
+  - Route53
+  - Certificate Manager
+- Github
